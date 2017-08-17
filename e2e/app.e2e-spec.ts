@@ -1,14 +1,14 @@
-import { ForeignWorkforceManagementAppPage } from './app.po';
+import { MetadataPage } from './app.po';
 
-describe('foreign-workforce-management-app App', () => {
-  let page: ForeignWorkforceManagementAppPage;
+describe('metadata App', function() {
+  let page: MetadataPage;
 
   beforeEach(() => {
-    page = new ForeignWorkforceManagementAppPage();
+    page = new MetadataPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });
