@@ -22,7 +22,10 @@ import {NetworkAvailability} from './providers/network-availability';
 import {PeriodService} from './providers/period-service';
 import { OrganisationunitsComponent } from './organisationunits/organisationunits.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
-import {User} from './providers/user'
+import {User} from './providers/user';
+import {OptionSetsService } from './providers/Option-sets.service';
+
+
 
 
 @NgModule({
@@ -42,7 +45,7 @@ import {User} from './providers/user'
     component: EventCaptureFormProviderComponent
   }
   ])],
-  providers: [DataElementService,DashboardService, DatasetService, DatavalueService, EventService,  OrganisationUnitService,  ProgramService, VisualiserService,ProgramStageSectionsService, ProgramStageDataElementService, IndicatorService, NetworkAvailability, User ],
+  providers: [DataElementService,DashboardService, DatasetService, DatavalueService, EventService,  OrganisationUnitService,  ProgramService, VisualiserService,ProgramStageSectionsService, ProgramStageDataElementService, IndicatorService, NetworkAvailability, User,OptionSetsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
