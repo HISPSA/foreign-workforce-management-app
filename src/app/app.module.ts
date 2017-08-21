@@ -24,6 +24,11 @@ import { OrganisationunitsComponent } from './organisationunits/organisationunit
 import { IndicatorsComponent } from './indicators/indicators.component';
 import {User} from './providers/user';
 import {OptionSetsService } from './providers/Option-sets.service';
+import { CheckListPageComponent } from './check-list-page/check-list-page.component';
+import { ApprovalScreenComponent } from './approval-screen/approval-screen.component';
+import { ApplicationDetailViewComponent } from './application-detail-view/application-detail-view.component';
+import { ApplicationListViewComponent } from './application-list-view/application-list-view.component';
+import { NotificationsListViewPageComponent } from './notifications-list-view-page/notifications-list-view-page.component';
 
 
 
@@ -33,7 +38,12 @@ import {OptionSetsService } from './providers/Option-sets.service';
     AppComponent,
     EventCaptureFormProviderComponent,
     OrganisationunitsComponent,
-    IndicatorsComponent
+    IndicatorsComponent,
+    CheckListPageComponent,
+    ApprovalScreenComponent,
+    ApplicationDetailViewComponent,
+    ApplicationListViewComponent,
+    NotificationsListViewPageComponent
   ],
   imports: [
     BrowserModule,
