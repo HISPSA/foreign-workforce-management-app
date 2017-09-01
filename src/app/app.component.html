@@ -1,261 +1,34 @@
-<h1>
-  
-</h1>
-
 <nav class="navbar navbar-inverse ">
   <div class="container-fluid">
     <div class="navbar-header">
-	
-	<button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+      <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>	
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="#">SA Health FWM</a>
-    </div>	
-<div class="collapse navbar-collapse" id="myNavbar">  
-    <ul class="nav navbar-nav">	
- <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1-1</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>		  
-    </ul>	
-</div>	
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li  class="active"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <!--
+         <li class="dropdown">
+           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Application <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+             <li><a href="#">Page 1-1</a></li>
+             <li><a href="#">Page 1-2</a></li>
+             <li><a href="#">Page 1-3</a></li>
+           </ul>
+         </li> -->
+        <li ><a routerLink="/application" routerLinkActive="active" >Apply</a></li>
+        <li><a routerLink="/applicationList" routerLinkActive="active" >Application Status</a></li>
+        <li><a  routerLink="/applicationList" routerLinkActive="active">Application Review</a></li>
+        <li><a  routerLink="/approval" routerLinkActive="active">Application Approval</a></li>
+        <li><a  routerLink="/letters" routerLinkActive="active">Letters</a></li>
+        <li><a  routerLink="/notifications" routerLinkActive="active">Notifications</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
- <br/>
-  <br/>
-   <br/>
-
-<div class="container" >
-<div class="panel panel-primary">
-  <div class="panel-heading">Type of application</div>
-<div class="panel-body">
-<label>What are you applying for?</label> <div class="form-group">
-  <select class="form-control" id="title">
-     <option>    </option>
-	<option>First time applicant</option>
-    <option>Registration & Employment</option>
-    <option>Section 26 (a)</option>
-    <option>Section 26 (b)</option>  	
-	<option>Transfer to another Institution	</option>  
-	<option>Family Medicine Registration</option>  
-	<option>Employment,Registration & Work Permit</option>  
-  </select>
-</div>
-</div>
-
-</div>  
-  
-  <div class="panel panel-primary">
-  <div class="panel-heading">Foreign Workforce Application form</div>
-     <div class="panel-body">
-	 <div class="panel panel-default">
-	  <div class="panel-heading">SECTION 1: PERSONAL INFORMATION</div>
-  <div class="panel-body">
-  <div>
-  
-  <form class="form-horizontal">
-  
- 
-  <label   >Surname/Lastname (as it appears in your passport/id/ refugee permit):</label> <input type="text" class="form-control"/>
-  
-<label>First names (as it appears in your passport/id/refugee permit): </label> <input type="text" class="form-control"/>   
-<label>Maiden name (if applicable): </label> <input type="text" class="form-control"/> 
-<label>Initials: </label> <input type="text" class="form-control"/>
-<label>Profession: </label> 
-
-<div class="form-group">
-  <select class="form-control" id="proffession">
-     <option>    </option>
-
-  </select>
-</div>  
-
-<label>Gender: </label>
-<div class="form-group">
-  <select class="form-control" id="gender">
-     <option>    </option>
-	<option>Male</option>
-    <option>Female</option>  
-  </select>
-  </div>  
-  <label>Title</label> <div class="form-group">
-  <select class="form-control" id="title">
-     <option>    </option>
-	<option>Dr.</option>
-    <option>Mr.</option>
-    <option>Mrs</option>
-    <option>Ms</option>   
-  </select>
-</div>  
-<label>Date of birth: </label> <input type="date" class="form-control"/> 
-<label>Current country of residence: </label> <input type="text" class="form-control"/> 
-<label>Current residential status (if residing in SA):</label>  <div class="form-group">
-  <select class="form-control" id="country">
-     <option>    </option>
-
-  </select>
-</div>  
-<label>Passport number / refugee id / South African ID: </label> <input type="text" class="form-control"/> 
-<label>Marital status:</label>  <div class="form-group">
-  <select class="form-control" id="marital">
-     <option>    </option>
-	<option>Dr.</option>
-    <option>Mr.</option>
-    <option>Mrs</option>
-    <option>Ms</option>   
-  </select>
-</div>  
-
-<label>Spouse details (If Married):</label> <input type="text" class="form-control"/>
-<label>E-mail address: </label> <input type="email" class="form-control"/> 
-<label>Address (postal and residential):</label> <input type="text" class="form-control"/> 
-<label>Code: </label> <input type="text" class="form-control"/> 
-
-  
-  
-  <div class="panel panel-default">
-	  <div class="panel-heading">SECTION 2: EDUCATION AND WORK EXPERIENCE</div>
-  <div class="panel-body">
-  <div>
-  <label>Country where you obtained your basic qualification/ type of qualification (DURATION):</label>
-  <input type="text" class="form-control"/> 
-  <label>Internship (if applicable (date completed/ duration):</label> <input type="date" class="form-control"/> 
-  <label>Are you registered as a specialist in any country? </label> 
-  
-  
-  <div class="radio">
-  <label><input type="radio" name="opCountry">Yes</label>
-</div>
-<div class="radio">
-  <label><input type="radio" name="opCountry">No</label>
-</div>
-
-  
-  
-  
-   <label>If yes, state the name of country? </label> <input type="text" class="form-control"/> 
-  </div>
-  
-   </div>
-    </div>
-	
-	  <div class="panel panel-default">
-	  <div class="panel-heading">SECTION: THE FOLLOWING REQUIRED DOCUMENTS IS SUBMITTED IN SUPPORT OF YOUR APPLICATION</div>
-  <div class="panel-body">
-  
- <label> Formal application letter </label>
- <div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-
-<label> Original certified copy of passport / identity document / refugee status / permanent residence certificate </label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Curriculum Vitae </label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of qualifications</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of professional registration</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of reference letters / service certificates of previous employers</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of spouse’s / life-partner’s identity document (not older than 30 days at time of submission)</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-
-<label> Original electronic marriage certificate / certified copy of life-partner agreement (not older than 30 days at time of submission)</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of residence permit, indicating “to reside with SA spouse / life-partner</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-
-<label> Police affidavit signed by spouse / life-partner, clearly stating that you are co-habiting, that your spouse / life-partner supports your employment in south Africa and that he / she is willing to relocate with you wherever you are posted</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-
-<label> Original certified copy of spouse’s employment contract</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of spouse’s work permit</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original certified copy of spouse’s latest salary slip</label> 
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-<label> Original letter from spouse’s employer confirming employment (not older than 30 days at time of submission</label>
-<div>
- <label class="btn btn-default btn-file">
-    Browse <input type="file" style="display: none;">
-</label>
-</div>
-  
-    <br/>
-<input class="btn btn-primary"  type="submit" value="Submit Application"> 
-  </div>
-  </div>  
-	 </form>
-	 </div>
-	 </div>
-	 </div>
-	 </div>  
-  </div>   
-</div>
-
-
-
-
-  
-  
-
+<router-outlet></router-outlet>

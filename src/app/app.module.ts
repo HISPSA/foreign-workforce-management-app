@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule }   from '@angular/router';
+import {Routes, RouterModule }   from '@angular/router';
 
 import {AppComponent } from './app.component';
 import {EventCaptureFormProviderComponent } from './event-capture-form-provider/event-capture-form-provider.component';
@@ -29,9 +29,20 @@ import { ApprovalScreenComponent } from './approval-screen/approval-screen.compo
 import { ApplicationDetailViewComponent } from './application-detail-view/application-detail-view.component';
 import { ApplicationListViewComponent } from './application-list-view/application-list-view.component';
 import { NotificationsListViewPageComponent } from './notifications-list-view-page/notifications-list-view-page.component';
+import { LettersGenerateComponent } from './letters-generate/letters-generate.component';
+import { HomeComponent } from './home/home.component';
+import { ApplicationComponent } from './application/application.component';
 
-
-
+const appRoutes: Routes = [
+  { path: 'letters', component: LettersGenerateComponent },
+  { path: 'approval',  component: ApprovalScreenComponent },
+  { path: 'application',component: ApplicationComponent },
+  { path: 'applicationList',component: ApplicationListViewComponent },
+  { path: 'notification',component: NotificationsListViewPageComponent },
+  { path: 'applicationDetail',component: ApplicationDetailViewComponent },
+  { path: 'notifications',component: NotificationsListViewPageComponent },
+  { path: 'home',component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
@@ -43,18 +54,19 @@ import { NotificationsListViewPageComponent } from './notifications-list-view-pa
     ApprovalScreenComponent,
     ApplicationDetailViewComponent,
     ApplicationListViewComponent,
-    NotificationsListViewPageComponent
+    NotificationsListViewPageComponent,
+    LettersGenerateComponent,
+    HomeComponent,
+    ApplicationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-	RouterModule.forRoot([
-  {
-    path: 'event',
-    component: EventCaptureFormProviderComponent
-  }
-  ])],
+     RouterModule.forRoot(
+        appRoutes,
+        { enableTracing: true } // <-- debugging purposes only
+      )],
   providers: [DataElementService,DashboardService, DatasetService, DatavalueService, EventService,  OrganisationUnitService,  ProgramService, VisualiserService,ProgramStageSectionsService, ProgramStageDataElementService, IndicatorService, NetworkAvailability, User,OptionSetsService ],
   bootstrap: [AppComponent]
 })
