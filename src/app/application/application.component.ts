@@ -88,7 +88,7 @@ export class ApplicationComponent {
     const lkvisaurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
 
 
-    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{ this.gender =  result.optionSets[0];}).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{ this.options =  result.optionSets[0];}).catch(error => console.log(error));
 
     this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {console.log("Gender: ",  result.optionSets[0]);
       this.options =  result.optionSets[0];
@@ -96,7 +96,6 @@ export class ApplicationComponent {
       this.gender = this.options;
 
       console.log("gender assigned", +  json )}).catch(error => console.log(error));
-
 
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result =>console.log("Application type: ",  result.optionSets)).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(titleurl).then(result => console.log("title: ",  result.optionSets)).catch(error => console.log(error));
@@ -131,6 +130,8 @@ export class ApplicationComponent {
     console.log("type of id", this.typeofid);
     console.log("type of qualification", this.typeOfQualification);
     console.log("visa duration", this.visaDuration);
+
+    console.log("gender", this.options);
     /**
      this.dataelemetservice.getDataelementsService(dataelementUrl)
      .then(result => this.dataElements =result.dataElements)

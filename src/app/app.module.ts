@@ -32,16 +32,22 @@ import { NotificationsListViewPageComponent } from './notifications-list-view-pa
 import { LettersGenerateComponent } from './letters-generate/letters-generate.component';
 import { HomeComponent } from './home/home.component';
 import { ApplicationComponent } from './application/application.component';
+import { ApplicantListComponent } from './applicant-list/applicant-list.component';
+import { ApplicantDetailsComponent } from './applicant-details/applicant-details.component';
+import { ApplicationStatusComponent } from './application-status/application-status.component';
 
 const appRoutes: Routes = [
-  { path: 'letters', component: LettersGenerateComponent },
-  { path: 'approval',  component: ApprovalScreenComponent },
-  { path: 'application',component: ApplicationComponent },
-  { path: 'applicationList',component: ApplicationListViewComponent },
-  { path: 'notification',component: NotificationsListViewPageComponent },
-  { path: 'applicationDetail',component: ApplicationDetailViewComponent },
-  { path: 'notifications',component: NotificationsListViewPageComponent },
-  { path: 'home',component: HomeComponent }
+  { path: 'staging/api/apps/fwm/letters', component: LettersGenerateComponent },
+  { path: 'staging/api/apps/fwm/approval',  component: ApprovalScreenComponent },
+  { path: 'staging/api/apps/fwm/application',component: ApplicationComponent },
+  { path: 'staging/api/apps/fwm/applicationList',component: ApplicationListViewComponent },
+  { path: 'staging/api/apps/fwm/notification',component: NotificationsListViewPageComponent },
+  { path: 'staging/api/apps/fwm/applicationDetail',component: ApplicationDetailViewComponent },
+  { path: 'staging/api/apps/fwm/notifications',component: NotificationsListViewPageComponent },
+  { path: 'staging/api/apps/fwm/home',component: HomeComponent },
+  { path: 'staging/api/apps/fwm/applicationList',component: ApplicantListComponent },
+  { path: 'staging/api/apps/fwm/applicationDetail',component: ApplicantDetailsComponent },
+  { path: 'staging/api/apps/fwm/applicationStatus',component: ApplicationStatusComponent }
 ];
 
 @NgModule({
@@ -57,7 +63,10 @@ const appRoutes: Routes = [
     NotificationsListViewPageComponent,
     LettersGenerateComponent,
     HomeComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    ApplicantListComponent,
+    ApplicantDetailsComponent,
+    ApplicationStatusComponent
   ],
   imports: [
     BrowserModule,
