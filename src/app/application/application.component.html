@@ -5,16 +5,10 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Type of application</div>
     <div class="panel-body">
-      <label>What are you applying for?</label> <div class="form-group">
+      <label>What are you applying for?</label> <div *ngIf="typeofApllication"  class="form-group">
       <select class="form-control" id="title">
-        <option>    </option>
-        <option>First time applicant</option>
-        <option>Registration & Employment</option>
-        <option>Section 26 (a)</option>
-        <option>Section 26 (b)</option>
-        <option>Transfer to another Institution	</option>
-        <option>Family Medicine Registration</option>
-        <option>Employment,Registration & Work Permit</option>
+        <option *ngFor = "let apptype of typeofApllication"  > {{apptype.name}}</option>
+
       </select>
     </div>
     </div>
@@ -28,51 +22,60 @@
         <div class="panel-heading">SECTION 1: PERSONAL INFORMATION</div>
         <div class="panel-body">
           <div>
-            <form class="form-horizontal">
-              <label   >Surname / Lastname:</label> <input type="text" class="form-control"/>
-              <label>First names: </label> <input type="text" class="form-control"/>
-              <label>Maiden name: </label> <input type="text" class="form-control"/>
-              <label>Initials: </label> <input type="text" class="form-control"/>
+            <form *ngIf="gender"  class="form-horizontal">
+              <label   >Surname / Lastname:</label> <input type="text" class="form-control"  required="required"/>
+              <label>First names: </label> <input type="text" class="form-control" required="required"/>
+              <label>Maiden name: </label> <input type="text" class="form-control" required="required"/>
+              <label>Initials: </label> <input type="text" class="form-control" />
               <label>Profession: </label>
 
-              <div class="form-group">
+              <div   *ngIf="proffession"   class="form-group">
                 <select class="form-control" id="proffession">
-                  <option>    </option>
+                  <option *ngFor = "let proff of proffession" >   {{proff.name}} </option>
 
                 </select>
               </div>
 
               <label>Gender: </label>
-              <div class="form-group">
+              <div *ngIf="gender"  class="form-group">
                 <select class="form-control" id="gender">
-                  <option *ngFor = "let element of dataElements ">    </option>
-                  <option>Male</option>
-                  <option>Female</option>
+                  <option *ngFor = "let gend of gender">  {{gend.name}}  </option>
+
                 </select>
               </div>
-              <label>Title</label> <div class="form-group">
-              <select class="form-control" id="title">
-                <option>    </option>
-                <option>Dr.</option>
-                <option>Mr.</option>
-                <option>Mrs</option>
-                <option>Ms</option>
-              </select>
-            </div>
-              <label>Date of birth: </label> <input type="date" class="form-control"/>
-              <label>Current country of residence: </label> <input type="text" class="form-control"/>
-              <label>Current residential status (if residing in SA):</label>  <div class="form-group">
-              <select class="form-control" id="country">
-                <option>    </option>
 
+              <label>Title</label> <div *ngIf="title" class="form-group">
+              <select class="form-control" id="title">
+                <option *ngFor = "let ttl of title" >  {{ttl.name}}  </option>
               </select>
             </div>
+
+              <label>Date of birth: </label> <input type="date" class="form-control"/>
+
+
+              <label>Current country of residence: </label>
+
+              <div *ngIf="countryOfOrigin" class="form-group">
+                <select class="form-control" id="countryid">
+                  <option *ngFor = "let country of countryOfOrigin" >  {{country.name}}  </option>
+                </select>
+              </div>
+
+              <label>Current residential status (if residing in SA):</label>
+
+              <div *ngIf="resedintialStatus" class="form-group">
+                <select class="form-control" id="resId">
+                  <option *ngFor = "let status of resedintialStatus">{{status.name}}</option>
+                </select>
+              </div>
+
               <label>Passport number / refugee id / South African ID: </label> <input type="text" class="form-control"/>
-              <label>Marital status:</label>  <div class="form-group">
+              <label>Marital status:</label>
+
+              <div *ngIf="maritalstatus" class="form-group">
               <select class="form-control" id="marital">
-                <option>    </option>
-                <option>Married</option>
-                <option>Single</option>
+                <option *ngFor = "let marital of maritalstatus">{{marital.name}}    </option>
+
 
               </select>
             </div>
@@ -82,14 +85,16 @@
               <label>Address (postal and residential):</label> <input type="text" class="form-control"/>
               <label>Code: </label> <input type="text" class="form-control"/>
 
-
-
               <div class="panel panel-default">
                 <div class="panel-heading">SECTION 2: EDUCATION AND WORK EXPERIENCE</div>
                 <div class="panel-body">
                   <div>
                     <label>Country where you obtained your basic qualification/ type of qualification (DURATION):</label>
-                    <input type="text" class="form-control"/>
+                    <div *ngIf="countryOfOrigin" class="form-group">
+                      <select class="form-control" id="countryid">
+                        <option *ngFor = "let qualiCountry of countryOfOrigin" >  {{qualiCountry.name}}  </option>
+                      </select>
+                    </div>
                     <label>Internship (if applicable (date completed/ duration):</label> <input type="date" class="form-control"/>
                     <label>Are you registered as a specialist in any country? </label>
 
@@ -101,12 +106,14 @@
                       <label><input type="radio" name="opCountry">No</label>
                     </div>
 
+                    <label>If yes, state the name of country? </label>
 
-
-
-                    <label>If yes, state the name of country? </label> <input type="text" class="form-control"/>
+                    <div *ngIf="countryOfOrigin" class="form-group">
+                      <select class="form-control" id="countryQuaid">
+                        <option *ngFor = "let specialCountry of countryOfOrigin" >{{specialCountry.name}}</option>
+                      </select>
+                    </div>
                   </div>
-
                 </div>
               </div>
 
@@ -123,84 +130,57 @@
 
                   <label> Original certified copy of passport / identity document / refugee status / permanent residence certificate </label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                <input type="file" style="display: none;"  class="form-control-file" id="passportInputFile" aria-describedby="fileHelp">
+
                   </div>
                   <label> Curriculum Vitae </label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="cvInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original certified copy of qualifications</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="quakiInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original certified copy of professional registration</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="profRegInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original certified copy of reference letters / service certificates of previous employers</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="refInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original certified copy of spouse’s / life-partner’s identity document (not older than 30 days at time of submission)</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="spouseInputFile" aria-describedby="fileHelp">
                   </div>
 
                   <label> Original electronic marriage certificate / certified copy of life-partner agreement (not older than 30 days at time of submission)</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="marriageInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original certified copy of residence permit, indicating “to reside with SA spouse / life-partner</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="resInputFile" aria-describedby="fileHelp">
                   </div>
 
                   <label> Police affidavit signed by spouse / life-partner, clearly stating that you are co-habiting, that your spouse / life-partner supports your employment in south Africa and that he / she is willing to relocate with you wherever you are posted</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="affidavitInputFile" aria-describedby="fileHelp">
                   </div>
 
                   <label> Original certified copy of spouse’s employment contract</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="emplyInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original certified copy of spouse’s work permit</label>
-                  <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
-                  </div>
+                  <input type="file" style="display: none;"  class="form-control-file" id="spouseWorkInputFile" aria-describedby="fileHelp">
                   <label> Original certified copy of spouse’s latest salary slip</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="salaryInputFile" aria-describedby="fileHelp">
                   </div>
                   <label> Original letter from spouse’s employer confirming employment (not older than 30 days at time of submission</label>
                   <div>
-                    <label class="btn btn-default btn-file">
-                      Browse <input type="file" style="display: none;">
-                    </label>
+                    <input type="file" style="display: none;"  class="form-control-file" id="letterSouseInputFile" aria-describedby="fileHelp">
                   </div>
 
                   <br/>

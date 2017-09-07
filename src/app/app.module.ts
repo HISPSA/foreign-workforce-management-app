@@ -39,6 +39,7 @@ import { ApplicationReviewDetailComponent } from './application-review-detail/ap
 import { ApplicationApprovalDetailComponent } from './application-approval-detail/application-approval-detail.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 import { NotificationDetailComponent } from './notification-detail/notification-detail.component';
+import { ApplicantPtofileComponent } from './applicant-ptofile/applicant-ptofile.component';
 
 const appRoutes: Routes = [
   { path: 'staging/api/apps/fwm/letters', component: LettersGenerateComponent },
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     ApplicationReviewDetailComponent,
     ApplicationApprovalDetailComponent,
     ApplicantDetailComponent,
-    NotificationDetailComponent
+    NotificationDetailComponent,
+    ApplicantPtofileComponent
   ],
   imports: [
     BrowserModule,

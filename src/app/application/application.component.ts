@@ -5,6 +5,7 @@ import {DataElementService} from '../providers/dataelement.service';
 import {OrganisationUnitService} from '../providers/organisation-unit.service';
 import {User} from '../providers/user';
 import {OptionSetsService} from '../providers/Option-sets.service';
+import {OptionSet} from "../option-set"
 
 @Component({
   selector: 'app-application',
@@ -14,32 +15,33 @@ import {OptionSetsService} from '../providers/Option-sets.service';
 export class ApplicationComponent {
 
 
-  private dataElements: any[] = [] ;
+ dataElements: any[] = [] ;
 
-  private organisationUnits : any[] = [];
+ organisationUnits : any[] = [];
 
-  private organisationUnitsprovinstance1: any[] = [] ;
-  private organisationUnitsprovinstance2: any[] = [] ;
-  private provinstance1;
-  private provinstance2;
+ organisationUnitsprovinstance1: any[] = [] ;
+organisationUnitsprovinstance2: any[] = [] ;
+ provinstance1;
+ provinstance2;
 
   //optionsets
 
-  private gender: any
-  private typeofApllication: any
-  private title: any
-  private countryOfOrigin:any
-  private maritalstatus: any
-  private proffession: any
-  private resedintialStatus: any
-  private typeofid: any
-  private typeOfQualification: any
-  private visaDuration: any
+ gender: any
+ typeofApllication: any
+ title: any
+ countryOfOrigin:any
+  maritalstatus: any
+proffession: any
+ resedintialStatus: any
+ typeofid: any
+typeOfQualification: any
+ visaDuration: any
+options: any
 
-  private options: any
+
+  private GenderTest: OptionSet[] = new Array<OptionSet>();
 
   constructor(private dataelemetservice:DataElementService, private organisationUnitService: OrganisationUnitService, private OptionSetsService: OptionSetsService ) {
-
     this.gender = [];
     this.typeofApllication =[];
     this.title = [];
@@ -50,14 +52,24 @@ export class ApplicationComponent {
     this.typeofid =[];
     this.typeOfQualification = [];
     this.visaDuration = [];
-
     this.options = [];
+    const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
+    this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
 
-
+    console.log("Genter Test", this.GenderTest )});
 
   }
 
   ngOnInit() {
+
+    var test = [];
+
+
+
+
+
+
+
 
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
 
@@ -67,7 +79,7 @@ export class ApplicationComponent {
     //gender
     //const lkgenderurl = '../../../staging/api/optionSets.json?paging=false&fields=id,name,options[name]&filter=id:eq:zL9imKevTiF';
 
-    const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
+   const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     //type of application
     const lktypeOfApplicationurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
     //Title
@@ -88,9 +100,42 @@ export class ApplicationComponent {
     const lkvisaurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
 
 
-    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{ this.options =  result.optionSets[0];}).catch(error => console.log(error));
 
-    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {console.log("Gender: ",  result.optionSets[0]);
+
+
+
+    console.log("Observable Test",this.getGender());
+
+    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{
+
+
+      this.options =  result.optionSets[0];}).catch(error => console.log(error));
+
+
+    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {
+      console.log("Gender: ",  result.optionSets[0])
+      this.options =result.optionSets[0]
+      console.log("Gender22222: ", this.options)
+     test = this.options;
+    });
+
+    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {this.gender =  result.optionSets[0].options
+
+    console.log("closer and closer", this.gender)
+    }).catch(error => console.log(error));
+
+    this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => this.typeofApllication =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(titleurl).then(result => this.title =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lkcountryOriginurl).then(result => this.countryOfOrigin =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lkmaritalStatusurl).then(result => this.maritalstatus =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lkproffesionsurl).then(result => this.proffession =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(Residentialstatusurl).then(result => this.resedintialStatus =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lktypeofidurl).then(result => this.typeofid =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lktypeOfQualiurl).then(result => this.typeOfQualification =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lkvisaurl).then(result => this.visaDuration =  result.optionSets[0].options).catch(error => console.log(error));
+
+     /**
+
       this.options =  result.optionSets[0];
       const json = JSON.stringify(result.optionSets[0]);
       this.gender = this.options;
@@ -132,6 +177,10 @@ export class ApplicationComponent {
     console.log("visa duration", this.visaDuration);
 
     console.log("gender", this.options);
+
+
+
+
     /**
      this.dataelemetservice.getDataelementsService(dataelementUrl)
      .then(result => this.dataElements =result.dataElements)
@@ -144,6 +193,14 @@ export class ApplicationComponent {
      this.organisationUnitsprovinstance1 = this.organisationUnits;
      this.organisationUnitsprovinstance2 = this.organisationUnits;
      **/
+
+
+     console.log("test", test)
+
+  }
+
+  getGender(): OptionSet[] {
+    return this.GenderTest;
   }
 
 
