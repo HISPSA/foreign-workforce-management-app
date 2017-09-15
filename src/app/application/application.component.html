@@ -1,5 +1,3 @@
-<h1>
-</h1>
   <div class="container" >
   <div class="panel panel-primary">
     <div class="panel-heading">Profile</div>
@@ -12,6 +10,13 @@
                 <div class="panel-heading">PERSONAL INFORMATION</div>
 
               <label>Surname:</label> <input type="text" class="form-control"  name= "adkMaBHuDha" ngModel  id="surname" required="required"/>
+               <!--
+                <div [hidden]="surname.valid || surname.pristine"
+                     class="alert alert-danger">
+                  Surname is required
+                </div>
+
+                -->
               <label>First names: </label> <input type="text" class="form-control" name = "JLIDUSiUQTl" ngModel id="firstname" required="required"/>
               <label>Maiden name: </label> <input type="text" class="form-control" name ="lMjqbn6uwKs" ngModel id="maiden" required="required"/>
               <label>Initials: </label> <input type="text" class="form-control"  name = "GQQtlqqDRmz" ngModel id="initials" />
@@ -26,6 +31,7 @@
               <label>Gender: </label>
               <div *ngIf="gender"  class="form-group input-sm"  name = "hQNk6ODZnXM" ngModel >
                 <select class="form-control" id="gender">
+                  <option value = "">Please select a gender</option>
                   <option *ngFor = "let gend of gender" [value] = "gend">{{gend.name}}  </option>
                 </select>
               </div>
@@ -69,14 +75,25 @@
 
               </div>
               <div class="panel panel-default">
-                <div class="panel-heading">STREET ADDRESS</div>
+                <div class="panel-heading">CURRENT ADDRESS</div>
               <label>Street Address Line 1(e.g. Street Name):</label> <input type="text" class="form-control"  id="addr1" name = "uezzshW3BN6" ngModel/>
               <label>Street Address Line 2(e.g. Town Name):</label> <input type="text" class="form-control" id="addr2" name = "CWlbP1cTK7u" ngModel/>
               <label>Street Address Line 3(e.g. Country Name):</label> <input type="text" class="form-control" id="addr3" name = "rxFinyRVA9T" ngModel/>
               <label>Postal Code:</label> <input type="text" class="form-control" id="postalCode" name = "xDz6lSwCt7Y" ngModel/>
+                <label>Zip Code:</label> <input type="text" class="form-control" id="zipCode" name = "CezOf26uGZ4" ngModel/>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">HOME COUNTRY ADDRESS</div>
+                <label>Street Address Line 1(e.g. Street Name):</label> <input type="text" class="form-control"  id="addr1Home" name = "qMGmfAObIs6" ngModel/>
+                <label>Street Address Line 2(e.g. Town Name):</label> <input type="text" class="form-control" id="addr2Home" name = "gqixvHELgUO" ngModel/>
+                <label>Street Address Line 3(e.g. Country Name):</label> <input type="text" class="form-control" id="addr3Home" name = "hTEwEq41nnj" ngModel/>
+                <label>Postal Code:</label> <input type="text" class="form-control" id="postalCodeHome" name = "e2aboFrKVe5" ngModel/>
+                <label>Zip Code:</label> <input type="text" class="form-control" id="zipCodeHome" name = "fIVeC4j6YD8" ngModel/>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">CONTACT INFORMATION</div>
+                <label>Cellphone Number: </label> <input type="text" class="form-control" id="cellNo" name = "CezOf26uGZ4" ngModel/>
                 <label>Work Telephone Number: </label> <input type="text" class="form-control" id="workTel" name = "ixHqdNQYfqF" ngModel/>
                 <label>Home Telephone Number: </label> <input type="text" class="form-control" id="homeTel" name = "t2Blc1cnEwd" ngModel/>
               <label>E-mail address (primary): </label> <input type="email" class="form-control" id = "emailPrimary" name = "QicAcX9cLKQ" ngModel/>
@@ -123,6 +140,8 @@
                     </label>
                   </div>
                 -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">REQUIRED DOCUMENTS </div>
 
                   <label> Certified copy of Passport / Identity Document / Refugee Status / Permanent Residence Certificate </label>
                   <div>
@@ -209,6 +228,7 @@
                         Upload File
                      </div> <input type="file" style="display: none;" id="spouseEmploymentId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
+                  </div>
                   </div>
                   <br/>
                   <input class="btn btn-primary"  type="submit" value="Save profile">
