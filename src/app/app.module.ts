@@ -40,6 +40,8 @@ import { ApplicationApprovalDetailComponent } from './application-approval-detai
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 import { NotificationDetailComponent } from './notification-detail/notification-detail.component';
 import { ApplicantPtofileComponent } from './applicant-ptofile/applicant-ptofile.component';
+import { FaqFormsComponent } from './faq-forms/faq-forms.component';
+import { ApplicantProfileComponent } from './applicant-profile/applicant-profile.component';
 
 const appRoutes: Routes = [
   { path: 'staging/api/apps/fwm/letters', component: LettersGenerateComponent },
@@ -52,7 +54,10 @@ const appRoutes: Routes = [
   { path: 'staging/api/apps/fwm/home',component: HomeComponent },
   { path: 'staging/api/apps/fwm/applicationList',component: ApplicantListComponent },
   { path: 'staging/api/apps/fwm/applicationDetail',component: ApplicantDetailsComponent },
-  { path: 'staging/api/apps/fwm/applicationStatus',component: ApplicationStatusComponent }
+  { path: 'staging/api/apps/fwm/applicationStatus',component: ApplicationStatusComponent },
+  { path: 'staging/api/apps/fwm/faq',component: FaqFormsComponent },
+  { path: 'staging/api/apps/fwm/profile',component: ApplicantProfileComponent }
+
 ];
 
 @NgModule({
@@ -76,7 +81,9 @@ const appRoutes: Routes = [
     ApplicationApprovalDetailComponent,
     ApplicantDetailComponent,
     NotificationDetailComponent,
-    ApplicantPtofileComponent
+    ApplicantPtofileComponent,
+    FaqFormsComponent,
+    ApplicantProfileComponent
   ],
   imports: [
     BrowserModule,

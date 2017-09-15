@@ -7,6 +7,7 @@ import {User} from '../providers/user';
 import {OptionSetsService} from '../providers/Option-sets.service';
 import {OptionSet} from "../option-set"
 
+
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
@@ -37,6 +38,7 @@ proffession: any
 typeOfQualification: any
  visaDuration: any
 options: any
+ qualificationType: any
 
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
@@ -53,6 +55,8 @@ options: any
     this.typeOfQualification = [];
     this.visaDuration = [];
     this.options = [];
+    this.qualificationType = [];
+
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
 
@@ -63,14 +67,6 @@ options: any
   ngOnInit() {
 
     var test = [];
-
-
-
-
-
-
-
-
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
 
     const provincesurl = '../../../staging/api/organisationUnits?paging=false&fields=:all&filter=level:eq:2'
@@ -79,7 +75,7 @@ options: any
     //gender
     //const lkgenderurl = '../../../staging/api/optionSets.json?paging=false&fields=id,name,options[name]&filter=id:eq:zL9imKevTiF';
 
-   const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
+   const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF&order=name:asc';
     //type of application
     const lktypeOfApplicationurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
     //Title
@@ -99,10 +95,7 @@ options: any
     //visa durations
     const lkvisaurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
 
-
-
-
-
+    const user = '../../../staging/api/me.json'
 
     console.log("Observable Test",this.getGender());
 

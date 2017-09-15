@@ -1,0 +1,24 @@
+<div class="container" >
+  <div class="panel panel-primary">
+    <div class="panel-heading">Application</div>
+    <div class="panel-body">
+      <form #application="ngForm">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">Type Of Application</div>
+      <label>What are you applying for?</label> <div *ngIf="typeofApllication"  class="form-group input-sm">
+      <select class="form-control" id="applicationTypeId">
+        <option value = "">Please select a type of application</option>
+        <option *ngFor = "let apptype of typeofApllication"  [value] = "apptype"> {{apptype.name}}</option>
+      </select>
+    </div>
+          </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">Required Documents </div>
+        </div>
+        <input class="btn btn-primary"  type="submit" value="Apply">
+        </form>
+    </div>
+  </div>
+</div>
