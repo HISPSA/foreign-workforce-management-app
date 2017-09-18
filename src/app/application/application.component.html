@@ -15,48 +15,47 @@
                      class="alert alert-danger">
                   Surname is required
                 </div>
-
                 -->
               <label>First names: </label> <input type="text" class="form-control" name = "JLIDUSiUQTl" ngModel id="firstname" required="required"/>
-              <label>Maiden name: </label> <input type="text" class="form-control" name ="lMjqbn6uwKs" ngModel id="maiden" required="required"/>
-              <label>Initials: </label> <input type="text" class="form-control"  name = "GQQtlqqDRmz" ngModel id="initials" />
+              <label>Maiden name: </label> <input type="text" class="form-control" name ="lMjqbn6uwKs" ngModel id="maiden"/>
+              <label>Initials: </label> <input type="text" class="form-control"  name = "GQQtlqqDRmz" ngModel id="initials" required="required" />
               <label>Profession:</label>
-              <div   *ngIf="proffession"   class="form-group input-sm">
-                <select class="form-control" id="profession" name = "p0ci9AQcqcI" ngModel>
+              <div   *ngIf="proffession"   class="form-group input-sm" >
+                <select class="form-control" id="profession" name = "p0ci9AQcqcI" ngModel required="required">
                   <option value = "">Please select a profession</option>
                   <option *ngFor = "let proff of proffession"  [value] = "proff">{{proff.name}} </option>
                 </select>
               </div>
 
               <label>Gender: </label>
-              <div *ngIf="gender"  class="form-group input-sm"  name = "hQNk6ODZnXM" ngModel >
-                <select class="form-control" id="gender">
+              <div *ngIf="gender"  class="form-group input-sm"  >
+                <select class="form-control" id="gender"  name = "hQNk6ODZnXM" ngModel required="required">
                   <option value = "">Please select a gender</option>
                   <option *ngFor = "let gend of gender" [value] = "gend">{{gend.name}}  </option>
                 </select>
               </div>
 
-              <label>Title</label> <div *ngIf="title" class="form-group input-sm" name = "M7vAlF8LTUK" ngModel>
-              <select class="form-control" id="title">
+              <label>Title:</label> <div *ngIf="title" class="form-group input-sm" >
+              <select class="form-control" id="title" name = "M7vAlF8LTUK" ngModel required="required">
                 <option value = "">Please select a title</option>
                 <option *ngFor = "let ttl of title"  [value] = "ttl">{{ttl.name}}  </option>
               </select>
             </div>
 
-              <label>Date of birth: </label> <input type="date" class="form-control"  id="dob" name = "Cd2NLEe7pMi" ngModel />
+              <label>Date of birth: </label> <input type="date" class="form-control"  id="dob" name = "Cd2NLEe7pMi" ngModel  required="required"/>
                 <label>Marital status:</label>
-                <div *ngIf="maritalstatus" class="form-group input-sm"  name = "SKyaaiQyMQj" ngModel >
-                  <select class="form-control" id="marital">
+                <div *ngIf="maritalstatus" class="form-group input-sm"   >
+                  <select class="form-control" id="marital" name = "SKyaaiQyMQj" ngModel required="required">
                     <option value = "">Please select marital status</option>
                     <option *ngFor = "let marital of maritalstatus">{{marital.name}}</option>
                   </select>
                 </div>
-                <label>Spouse details (If Married):</label> <input type="text" class="form-control" name = "B22oDF7CWVF" ngModel/>
+                <label>Spouse details (If Married):</label> <input type="text" class="form-control" name = "B22oDF7CWVF" ngModel />
 
               <label>Current country of residence: </label>
 
-              <div *ngIf="countryOfOrigin" class="form-group input-sm" name = "fVNyIxlIYuP" ngModel>
-                <select class="form-control" id="countryid">
+              <div *ngIf="countryOfOrigin" class="form-group input-sm" >
+                <select class="form-control" id="countryid" name = "fVNyIxlIYuP" ngModel required="required">
                   <option value = "">Please select a country</option>
                   <option *ngFor = "let country of countryOfOrigin" [value] = "country">  {{country.name}}  </option>
                 </select>
@@ -64,23 +63,28 @@
 
               <label>Current residential status (if residing in SA):</label>
 
-              <div *ngIf="resedintialStatus" class="form-group input-sm" name = "XSZCrXMiCjo" ngModel>
-                <select class="form-control" id="resId">
+              <div *ngIf="resedintialStatus" class="form-group input-sm" >
+                <select class="form-control" id="resId" name = "XSZCrXMiCjo" ngModel required="required">
                   <option value = "">Please select residential status</option>
                   <option *ngFor = "let status of resedintialStatus" [value] = "status">{{status.name}}</option>
                 </select>
               </div>
 
-              <label>Passport number / refugee id / South African ID: </label> <input type="text" class="form-control" name = "JqLIzp2KYnH" ngModel/>
+                <label>South African ID: </label> <input type="text" class="form-control" name = "JqLIzp2KYnH" ngModel />
+                <label>Passport Number: </label> <input type="text" class="form-control" name = "JqLIzp2KYnH" ngModel />
+                <label>Refugee ID: </label> <input type="text" class="form-control" name = "JqLIzp2KYnH" ngModel />
 
               </div>
+
+
+
               <div class="panel panel-default">
                 <div class="panel-heading">CURRENT ADDRESS</div>
               <label>Street Address Line 1(e.g. Street Name):</label> <input type="text" class="form-control"  id="addr1" name = "uezzshW3BN6" ngModel/>
               <label>Street Address Line 2(e.g. Town Name):</label> <input type="text" class="form-control" id="addr2" name = "CWlbP1cTK7u" ngModel/>
               <label>Street Address Line 3(e.g. Country Name):</label> <input type="text" class="form-control" id="addr3" name = "rxFinyRVA9T" ngModel/>
               <label>Postal Code:</label> <input type="text" class="form-control" id="postalCode" name = "xDz6lSwCt7Y" ngModel/>
-                <label>Zip Code:</label> <input type="text" class="form-control" id="zipCode" name = "CezOf26uGZ4" ngModel/>
+                <label>Zip Code:</label> <input type="text" class="form-control" id="zipCode" name = "fIVeC4j6YD8" ngModel/>
               </div>
 
               <div class="panel panel-default">
@@ -93,11 +97,11 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">CONTACT INFORMATION</div>
-                <label>Cellphone Number: </label> <input type="text" class="form-control" id="cellNo" name = "CezOf26uGZ4" ngModel/>
+                <label>Cellphone Number: </label> <input type="text" class="form-control" id="cellNo" name = "CezOf26uGZ4" ngModel required="required"/>
                 <label>Work Telephone Number: </label> <input type="text" class="form-control" id="workTel" name = "ixHqdNQYfqF" ngModel/>
                 <label>Home Telephone Number: </label> <input type="text" class="form-control" id="homeTel" name = "t2Blc1cnEwd" ngModel/>
-              <label>E-mail address (primary): </label> <input type="email" class="form-control" id = "emailPrimary" name = "QicAcX9cLKQ" ngModel/>
-              <label>E-mail address (alternative): </label> <input type="email" class="form-control" id="emailAlternative" name = "UtmTAD03WcJ" ngModel/>
+              <label>E-mail address (primary): </label> <input type="email" class="form-control" id = "emailPrimary" name = "QicAcX9cLKQ" ngModel required="required"/>
+              <label>E-mail address (alternative): </label> <input type="email" class="form-control" id="emailAlternative" name = "jbwHv5SYiME" ngModel/>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading">EDUCATION AND WORK EXPERIENCE</div>
@@ -117,7 +121,6 @@
                         <option *ngFor = "let qualitype of typeOfQualification" [value]="qualitype">  {{qualitype.name}}  </option>
                       </select>
                     </div>
-                    <label>Internship (if applicable (date completed/ duration):</label> <input type="date" class="form-control" id = "internship"  name = "rriKp0KFIFy" ngModel/>
                     <label>Are you registered as a specialist in any country? </label>
                     <div class="radio" name = "OTkJvWxLVuD" ngModel>
                       <label><input type="radio" name="opCountry" id = "opCountryYes" >Yes</label>
@@ -150,6 +153,8 @@
                     </label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
+
+
                   <label> Copy of Curriculum Vitae </label>
                   <div>
                     <label class="btn btn-default btn-file">
