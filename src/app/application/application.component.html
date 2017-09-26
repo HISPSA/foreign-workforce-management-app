@@ -16,8 +16,8 @@
                   Surname is required
                 </div>
                 -->
-              <label>First names: </label> <input type="text" class="form-control" name = "JLIDUSiUQTl" ngModel id="firstname" required="required"/>
-              <label>Maiden name: </label> <input type="text" class="form-control" name ="lMjqbn6uwKs" ngModel id="maiden"/>
+              <label>First Name(s): </label> <input type="text" class="form-control" name = "JLIDUSiUQTl" ngModel id="firstname" required="required"/>
+              <label>Maiden Name: </label> <input type="text" class="form-control" name ="lMjqbn6uwKs" ngModel id="maiden"/>
               <label>Initials: </label> <input type="text" class="form-control"  name = "GQQtlqqDRmz" ngModel id="initials" required="required" />
               <label>Profession:</label>
               <div   *ngIf="proffession"   class="form-group input-sm" >
@@ -42,17 +42,17 @@
               </select>
             </div>
 
-              <label>Date of birth: </label> <input type="date" class="form-control"  id="dob" name = "Cd2NLEe7pMi" ngModel  required="required"/>
+              <label>Date Of Birth: </label> <input type="date" class="form-control"  id="dob" name = "Cd2NLEe7pMi" ngModel  required="required"/>
                 <label>Marital status:</label>
-                <div *ngIf="maritalstatus" class="form-group input-sm"   >
+                <div *ngIf="maritalstatus" class="form-group input-sm">
                   <select class="form-control" id="marital" name = "SKyaaiQyMQj" ngModel required="required">
                     <option value = "">Please select marital status</option>
                     <option *ngFor = "let marital of maritalstatus">{{marital.name}}</option>
                   </select>
                 </div>
-                <label>Spouse details (If Married):</label> <input type="text" class="form-control" name = "B22oDF7CWVF" ngModel />
+                <label>Spouse Details (If Married):</label> <input type="text" class="form-control" name = "B22oDF7CWVF" ngModel />
 
-              <label>Current country of residence: </label>
+              <label>Current Country of Residence: </label>
 
               <div *ngIf="countryOfOrigin" class="form-group input-sm" >
                 <select class="form-control" id="countryid" name = "fVNyIxlIYuP" ngModel required="required">
@@ -61,7 +61,7 @@
                 </select>
               </div>
 
-              <label>Current residential status (if residing in SA):</label>
+              <label>Current Residential Status (if residing in SA):</label>
 
               <div *ngIf="resedintialStatus" class="form-group input-sm" >
                 <select class="form-control" id="resId" name = "XSZCrXMiCjo" ngModel required="required">
@@ -103,6 +103,18 @@
               <label>E-mail address (primary): </label> <input type="email" class="form-control" id = "emailPrimary" name = "QicAcX9cLKQ" ngModel required="required"/>
               <label>E-mail address (alternative): </label> <input type="email" class="form-control" id="emailAlternative" name = "jbwHv5SYiME" ngModel/>
               </div>
+
+              <div>
+              <label>Preffered Method Of Communication</label>
+              <div *ngIf="prefferedComunnicationType" class="form-group input-sm" >
+                <select class="form-control" id="commId" name = "U16h9pm5aL6" ngModel required="required">
+                  <option value = "">Please select preffered channel</option>
+                  <option *ngFor = "let commuType of prefferedComunnicationType" [value] = "commuType">{{commuType.name}}</option>
+                </select>
+              </div>
+              </div>
+
+
               <div class="panel panel-default">
                 <div class="panel-heading">EDUCATION AND WORK EXPERIENCE</div>
 
@@ -114,7 +126,7 @@
                         <option *ngFor = "let qualiCountry of countryOfOrigin"  [value] = "qualiCountry">  {{qualiCountry.name}}  </option>
                       </select>
                     </div>
-                    <label>Type of qualification:  </label>
+                    <label>Type of Qualification:  </label>
                     <div *ngIf="typeOfQualification" class="form-group input-sm">
                       <select class="form-control" id="qualitypeid" name = "BQAchMg4aMq" ngModel>
                         <option value = "">Please select a type of qualification</option>
@@ -122,9 +134,9 @@
                       </select>
                     </div>
                     <label>Are you registered as a specialist in any country? </label>
-                    <div class="radio" name = "OTkJvWxLVuD" ngModel>
-                      <label><input type="radio" name="opCountry" id = "opCountryYes" >Yes</label>
-                      <label><input type="radio" name="opCountry" id = "opCountryNo" >No</label>
+                    <div class="radio"  >
+                      <label><input type="radio" name="opCountry" id = "opCountryYes" ngModel>Yes</label>
+                      <label><input type="radio" name="opCountry" id = "opCountryNo" ngModel>No</label>
                     </div>
                     <label>If yes, state the name of country? </label>
                     <div *ngIf="countryOfOrigin" class="form-group input-sm">
@@ -133,8 +145,17 @@
                         <option *ngFor = "let specialCountry of countryOfOrigin" [value]="specialCountry" >{{specialCountry.name}}</option>
                       </select>
                     </div>
-                  </div>
 
+                    <div>
+                    <label>Are you registered with any professional body? </label>
+                    <div class="radio">
+                      <label><input type="radio" name="profbody" id = "profbodyIdYes" ngModel >Yes</label>
+                      <label><input type="radio" name="profbody" id = "profbodyIdNo" ngModel>No</label>
+                    </div>
+                      <label>If yes, state the name of the professional body </label>
+                      <input type="text" class="form-control" id="profBodyName" name = "qYlxUNzBpdo" ngModel/>
+                    </div>
+                  </div>
                 <!--
                   <label> Formal application letter </label>
                   <div>
@@ -146,7 +167,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">REQUIRED DOCUMENTS </div>
 
-                  <label> Certified copy of Passport / Identity Document / Refugee Status / Permanent Residence Certificate </label>
+                  <label> Notarised copy of Passport / Identity Document / Refugee Status / Permanent Residence Certificate </label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File <input type="file" style="display: none;" id = "passportfileId" data-max-size="2048">
@@ -158,42 +179,42 @@
                   <label> Copy of Curriculum Vitae </label>
                   <div>
                     <label class="btn btn-default btn-file">
-                      Upload File<input type="file" style="display: none;" id = "cvfileId" data-max-size="2048"></label>
+                      Upload File<input type="file" style="display: none;" id = "cvfileId" data-max-size="2048"   ></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
-                  <label> Original Certified copy of Qualifications</label>
+                  <label> Original Notarised Copy of Qualifications</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File <input type="file" style="display: none;" id = "qualificationFileId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
-                  <label> Original Certified copy of Professional Registration</label>
+                  <label> Original Notarised copy of Professional Registration</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File  <input type="file" style="display: none;" id = "profRegId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
-                  <label> Original Certified copy of Reference Letters / Service Certificates of previous employers</label>
+                  <label> Original Notarised copy of Reference Letters / Service Certificates of previous employers</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File <input type="file" style="display: none;" id = "refenLetterFile" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
-                  <label> Original Certified copy of spouse’s / life-partner’s identity document (not older than 30 days at time of submission)</label>
+                  <label> Original Notarised copy of spouse’s / life-partner’s identity document (not older than 30 days at time of submission)</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File<input type="file" style="display: none;" id = "lifePatnerFileId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
 
-                  <label> Original electronic marriage certificate / certified copy of life-partner agreement (not older than 30 days at time of submission)</label>
+                  <label> Original electronic marriage certificate / Notarised copy of life-partner agreement (not older than 30 days at time of submission)</label>
                   <div>
                     <label  class="btn btn-default btn-file">
                       Upload File
                     <input type="file" style="display: none;"  class="form-control-file" id = "marriageCertificatefileId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
-                  <label> Original Certified copy of residence permit, indicating “to reside with SA spouse / life-partner</label>
+                  <label> Original Notarised copy of residence permit, indicating “to reside with SA spouse / life-partner</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File <input type="file" style="display: none;" id="residencePermitfileId" data-max-size="2048"></label>
@@ -206,20 +227,20 @@
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
 
-                  <label> Original Certified copy of spouse’s employment contract</label>
+                  <label> Original Notarised copy of spouse’s employment contract</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File<input type="file" style="display: none;" id = "spouseContractFileId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                   </div>
-                  <label> Original Certified copy of spouse’s work permit</label>
+                  <label> Original Notarised copy of spouse’s work permit</label>
                   <div>
                   <label class="btn btn-default btn-file">
                     Upload File <input type="file" style="display: none;" id = "spouseWorkPermitfileId" data-max-size="2048"></label>
                     <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
 
                   </div>
-                  <label> Original Certified copy of spouse’s latest salary slip</label>
+                  <label> Original Notarised copy of spouse’s latest salary slip</label>
                   <div>
                     <label class="btn btn-default btn-file">
                       Upload File

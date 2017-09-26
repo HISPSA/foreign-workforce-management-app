@@ -7,6 +7,10 @@ import {User} from '../providers/user';
 import {OptionSetsService} from '../providers/Option-sets.service';
 import {OptionSet} from "../option-set"
 
+import {Attributes} from "../attributes";
+import {Enrollments} from "../enrollments";
+import {TrackedEntityInstances} from "../tracked-entity-instances";
+
 
 @Component({
   selector: 'app-application',
@@ -15,31 +19,74 @@ import {OptionSet} from "../option-set"
 })
 export class ApplicationComponent {
 
-
- dataElements: any[] = [] ;
-
- organisationUnits : any[] = [];
-
- organisationUnitsprovinstance1: any[] = [] ;
+dataElements: any[] = [] ;
+organisationUnits : any[] = [];
+organisationUnitsprovinstance1: any[] = [] ;
 organisationUnitsprovinstance2: any[] = [] ;
- provinstance1;
- provinstance2;
+provinstance1;
+provinstance2;
 
   //optionsets
 
- gender: any
- typeofApllication: any
- title: any
- countryOfOrigin:any
-  maritalstatus: any
+gender: any
+typeofApllication: any
+title: any
+countryOfOrigin:any
+maritalstatus: any
 proffession: any
- resedintialStatus: any
- typeofid: any
+resedintialStatus: any
+typeofid: any
 typeOfQualification: any
- visaDuration: any
+visaDuration: any
 options: any
- qualificationType: any
+qualificationType: any
+  prefferedComunnicationType: any
 
+
+  attributes:Attributes[];
+  enrollments: Enrollments[];
+  trackedEntityInstances:TrackedEntityInstances;
+  enrollment: Enrollments;
+
+  //Models to map to the template
+  attrSurname: Attributes;
+  attrFirstname: Attributes;
+  attrMaidenname: Attributes;
+  attrInitialsname: Attributes;
+  attrProffession: Attributes;
+  attrGender: Attributes;
+  attrTitle: Attributes;
+  attrDatOfBirth: Attributes;
+  attrMaritaStatus: Attributes;
+  attrSpouseDetails: Attributes;
+  attrCurrentCountryOfResidence: Attributes;
+  attrCurrentResidentialStatus: Attributes;
+  attrSouthAfricanID:Attributes;
+  attrPassportNumber: Attributes;
+  attrRefugeeID: Attributes;
+  attrStreetAddressLine1: Attributes;
+  attrStreetAddressLine2: Attributes;
+  attrStreetAddressLine3: Attributes;
+  attrStreetPostalCode: Attributes;
+  attrStreetZipCode: Attributes;
+  attrStreetAddressLine1Home: Attributes;
+  attrStreetAddressLine2Home: Attributes;
+  attrStreetAddressLine3Home: Attributes;
+  attrStreetPostalCodeHome: Attributes;
+  attrStreetZipCodeHome: Attributes;
+  attrCellphoneNumber: Attributes;
+  attrWorkTelephoneNumber:Attributes;
+  attrHomeTelephoneNumber:Attributes;
+  attrEmailAddressPrimary:Attributes;
+  attrEmailAddressAlternative:Attributes;
+  attrPrefferedMethodOfCommunication:Attributes;
+  attrCountryWhereQualificationObtained:Attributes;
+  attrQualificationType:Attributes;
+  attrCountrySpecialization:Attributes;
+  attrProffBodyRegistrationYesNo: Attributes;
+  attrProffBodyRegistrationName: Attributes;
+
+  //Documents attributes will go under here
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
 
@@ -56,6 +103,8 @@ options: any
     this.visaDuration = [];
     this.options = [];
     this.qualificationType = [];
+    this.prefferedComunnicationType = [];
+
 
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
@@ -68,7 +117,6 @@ options: any
 
     var test = [];
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
-
     const provincesurl = '../../../staging/api/organisationUnits?paging=false&fields=:all&filter=level:eq:2'
 
 //optionsets
@@ -95,15 +143,13 @@ options: any
     //visa durations
     const lkvisaurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
 
+    const lkCommunicationTypeurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
+
     const user = '../../../staging/api/me.json'
 
     console.log("Observable Test",this.getGender());
-
     this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{
-
-
       this.options =  result.optionSets[0];}).catch(error => console.log(error));
-
 
     this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {
       console.log("Gender: ",  result.optionSets[0])
@@ -126,6 +172,8 @@ options: any
     this.OptionSetsService.getOptionSetsService(lktypeofidurl).then(result => this.typeofid =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lktypeOfQualiurl).then(result => this.typeOfQualification =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lkvisaurl).then(result => this.visaDuration =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lkCommunicationTypeurl).then(result => this.prefferedComunnicationType =  result.optionSets[0].options).catch(error => console.log(error));
+
 
      /**
 
@@ -174,7 +222,7 @@ options: any
 
 
 
-    /**
+/*
      this.dataelemetservice.getDataelementsService(dataelementUrl)
      .then(result => this.dataElements =result.dataElements)
      .catch(error => console.log(error));
@@ -185,8 +233,8 @@ options: any
 
      this.organisationUnitsprovinstance1 = this.organisationUnits;
      this.organisationUnitsprovinstance2 = this.organisationUnits;
-     **/
 
+**/
 
      console.log("test", test)
 
@@ -196,6 +244,52 @@ options: any
     return this.GenderTest;
   }
 
+
+
+  fileEvent(event){
+    let files = event.target.files.name;
+}
+
+
+//Map model to the UI
+  saveTrackedEntityInstance(){
+
+    this.enrollment.orgUnit = "";
+    this.enrollment.program ="";
+    this.enrollments.push(this.enrollment);
+
+
+
+    this.attributes.push(this.attrSurname);
+    this.attributes.push(this.attrFirstname);
+    this.attributes.push(this.attrSurname);
+
+
+
+
+
+
+
+
+
+
+    this.trackedEntityInstances.trackedEntity = "";
+    this.trackedEntityInstances.orgUnit = "";
+    this.trackedEntityInstances.enrollments = this.enrollments;
+    this.trackedEntityInstances.attributes = this.attributes;
+  }
+
+  //Save TrackedEntityInstance Profile
+  OnButtonSubmit(){
+
+  }
+
+  //create TrackedEntityInstance profile on load if it does not exist
+  OnTrackedEntityInstancesLoad(){
+
+
+
+  }
 
 
 }

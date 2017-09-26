@@ -20,8 +20,8 @@ import {MetadataDictionaryService} from './providers/metadata-dictionary-service
 import {IndicatorService} from './providers/indicator.service';
 import {NetworkAvailability} from './providers/network-availability';
 import {PeriodService} from './providers/period-service';
-import { OrganisationunitsComponent } from './organisationunits/organisationunits.component';
-import { IndicatorsComponent } from './indicators/indicators.component';
+import {OrganisationunitsComponent } from './organisationunits/organisationunits.component';
+import {IndicatorsComponent } from './indicators/indicators.component';
 import {User} from './providers/user';
 import {OptionSetsService } from './providers/Option-sets.service';
 import { CheckListPageComponent } from './check-list-page/check-list-page.component';
@@ -43,20 +43,26 @@ import { ApplicantPtofileComponent } from './applicant-ptofile/applicant-ptofile
 import { FaqFormsComponent } from './faq-forms/faq-forms.component';
 import { ApplicantProfileComponent } from './applicant-profile/applicant-profile.component';
 
+
+import {Attributes} from "./attributes";
+import {Enrollments} from "./enrollments";
+import {TrackedEntityInstances} from "./tracked-entity-instances";
+
+
 const appRoutes: Routes = [
-  { path: 'staging/api/apps/fwm/letters', component: LettersGenerateComponent },
-  { path: 'staging/api/apps/fwm/approval',  component: ApprovalScreenComponent },
-  { path: 'staging/api/apps/fwm/application',component: ApplicationComponent },
-  { path: 'staging/api/apps/fwm/applicationList',component: ApplicationListViewComponent },
-  { path: 'staging/api/apps/fwm/notification',component: NotificationsListViewPageComponent },
-  { path: 'staging/api/apps/fwm/applicationDetail',component: ApplicationDetailViewComponent },
-  { path: 'staging/api/apps/fwm/notifications',component: NotificationsListViewPageComponent },
-  { path: 'staging/api/apps/fwm/home',component: HomeComponent },
-  { path: 'staging/api/apps/fwm/applicationList',component: ApplicantListComponent },
-  { path: 'staging/api/apps/fwm/applicationDetail',component: ApplicantDetailsComponent },
-  { path: 'staging/api/apps/fwm/applicationStatus',component: ApplicationStatusComponent },
-  { path: 'staging/api/apps/fwm/faq',component: FaqFormsComponent },
-  { path: 'staging/api/apps/fwm/profile',component: ApplicantProfileComponent }
+  { path: 'staging/api/apps/fhwm/letters', component: LettersGenerateComponent },
+  { path: 'staging/api/apps/fhwm/approval',  component: ApprovalScreenComponent },
+  { path: 'staging/api/apps/fhwm/application',component: ApplicationComponent },
+  { path: 'staging/api/apps/fhwm/applicationList',component: ApplicationListViewComponent },
+  { path: 'staging/api/apps/fhwm/notification',component: NotificationsListViewPageComponent },
+  { path: 'staging/api/apps/fhwm/applicationDetail',component: ApplicationDetailViewComponent },
+  { path: 'staging/api/apps/fhwm/notifications',component: NotificationsListViewPageComponent },
+  { path: 'staging/api/apps/fhwm/home',component: HomeComponent },
+  { path: 'staging/api/apps/fhwm/applicationList',component: ApplicantListComponent },
+  { path: 'staging/api/apps/fhwm/applicationDetail',component: ApplicantDetailsComponent },
+  { path: 'staging/api/apps/fhwm/applicationStatus',component: ApplicationStatusComponent },
+  { path: 'staging/api/apps/fhwm/faq',component: FaqFormsComponent },
+  { path: 'staging/api/apps/fhwm/profile',component: ApplicantProfileComponent }
 
 ];
 
@@ -84,6 +90,7 @@ const appRoutes: Routes = [
     ApplicantPtofileComponent,
     FaqFormsComponent,
     ApplicantProfileComponent
+
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,11 @@
+import {Attributes} from "./attributes"
+import {Enrollments} from "./enrollments"
+
 export class TrackedEntityInstances {
   trackedEntity: string;
   orgUnit: string;
-  attributes: string[];
-  enrollments: string[];
+  attributes: Attributes[];
+  enrollments: Enrollments[];
+
+
 }
