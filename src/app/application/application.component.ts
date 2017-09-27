@@ -10,6 +10,7 @@ import {OptionSet} from "../option-set"
 import {Attributes} from "../attributes";
 import {Enrollments} from "../enrollments";
 import {TrackedEntityInstances} from "../tracked-entity-instances";
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -90,7 +91,7 @@ qualificationType: any
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
 
-  constructor(private dataelemetservice:DataElementService, private organisationUnitService: OrganisationUnitService, private OptionSetsService: OptionSetsService ) {
+  constructor(private dataelemetservice:DataElementService, private organisationUnitService: OrganisationUnitService, private OptionSetsService: OptionSetsService, private router: Router ) {
     this.gender = [];
     this.typeofApllication =[];
     this.title = [];
@@ -105,6 +106,46 @@ qualificationType: any
     this.qualificationType = [];
     this.prefferedComunnicationType = [];
 
+    this.attributes =[];
+    this.enrollments =[];
+
+    this.attrSurname = new  Attributes();
+    this.attrFirstname= new  Attributes();
+    this.attrMaidenname= new  Attributes();
+    this.attrInitialsname= new  Attributes();
+    this.attrProffession= new  Attributes();
+    this.attrGender= new  Attributes();
+    this.attrTitle= new  Attributes();
+    this.attrDatOfBirth= new  Attributes();
+    this.attrMaritaStatus= new  Attributes();
+    this.attrSpouseDetails= new  Attributes();
+    this.attrCurrentCountryOfResidence= new  Attributes();
+    this.attrCurrentResidentialStatus= new  Attributes();
+    this.attrSouthAfricanID= new  Attributes();
+    this.attrPassportNumber= new  Attributes();
+    this.attrRefugeeID= new  Attributes();
+    this.attrStreetAddressLine1= new  Attributes();
+    this.attrStreetAddressLine2= new  Attributes();
+    this.attrStreetAddressLine3= new  Attributes();
+    this.attrStreetPostalCode= new  Attributes();
+    this.attrStreetZipCode= new  Attributes();
+    this.attrStreetAddressLine1Home= new  Attributes();
+    this.attrStreetAddressLine2Home= new  Attributes();
+    this.attrStreetAddressLine3Home= new  Attributes();
+    this.attrStreetPostalCodeHome= new  Attributes();
+    this.attrStreetZipCodeHome= new  Attributes();
+    this.attrCellphoneNumber= new  Attributes();
+    this.attrWorkTelephoneNumber= new  Attributes();
+    this.attrHomeTelephoneNumber= new  Attributes();
+    this.attrEmailAddressPrimary= new  Attributes();
+    this.attrEmailAddressAlternative= new  Attributes();
+    this.attrPrefferedMethodOfCommunication= new  Attributes();
+    this.attrCountryWhereQualificationObtained= new  Attributes();
+    this.attrQualificationType= new  Attributes();
+    this.attrCountrySpecialization= new  Attributes();
+    this.attrProffBodyRegistrationYesNo= new  Attributes();
+    this.attrProffBodyRegistrationName= new  Attributes();
+
 
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
@@ -114,6 +155,10 @@ qualificationType: any
   }
 
   ngOnInit() {
+
+
+
+
 
     var test = [];
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
@@ -146,6 +191,7 @@ qualificationType: any
     const lkCommunicationTypeurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
 
     const user = '../../../staging/api/me.json'
+
 
     console.log("Observable Test",this.getGender());
     this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{
@@ -254,41 +300,107 @@ qualificationType: any
 //Map model to the UI
   saveTrackedEntityInstance(){
 
-    this.enrollment.orgUnit = "";
-    this.enrollment.program ="";
-    this.enrollments.push(this.enrollment);
+    this.attrSurname.attribute = "adkMaBHuDha";
+    this.attrFirstname.attribute = "JLIDUSiUQTl";
+    this.attrMaidenname.attribute = "lMjqbn6uwKs";
+    this.attrInitialsname.attribute = "GQQtlqqDRmz";
+    this.attrProffession.attribute = "p0ci9AQcqcI";
+    this.attrGender.attribute = "hQNk6ODZnXM";
+    this.attrTitle.attribute = "M7vAlF8LTUK";
+    this.attrDatOfBirth.attribute = "Cd2NLEe7pMi";
+    this.attrMaritaStatus.attribute = "SKyaaiQyMQj";
+    this.attrSpouseDetails.attribute = "B22oDF7CWVF";
+    this.attrCurrentCountryOfResidence.attribute = "fVNyIxlIYuP";
+    this.attrCurrentResidentialStatus.attribute = "XSZCrXMiCjo";
+    this.attrSouthAfricanID.attribute = "yv4ipn1dKoT";
+    this.attrPassportNumber.attribute = "JqLIzp2KYnH";
+    this.attrRefugeeID.attribute = "SWtBa8bXcOi";
+    this.attrStreetAddressLine1.attribute = "uezzshW3BN6";
+    this.attrStreetAddressLine2.attribute = "CWlbP1cTK7u";
+    this.attrStreetAddressLine3.attribute = "rxFinyRVA9T";
+    this.attrStreetPostalCode.attribute = "xDz6lSwCt7Y";
+    this.attrStreetZipCode.attribute = "fIVeC4j6YD8";
+    this.attrStreetAddressLine1Home.attribute = "qMGmfAObIs6";
+    this.attrStreetAddressLine2Home.attribute = "gqixvHELgUO";
+    this.attrStreetAddressLine3Home.attribute = "hTEwEq41nnj";
+    this.attrStreetPostalCodeHome.attribute = "e2aboFrKVe5";
+    this.attrStreetZipCodeHome.attribute = "fIVeC4j6YD8";
+    this.attrCellphoneNumber.attribute = "CezOf26uGZ4";
+    this.attrWorkTelephoneNumber.attribute = "ixHqdNQYfqF";
+    this.attrHomeTelephoneNumber.attribute = "t2Blc1cnEwd";
+    this.attrEmailAddressPrimary.attribute = "QicAcX9cLKQ";
+    this.attrEmailAddressAlternative.attribute = "jbwHv5SYiME";
+    this.attrPrefferedMethodOfCommunication.attribute = "U16h9pm5aL6";
+    this.attrCountryWhereQualificationObtained.attribute = "kOoVDeW9qrp";
+    this.attrQualificationType.attribute = "BQAchMg4aMq";
+    this.attrProffBodyRegistrationYesNo.attribute = "UtmTAD03WcJ";
+    this.attrProffBodyRegistrationName.attribute = "OTkJvWxLVuD";
 
+
+
+    this.enrollment.orgUnit = "JLA7wl59oN3";
+    this.enrollment.program ="perc4ZpWBWr";
+    this.enrollments.push(this.enrollment);
 
 
     this.attributes.push(this.attrSurname);
     this.attributes.push(this.attrFirstname);
-    this.attributes.push(this.attrSurname);
+    this.attributes.push(this.attrMaidenname);
+    this.attributes.push(this.attrInitialsname);
+    this.attributes.push(this.attrProffession);
+    this.attributes.push(this.attrGender);
+    this.attributes.push(this.attrTitle);
+    this.attributes.push(this.attrDatOfBirth);
+    this.attributes.push(this.attrMaritaStatus);
+    this.attributes.push(this.attrSpouseDetails);
+    this.attributes.push(this.attrCurrentCountryOfResidence);
+    this.attributes.push(this.attrCurrentResidentialStatus);
+    this.attributes.push(this.attrSouthAfricanID);
+    this.attributes.push(this.attrPassportNumber);
+    this.attributes.push(this.attrRefugeeID);
+    this.attributes.push(this.attrStreetAddressLine1);
+    this.attributes.push(this.attrStreetAddressLine2);
+    this.attributes.push(this.attrStreetAddressLine3);
+    this.attributes.push(this.attrStreetPostalCode);
+    this.attributes.push(this.attrStreetZipCode);
+    this.attributes.push(this.attrStreetAddressLine1Home);
+    this.attributes.push(this.attrStreetAddressLine2Home);
+    this.attributes.push(this.attrStreetAddressLine3Home);
+    this.attributes.push(this.attrStreetPostalCodeHome);
+    this.attributes.push(this.attrStreetZipCodeHome);
+    this.attributes.push(this.attrCellphoneNumber);
+    this.attributes.push(this.attrWorkTelephoneNumber);
+    this.attributes.push(this.attrHomeTelephoneNumber);
+    this.attributes.push(this.attrEmailAddressPrimary);
+    this.attributes.push(this.attrEmailAddressAlternative);
+    this.attributes.push(this.attrPrefferedMethodOfCommunication);
+    this.attributes.push(this.attrCountryWhereQualificationObtained);
+    this.attributes.push(this.attrQualificationType);
+    this.attributes.push(this.attrCountrySpecialization);
+    this.attributes.push(this.attrProffBodyRegistrationYesNo);
+    this.attributes.push(this.attrProffBodyRegistrationName);
 
 
-
-
-
-
-
-
-
-
-    this.trackedEntityInstances.trackedEntity = "";
-    this.trackedEntityInstances.orgUnit = "";
+    this.trackedEntityInstances.trackedEntity = "HlrC9bKsuIg";
+    this.trackedEntityInstances.orgUnit = "JLA7wl59oN3";
     this.trackedEntityInstances.enrollments = this.enrollments;
     this.trackedEntityInstances.attributes = this.attributes;
+
+    console.log("Inside the TrackEntityInstance" + "  "+ JSON.stringify(this.trackedEntityInstances))
+
+
+
+
   }
 
   //Save TrackedEntityInstance Profile
   OnButtonSubmit(){
-
+    this.saveTrackedEntityInstance()
+    this.router.navigate(['staging/api/apps/fhwm/application']);
   }
 
   //create TrackedEntityInstance profile on load if it does not exist
   OnTrackedEntityInstancesLoad(){
-
-
-
   }
 
 

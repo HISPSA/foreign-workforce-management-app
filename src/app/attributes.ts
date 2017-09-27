@@ -1,4 +1,5 @@
 
 export class Attributes {
-  attribute: string[];
+  attribute: string;
+  value: string ;
 }

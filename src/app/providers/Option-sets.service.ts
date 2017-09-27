@@ -16,7 +16,7 @@ export class OptionSetsService {
     options: RequestOptions;
 
 	  constructor(private http:Http) {
-this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
+this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9'});
 this.options = new RequestOptions({ headers: this.headers });  }
 
 
