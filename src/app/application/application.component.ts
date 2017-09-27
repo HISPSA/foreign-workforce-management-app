@@ -99,7 +99,15 @@ qualificationType: any
   attrCountrySpecialization:Attributes;
   attrProffBodyRegistrationYesNo: Attributes;
   attrProffBodyRegistrationName: Attributes;
+
+  attrSpecializationYesNo: Attributes;
+
   attrUseruuid: Attributes;
+
+  userId: string = "";
+
+
+
 
 
 
@@ -169,6 +177,8 @@ qualificationType: any
     this.attrCountrySpecialization= new  Attributes();
     this.attrProffBodyRegistrationYesNo= new  Attributes();
     this.attrProffBodyRegistrationName= new  Attributes();
+
+    this.attrSpecializationYesNo = new  Attributes();
 
     this.attrUseruuid =  new  Attributes();
 
@@ -246,7 +256,7 @@ qualificationType: any
     this.OptionSetsService.getOptionSetsService(lkCommunicationTypeurl).then(result => this.prefferedComunnicationType =  result.optionSets[0].options).catch(error => console.log(error));
 
     //get user
-    this.user.getUser(userurl).then(result => console.log(result)).catch(error => console.log(error));
+    this.user.getUser(userurl).then(result => {console.log(result); this.userId = result.id}).catch(error => console.log(error));
 
 
 
@@ -258,6 +268,14 @@ qualificationType: any
   fileEvent(event){
     let files = event.target.files.name;
 }
+
+
+
+  OnTrackedEntityInstancesLoad(){
+  }
+
+
+
 
 
 //Map model to the UI
@@ -395,13 +413,10 @@ qualificationType: any
     }
 
 
-
-
     if ( this.attrStreetPostalCode.value)
     {
       this.attrStreetPostalCode.attribute = "xDz6lSwCt7Y";
       this.attributes.push(this.attrStreetPostalCode);
-
     }
 
 
@@ -501,7 +516,6 @@ qualificationType: any
 
     if ( this.attrQualificationType.value)
     {
-
       this.attrQualificationType.attribute = "BQAchMg4aMq";
       this.attributes.push(this.attrQualificationType);
     }
@@ -523,6 +537,17 @@ qualificationType: any
 
     }
 
+
+    if (
+      this.attrSpecializationYesNo.value)
+    {
+      this.attrSpecializationYesNo.attribute = "AiEiUfSNGTU";
+      this.attributes.push(this.attrSpecializationYesNo);
+    }
+
+      this.attrUseruuid.attribute = "AiEiUfSNGTU";
+      this.attrUseruuid.value = this.userId;
+      this.attributes.push(this.attrUseruuid);
 
 
     this.enrollment.orgUnit = "JLA7wl59oN3";
@@ -555,8 +580,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
     this.router.navigate(['staging/api/apps/fhwm/application']);
   }
   //create TrackedEntityInstance profile on load if it does not exist
-  OnTrackedEntityInstancesLoad(){
-  }
+
 
 
 }
