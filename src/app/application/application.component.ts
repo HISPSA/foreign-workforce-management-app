@@ -99,6 +99,9 @@ qualificationType: any
   attrCountrySpecialization:Attributes;
   attrProffBodyRegistrationYesNo: Attributes;
   attrProffBodyRegistrationName: Attributes;
+  attrUseruuid: Attributes;
+
+
 
   //Documents attributes will go under here
 
@@ -129,8 +132,6 @@ qualificationType: any
 
 
     this.trackedEntityInstancesPayload=  new TrackedEntityInstancesPayload();
-
-
 
     this.attrSurname = new  Attributes();
     this.attrFirstname= new  Attributes();
@@ -168,6 +169,8 @@ qualificationType: any
     this.attrCountrySpecialization= new  Attributes();
     this.attrProffBodyRegistrationYesNo= new  Attributes();
     this.attrProffBodyRegistrationName= new  Attributes();
+
+    this.attrUseruuid =  new  Attributes();
 
 
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
@@ -209,7 +212,10 @@ qualificationType: any
 
     const lkCommunicationTypeurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
 
-    const userurl = '../../../staging/api/me.json'
+    const userurl = '../../../staging/api/me.json';
+
+    //create entity Instance
+
 
 
 
@@ -476,9 +482,6 @@ qualificationType: any
       this.attributes.push(this.attrEmailAddressAlternative);
     }
 
-
-
-
     if ( this.attrPrefferedMethodOfCommunication.value)
     {
 
@@ -533,11 +536,17 @@ qualificationType: any
 
     this.trackedEntityInstancesArray.push(this.trackedEntityInstances);
 
-
-
     this.trackedEntityInstancesPayload.trackedEntityInstances =this.trackedEntityInstancesArray;
 
     console.log("Inside the TrackEntityInstance" + "  "+ JSON.stringify(this.trackedEntityInstancesPayload));
+
+    //steps
+    //create track entity instance
+    //Enrol a tracked entity instance to a program
+
+    const trackedEntityInstanceUrl = '../../../staging/api/trackedEntityInstances';
+
+this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityInstancesPayload ).then(result => console.log(result)).catch(error => console.log(error));
   }
 
   //Save TrackedEntityInstance Profile
@@ -545,7 +554,6 @@ qualificationType: any
     this.saveTrackedEntityInstance()
     this.router.navigate(['staging/api/apps/fhwm/application']);
   }
-
   //create TrackedEntityInstance profile on load if it does not exist
   OnTrackedEntityInstancesLoad(){
   }
