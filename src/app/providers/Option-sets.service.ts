@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import {OptionSet} from "../option-set"
-/*
+ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+ import { Observable } from "rxjs/Observable";
+ import "rxjs/add/operator/map";
+ import {OptionSet} from "../option-set"
+ /*
   Generated class for the DataSets provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html

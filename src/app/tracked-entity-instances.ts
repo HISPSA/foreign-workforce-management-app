@@ -6,6 +6,4 @@ export class TrackedEntityInstances {
   orgUnit: string;
   attributes: Attributes[];
   enrollments: Enrollments[];
-
-
 }
