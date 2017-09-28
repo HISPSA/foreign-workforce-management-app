@@ -9,7 +9,7 @@
       <label>What are you applying for?</label> <div *ngIf="typeofApllication"  class="form-group input-sm">
       <select class="form-control" id="applicationTypeId">
         <option value = "">Please select a type of application</option>
-        <option *ngFor = "let apptype of typeofApllication"  [value] = "apptype"> {{apptype.name}}</option>
+        <option *ngFor = "let apptype of typeofApllication"  [value] = "apptype.id"> {{apptype.name}}</option>
       </select>
     </div>
           </div>

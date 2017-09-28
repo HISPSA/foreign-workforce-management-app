@@ -28,6 +28,16 @@ import {events} from "../event";
 export class ApplicantProfileComponent implements OnInit {
   typeofApllication: any;
   eventPayload : events;
+
+  applicationType: dataValues;
+  applicationDate: dataValues;
+  applicationStatus: dataValues;
+
+
+
+  dataValuesArray: dataValues[];
+
+
   //URLs
 eventurl: string= '../../../staging/api/';
 
@@ -36,6 +46,12 @@ eventurl: string= '../../../staging/api/';
   constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
   this.typeofApllication = [];
     this.eventPayload = new events();
+
+    this.applicationType =  new dataValues();
+    this.applicationDate =  new dataValues();
+    this.applicationStatus = new dataValues();
+
+    this.dataValuesArray = [];
   }
 
   ngOnInit() {
@@ -43,8 +59,37 @@ eventurl: string= '../../../staging/api/';
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => this.typeofApllication =  result.optionSets[0].options).catch(error => console.log(error));
   }
 
-
   SubmitApplication(url: string){
+      //
+    this.eventPayload.orgUnit  = "";
+    this.eventPayload.program  = "";
+    this.eventPayload.trackedEntityInstance = "";
+    this.eventPayload.status ="";
+    this.eventPayload.eventDate ="";
+    this.eventPayload.selectedProgramStageId = "";
+    this.eventPayload.storedBy = "";
+    if ( this.applicationType.value)
+    {
+      this.applicationType.dataElement = "";
+      this.dataValuesArray.push(this.applicationType);
+    }
+
+    if ( this.applicationDate.value)
+    {
+      this.applicationDate.dataElement = "";
+      this.dataValuesArray.push(this.applicationDate);
+    }
+
+    if ( this.applicationStatus.value)
+    {
+      this.applicationStatus.dataElement = "";
+      this.dataValuesArray.push(this.applicationStatus);
+    }
+    this.eventPayload.dataValues = this.dataValuesArray;
+    console.log("Application Payload :" + this.eventPayload );
+  }
+
+  ValidateApplication(){
 
   }
 
