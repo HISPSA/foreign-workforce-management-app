@@ -60,8 +60,6 @@ qualificationType: any
 
   applicantDetails : any;
 
-
-
   enrollment: Enrollments;
 
   //Models to map to the template
@@ -195,7 +193,6 @@ qualificationType: any
   }
 
   ngOnInit() {
-
     var test = [];
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
     const provincesurl = '../../../staging/api/organisationUnits?paging=false&fields=:all&filter=level:eq:2'
@@ -232,8 +229,180 @@ qualificationType: any
       console.log("applicant is : "+ this.applicantDetails);
       console.log("There are this number of attributes : "+  Object.keys(this.applicantDetails).length);
 
-        for (let attr of this.applicantDetails ) {
-          console.log(attr);
+        if (this.applicantDetails){
+          //for iterator starts here
+          for (let attr of this.applicantDetails ) {
+                                    console.log(attr)
+            if (attr.attribute == "adkMaBHuDha")
+            {
+              this.attrSurname.value = attr.attribute.value
+            }
+            if (attr.attribute ==  "JLIDUSiUQTl")
+            {
+              this.attrFirstname.value = attr.attribute.value;
+            }
+            if (attr.attribute == "lMjqbn6uwKs")
+            {
+              this.attrMaidenname.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "GQQtlqqDRmz" )
+            {
+              this.attrInitialsname.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "p0ci9AQcqcI")
+            {
+              this.attrProffession.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "hQNk6ODZnXM")
+            {
+              this.attrGender.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "M7vAlF8LTUK")
+            {
+              this.attrTitle.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "Cd2NLEe7pMi")
+            {
+              this.attrDatOfBirth.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "SKyaaiQyMQj")
+            {
+              this.attrMaritaStatus.value =attr.attribute.value;
+            }
+            if (attr.attribute ==  "B22oDF7CWVF")
+            {
+              this.attrSpouseDetails.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "fVNyIxlIYuP")
+            {
+              this.attrCurrentCountryOfResidence.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "XSZCrXMiCjo")
+            {
+              this.attrCurrentResidentialStatus.value = attr.attribute.value;
+            }
+            if (  attr.attribute ==  "yv4ipn1dKoT")
+            {
+              this.attrSouthAfricanID.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "JqLIzp2KYnH")
+            {
+              this.attrPassportNumber.value = attr.attribute.value;
+            }
+            if (  attr.attribute ==  "SWtBa8bXcOi")
+            {
+              this.attrRefugeeID.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "uezzshW3BN6" )
+            {
+              this.attrStreetAddressLine1.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "CWlbP1cTK7u")
+            {
+              this.attrStreetAddressLine2.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "rxFinyRVA9T")
+            {
+              this.attrStreetAddressLine3.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "xDz6lSwCt7Y")
+            {
+              this.attrStreetPostalCode.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "fIVeC4j6YD8")
+            {
+              this.attrStreetZipCode.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "qMGmfAObIs6")
+            {
+             this.attrStreetAddressLine1Home.value = attr.attribute.value;
+            }
+            if (attr.attribute==  "gqixvHELgUO")
+            {
+              this.attrStreetAddressLine2Home.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "hTEwEq41nnj")
+            {
+              this.attrStreetAddressLine3Home.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "e2aboFrKVe5")
+            {
+              this.attrStreetPostalCodeHome.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "fIVeC4j6YD8")
+            {
+              this.attrStreetZipCodeHome.value = attr.attribute.value;
+            }
+            if (attr.attribute ==  "CezOf26uGZ4")
+            {
+              this.attrCellphoneNumber.value = attr.attribute.value;
+            }
+            if (  attr.attribute ==  "ixHqdNQYfqF")
+            {
+              this.attrWorkTelephoneNumber.value = attr.attribute.value;
+            }
+
+            if ( attr.attribute ==  "t2Blc1cnEwd")
+            {
+              this.attrHomeTelephoneNumber.value = attr.attribute.value;
+            }
+
+            if (  attr.attribute ==  "QicAcX9cLKQ")
+            {
+              this.attrEmailAddressPrimary.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "jbwHv5SYiME")
+            {
+              this.attrEmailAddressAlternative.value = attr.attribute.value;
+            }
+
+            if ( attr.attribute ==  "U16h9pm5aL6")
+            {
+              this.attrPrefferedMethodOfCommunication.value = attr.attribute.value;
+            }
+
+            if ( attr.attribute ==  "kOoVDeW9qrp")
+            {
+              this.attrCountryWhereQualificationObtained.value = attr.attribute.value;
+            }
+
+            if ( attr.attribute ==  "BQAchMg4aMq")
+            {
+              this.attrQualificationType.value = attr.attribute.value;
+            }
+            if ( attr.attribute ==  "UtmTAD03WcJ")
+            {
+              this.attrProffBodyRegistrationYesNo.value = attr.attribute.value;
+            }
+            if (
+              attr.attribute ==  "OTkJvWxLVuD")
+            {
+              this.attrProffBodyRegistrationName.value = attr.attribute.value;
+            }
+            if (
+              attr.attribute ==  "AiEiUfSNGTU")
+            {
+              this.attrSpecializationYesNo.value = attr.attribute.value;
+            }
+            if (
+              attr.attribute ==  "UsZ89w0XS9f")
+            {
+              this.attrUseruuid.value = attr.attribute.value;
+            }
+          }
+          //for iterator ends here
+
+        }else
+        {
+          //here need to start creating a basic profile if does not exist already
+          //surname, firstName, useruuid,primary, email, phoneNumber
+
+
+
+
+
+
+
         }
     }).catch(error => console.log(error));
 
@@ -544,7 +713,7 @@ qualificationType: any
       this.attributes.push(this.attrSpecializationYesNo);
     }
 
-      this.attrUseruuid.attribute = "AiEiUfSNGTU";
+      this.attrUseruuid.attribute = "UsZ89w0XS9f";
       this.attrUseruuid.value = this.userId;
       this.attributes.push(this.attrUseruuid);
 

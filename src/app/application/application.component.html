@@ -131,8 +131,8 @@
                     </div>
                     <label>Are you registered as a specialist in any country? </label>
                     <div class="radio"  >
-                      <label><input type="radio" name="AiEiUfSNGTU" id ="opCountry"  [(ngModel)] = "attrSpecializationYesNo.value"  value = "Yes">Yes</label>
-                      <label><input type="radio" name="AiEiUfSNGTU" id = "opCountry" [(ngModel)] = "attrSpecializationYesNo.value" value = "No">No</label>
+                      <label><input type="radio" name="AiEiUfSNGTU: [null, Validators.required]" id ="opCountry"  [(ngModel)] = "attrSpecializationYesNo.value"  value = "true">Yes</label>
+                      <label><input type="radio" name="AiEiUfSNGTU" id = "opCountry" [(ngModel)] = "attrSpecializationYesNo.value" value = "false">No</label>
                     </div>
                     <label>If yes, state the name of country? </label>
                     <div *ngIf="countryOfOrigin" class="form-group input-sm">
@@ -145,8 +145,8 @@
                     <div>
                     <label>Are you registered with any professional body? </label>
                     <div class="radio">
-                      <label><input type="radio" name="UtmTAD03WcJ" id = "profbody" [(ngModel)] = "attrProffBodyRegistrationYesNo.value" value = "Yes" >Yes</label>
-                      <label><input type="radio" name="UtmTAD03WcJ" id = "profbody" [(ngModel)] = "attrProffBodyRegistrationYesNo.value" value = "No">No</label>
+                      <label><input type="radio" name="UtmTAD03WcJ: [null, Validators.required]" id = "profbody" [(ngModel)] = "attrProffBodyRegistrationYesNo.value" value = "true" >Yes</label>
+                      <label><input type="radio" name="UtmTAD03WcJ" id = "profbody" [(ngModel)] = "attrProffBodyRegistrationYesNo.value" value = "false">No</label>
                     </div>
                       <label>If yes, state the name of the professional body </label>
                       <input type="text" class="form-control" id="profBodyName" name = "qYlxUNzBpdo" [(ngModel)] = "attrProffBodyRegistrationName.value"/>
