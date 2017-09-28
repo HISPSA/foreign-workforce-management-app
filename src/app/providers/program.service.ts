@@ -20,12 +20,21 @@ this.options = new RequestOptions({ headers: this.headers });  }
 
 
   getprograms(url: string): Promise<any> {
-  return this.http
+    return this.http
       .get(url, this.options)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
   }
+
+  getTrackEntityInstance(url: string): Promise<any> {
+    return this.http
+      .get(url, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
 
   private extractData(res: Response) {
         let body = res.json();

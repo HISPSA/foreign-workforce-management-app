@@ -56,8 +56,10 @@ qualificationType: any
   trackedEntityInstances:TrackedEntityInstances;
 
   trackedEntityInstancesArray: TrackedEntityInstances[];
-
   trackedEntityInstancesPayload: TrackedEntityInstancesPayload;
+
+  applicantDetails : any;
+
 
 
   enrollment: Enrollments;
@@ -182,6 +184,8 @@ qualificationType: any
 
     this.attrUseruuid =  new  Attributes();
 
+    this.applicantDetails = [];
+
 
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
@@ -198,9 +202,7 @@ qualificationType: any
 
 //optionsets
     //gender
-    //const lkgenderurl = '../../../staging/api/optionSets.json?paging=false&fields=id,name,options[name]&filter=id:eq:zL9imKevTiF';
-
-   const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF&order=name:asc';
+    const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF&order=name:asc';
     //type of application
     const lktypeOfApplicationurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
     //Title
@@ -219,31 +221,23 @@ qualificationType: any
     const lktypeOfQualiurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:kdg3F9nZKIV';
     //visa durations
     const lkvisaurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
-
+    //communication Type
     const lkCommunicationTypeurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
-
     const userurl = '../../../staging/api/me.json';
 
-    //create entity Instance
 
+    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
 
+      this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {this.applicantDetails =  result.trackedEntityInstances[0].attributes;
+      console.log("applicant is : "+ this.applicantDetails);
+      console.log("There are this number of attributes : "+  Object.keys(this.applicantDetails).length);
 
-
-    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result =>{
-      this.options =  result.optionSets[0];}).catch(error => console.log(error));
-
-    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {
-      console.log("Gender: ",  result.optionSets[0])
-      this.options =result.optionSets[0]
-      console.log("Gender22222: ", this.options)
-     test = this.options;
-    });
-
-    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => {this.gender =  result.optionSets[0].options
-
-    console.log("closer and closer", this.gender)
+        for (let attr of this.applicantDetails ) {
+          console.log(attr);
+        }
     }).catch(error => console.log(error));
 
+    //create entity Instance
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => this.typeofApllication =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(titleurl).then(result => this.title =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lkcountryOriginurl).then(result => this.countryOfOrigin =  result.optionSets[0].options).catch(error => console.log(error));
@@ -256,25 +250,31 @@ qualificationType: any
     this.OptionSetsService.getOptionSetsService(lkCommunicationTypeurl).then(result => this.prefferedComunnicationType =  result.optionSets[0].options).catch(error => console.log(error));
 
     //get user
-    this.user.getUser(userurl).then(result => {console.log(result); this.userId = result.id}).catch(error => console.log(error));
-
-
-
-     console.log("test", test)
-
+    this.user.getUser(userurl).then(result => {
+    console.log(result); this.userId = result.id;
+    console.log("User Id is : "+ this.userId );
+    }).catch(error => console.log(error));
   }
-
-
   fileEvent(event){
     let files = event.target.files.name;
 }
+  //load track enity instance profile at page load
+  LoadTrackEntityInstance(url: string, userid: string){
 
 
+    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
+  //const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance='+userid;
+  this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances[0].attributes).catch(error => console.log(error));
 
-  OnTrackedEntityInstancesLoad(){
+
   }
 
 
+  checkIdTrackEntityExists()
+  {
+
+
+  }
 
 
 
@@ -285,7 +285,6 @@ qualificationType: any
     {
       this.attrSurname.attribute = "adkMaBHuDha";
       this.attributes.push(this.attrSurname);
-
     }
 
 
