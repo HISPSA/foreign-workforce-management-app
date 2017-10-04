@@ -24,6 +24,9 @@ import {OrganisationunitsComponent } from './organisationunits/organisationunits
 import {IndicatorsComponent } from './indicators/indicators.component';
 import {User} from './providers/user';
 import {OptionSetsService } from './providers/Option-sets.service';
+
+import {AlertService } from './providers/alert.service';
+
 import { CheckListPageComponent } from './check-list-page/check-list-page.component';
 import { ApprovalScreenComponent } from './approval-screen/approval-screen.component';
 import { ApplicationDetailViewComponent } from './application-detail-view/application-detail-view.component';
@@ -100,7 +103,7 @@ const appRoutes: Routes = [
         appRoutes,
         { enableTracing: true } // <-- debugging purposes only
       )],
-  providers: [DataElementService,DashboardService, DatasetService, DatavalueService, EventService,  OrganisationUnitService,  ProgramService, VisualiserService,ProgramStageSectionsService, ProgramStageDataElementService, IndicatorService, NetworkAvailability, User,OptionSetsService ],
+  providers: [AlertService,DataElementService,DashboardService, DatasetService, DatavalueService, EventService,  OrganisationUnitService,  ProgramService, VisualiserService,ProgramStageSectionsService, ProgramStageDataElementService, IndicatorService, NetworkAvailability, User,OptionSetsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

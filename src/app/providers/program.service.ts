@@ -35,6 +35,14 @@ this.options = new RequestOptions({ headers: this.headers });  }
       .catch(this.handleError);
   }
 
+  getProgramStage(url: string): Promise<any> {
+    return this.http
+      .get(url, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
 
   private extractData(res: Response) {
         let body = res.json();
@@ -56,6 +64,15 @@ this.options = new RequestOptions({ headers: this.headers });  }
   }
 
 
+
+  registerEvent(url: string, param: any): Promise<any> {
+    let body = JSON.stringify(param);
+    return this.http
+      .post(url, body, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
 
 
 }

@@ -2,12 +2,12 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Application</div>
     <div class="panel-body">
-      <form #application="ngForm">
+      <form #application="ngForm" (ngSubmit)= "SubmitApplication()">
 
         <div class="panel panel-default">
           <div class="panel-heading">Type Of Application</div>
-      <label>What are you applying for?</label> <div *ngIf="typeofApllication"  class="form-group input-sm">
-      <select class="form-control" id="applicationTypeId">
+      <label>What are you applying for?</label> <div *ngIf="typeofApplication"  class="form-group input-sm">
+      <select class="form-control" id="applicationTypeId" id="applitiontype" name = "HBI7F3arBXR" [(ngModel)] = "applicationType.value">
         <option value = "">Please select a type of application</option>
         <option *ngFor = "let apptype of typeofApllication"  [value] = "apptype.id"> {{apptype.name}}</option>
       </select>
