@@ -7,4 +7,7 @@
 export class dataValues {
   dataElement: string;
   value: string;
+  lastUpdated: string;
+  created: string;
+  providedElsewhere: string;
 }

@@ -26,7 +26,8 @@ import {events} from "../event";
   styleUrls: ['./applicant-profile.component.css']
 })
 export class ApplicantProfileComponent implements OnInit {
-  typeofApllication: any;
+  apllication: any;
+
   eventPayload : events;
 
   applicationType: dataValues;
@@ -47,7 +48,7 @@ export class ApplicantProfileComponent implements OnInit {
   //URLs
 eventurl: string= '../../../staging/api/';
   constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
-  this.typeofApllication = [];
+
     this.eventPayload = new events();
 
     this.applicationType =  new dataValues();
@@ -55,8 +56,10 @@ eventurl: string= '../../../staging/api/';
     this.applicationStatus = new dataValues();
 
     this.dataValuesArray = [];
-    this.applicantDetails = []
+    this.applicantDetails = [];
     this.programStage = [];
+
+    this.apllication = [];
   }
 
   ngOnInit() {
@@ -70,7 +73,10 @@ eventurl: string= '../../../staging/api/';
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
 
-    this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => this.typeofApllication =  result.optionSets[0].options).catch(error => console.log(error));
+    this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => {this.apllication =  result.optionSets[0].options;
+      console.log("This is  the array" + this.apllication);
+
+    }).catch(error => console.log(error));
 
     this.user.getUser(userurl).then(result => {
       console.log(result); this.userId = result.id;
@@ -102,10 +108,11 @@ eventurl: string= '../../../staging/api/';
     this.eventPayload.trackedEntityInstance = "jWqdXOMyozX";
     this.eventPayload.status ="COMPLETED";
     this.eventPayload.eventDate ="2017-10-03";
-    this.eventPayload.selectedProgramStageId = "EaLamgPg9IE";
+    this.eventPayload.completedDate = "2017-10-03";
+    this.eventPayload.programStage = "EaLamgPg9IE";
     this.eventPayload.storedBy = "admin";
-
     this.applicationDate.value = "2017-10-03";
+    this.applicationStatus.value = "COMPLETED";
 
     if ( this.applicationType.value)
     {
@@ -117,23 +124,23 @@ eventurl: string= '../../../staging/api/';
       this.applicationDate.dataElement = "M9OXsIODpaY";
       this.dataValuesArray.push(this.applicationDate);
     }
-
+/*
     if ( this.applicationStatus.value)
     {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
-        this.dataValuesArray.push(this.applicationDate);
+      this.dataValuesArray.push(this.applicationStatus);
     }
-
-    this.dataValuesArray.push(this.applicationStatus);
+**/
     this.eventPayload.dataValues = this.dataValuesArray;
     console.log("Application Payload :" + JSON.stringify(this.eventPayload));
-
     this.programservice.registerEvent(urlSendEvents,this.eventPayload );
   }
 
-  ValidateApplication(){
-
+  ValidateApplicationRequiredDocs(){
+  //check application types here and show relevant docs here under here
   }
 
-
+  ValidateEnrollmentCheckDuplicates(){
+    //check application types here and show relevant docs here under here
+  }
 
 }

@@ -31,14 +31,14 @@
               <div *ngIf="gender"  class="form-group input-sm"  >
                 <select class="form-control" id="gender"  name = "hQNk6ODZnXM" [(ngModel)] = "attrGender.value" >
                   <option value = "">Please select a gender</option>
-                  <option *ngFor = "let gend of gender" [value] = "gend.id">{{gend.name}}  </option>
+                  <option *ngFor = "let gend of gender" [value] = "gend.name">{{gend.name}}  </option>
                 </select>
               </div>
 
               <label>Title:</label> <div *ngIf="title" class="form-group input-sm" >
               <select class="form-control" id="title" name = "M7vAlF8LTUK" [(ngModel)] = "attrTitle.value">
                 <option value = "">Please select a title</option>
-                <option *ngFor = "let ttl of title"  [value] = "ttl.id">{{ttl.name}}  </option>
+                <option *ngFor = "let ttl of title"  [value] = "ttl.name">{{ttl.name}}  </option>
               </select>
             </div>
 
@@ -47,7 +47,7 @@
                 <div *ngIf="maritalstatus" class="form-group input-sm">
                   <select class="form-control" id="marital" name = "SKyaaiQyMQj" [(ngModel)] = "attrMaritaStatus.value"   >
                     <option value = "">Please select marital status</option>
-                    <option *ngFor = "let marital of maritalstatus">{{marital.name}}</option>
+                    <option *ngFor = "let marital of maritalstatus" [value] = "marital.name">{{marital.name}}</option>
                   </select>
                 </div>
                 <label>Spouse Details (If Married):</label> <input type="text" class="form-control" name = "B22oDF7CWVF" [(ngModel)] = "attrSpouseDetails.value" />
@@ -57,7 +57,7 @@
               <div *ngIf="countryOfOrigin" class="form-group input-sm" >
                 <select class="form-control" id="countryid" name = "fVNyIxlIYuP" [(ngModel)] = "attrCurrentCountryOfResidence.value" >
                   <option value = "">Please select a country</option>
-                  <option *ngFor = "let country of countryOfOrigin" [value] = "country.id">  {{country.name}}  </option>
+                  <option *ngFor = "let country of countryOfOrigin" [value] = "country.name">  {{country.name}}  </option>
                 </select>
               </div>
 
@@ -66,7 +66,7 @@
               <div *ngIf="resedintialStatus" class="form-group input-sm" >
                 <select class="form-control" id="resId" name = "XSZCrXMiCjo" [(ngModel)] = "attrCurrentResidentialStatus.value">
                   <option value = "">Please select residential status</option>
-                  <option *ngFor = "let status of resedintialStatus" [value] = "status.id">{{status.name}}</option>
+                  <option *ngFor = "let status of resedintialStatus" [value] = "status.name">{{status.name}}</option>
                 </select>
               </div>
 
@@ -106,7 +106,7 @@
               <div *ngIf="prefferedComunnicationType" class="form-group input-sm" >
                 <select class="form-control" id="commId" name = "U16h9pm5aL6" [(ngModel)] = "attrPrefferedMethodOfCommunication.value" >
                   <option value = "">Please select preffered channel</option>
-                  <option *ngFor = "let commuType of prefferedComunnicationType" [value] = "commuType.id">{{commuType.name}}</option>
+                  <option *ngFor = "let commuType of prefferedComunnicationType" [value] = "commuType.name">{{commuType.name}}</option>
                 </select>
               </div>
               </div>
@@ -119,14 +119,14 @@
                     <div *ngIf="countryOfOrigin" class="form-group input-sm" >
                       <select class="form-control" id="originid" name = "kOoVDeW9qrp" [(ngModel)] = "attrCountryWhereQualificationObtained.value">
                         <option value = "">Please select a country</option>
-                        <option *ngFor = "let qualiCountry of countryOfOrigin"  [value] = "qualiCountry.id">  {{qualiCountry.name}}  </option>
+                        <option *ngFor = "let qualiCountry of countryOfOrigin"  [value] = "qualiCountry.name">  {{qualiCountry.name}}  </option>
                       </select>
                     </div>
                     <label>Type of Qualification:  </label>
                     <div *ngIf="typeOfQualification" class="form-group input-sm">
                       <select class="form-control" id="qualitypeid" name = "BQAchMg4aMq" [(ngModel)] = "attrQualificationType.value">
                         <option value = "">Please select a type of qualification</option>
-                        <option *ngFor = "let qualitype of typeOfQualification" [value]="qualitype.id">  {{qualitype.name}}  </option>
+                        <option *ngFor = "let qualitype of typeOfQualification" [value]="qualitype.name">  {{qualitype.name}}  </option>
                       </select>
                     </div>
                     <label>Are you registered as a specialist in any country? </label>
@@ -138,7 +138,7 @@
                     <div *ngIf="countryOfOrigin" class="form-group input-sm">
                       <select class="form-control" id="countryQuaid" name = "OTkJvWxLVuD" [(ngModel)] = "attrCountrySpecialization.value">
                         <option value = "">Please select a country</option>
-                        <option *ngFor = "let specialCountry of countryOfOrigin" [value]="specialCountry.id" >{{specialCountry.name}}</option>
+                        <option *ngFor = "let specialCountry of countryOfOrigin" [value]="specialCountry.name" >{{specialCountry.name}}</option>
                       </select>
                     </div>
 

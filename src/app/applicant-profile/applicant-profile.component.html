@@ -6,12 +6,13 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">Type Of Application</div>
-      <label>What are you applying for?</label> <div *ngIf="typeofApplication"  class="form-group input-sm">
-      <select class="form-control" id="applicationTypeId" id="applitiontype" name = "HBI7F3arBXR" [(ngModel)] = "applicationType.value">
+      <label>What are you applying for?</label> <div class="form-group input-sm">
+      <select class="form-control" id="applicationTypeId" name = "HBI7F3arBXR" [(ngModel)] = "applicationType.value" >
         <option value = "">Please select a type of application</option>
-        <option *ngFor = "let apptype of typeofApllication"  [value] = "apptype.id"> {{apptype.name}}</option>
+        <option *ngFor = "let apptype of apllication"  [value] = "apptype.name"> {{apptype.name}}</option>
       </select>
     </div>
+
           </div>
 
         <div class="panel panel-default">
