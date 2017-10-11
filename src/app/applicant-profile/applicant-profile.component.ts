@@ -27,39 +27,38 @@ import {events} from "../event";
 })
 export class ApplicantProfileComponent implements OnInit {
   apllication: any;
-
   eventPayload : events;
-
   applicationType: dataValues;
   applicationDate: dataValues;
   applicationStatus: dataValues;
+  applicationNotes: dataValues;
 
   userId: string;
   storedBy: string;
-
   applicantDetails: any;
-
-
-
   dataValuesArray: dataValues[];
   programStage:  any;
-
+  trackEntityInstance: any;
+instanceId: string;
+  orgunit: string;
+  trackEntity: string;
 
   //URLs
 eventurl: string= '../../../staging/api/';
   constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
 
     this.eventPayload = new events();
-
     this.applicationType =  new dataValues();
     this.applicationDate =  new dataValues();
     this.applicationStatus = new dataValues();
+    this.applicationNotes = new dataValues();
 
     this.dataValuesArray = [];
     this.applicantDetails = [];
     this.programStage = [];
-
     this.apllication = [];
+    this.trackEntityInstance = [];
+
   }
 
   ngOnInit() {
@@ -67,25 +66,38 @@ eventurl: string= '../../../staging/api/';
     const lktypeOfApplicationurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
 
     const userurl = '../../../staging/api/me.json';
-
     const programStage = '../../../staging/api/programStages.json?paging=false&filter=id:eq:EaLamgPg9IE';
 
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
+    const trackEntityIntanceUrl= '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&filter=UsZ89w0XS9f:eq:';
 
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => {this.apllication =  result.optionSets[0].options;
       console.log("This is  the array" + this.apllication);
-
     }).catch(error => console.log(error));
+
 
     this.user.getUser(userurl).then(result => {
       console.log(result); this.userId = result.id;
       console.log("User Id is : "+ this.userId );
 
+    this.programservice.getTrackEntityInstance(trackEntityIntanceUrl+this.userId).then(result => {this.trackEntityInstance = result.trackedEntityInstances[0].attributes
+      for (let trackInstance of this.trackEntityInstance ) {
+
+        for (let attribute of trackInstance.attributes) {
+          if (attribute="UsZ89w0XS9f")
+          {
+            this.instanceId = trackInstance.trackedEntityInstance;
+            this.orgunit =  trackInstance.orgUnit;
+            this.trackEntity = trackInstance.trackedEntity;
+          }
+        }
+      }
+    }).catch(error => console.log(error));
 
     }).catch(error => console.log(error));
 
-    this.programservice.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances[0].attributes).catch(error => console.log(error));
+    this.programservice.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances).catch(error => console.log(error));
 
     this.programservice.getTrackEntityInstance(userurl).then(result => {
       console.log(result); this.userId = result.id;
@@ -101,11 +113,13 @@ eventurl: string= '../../../staging/api/';
 
   SubmitApplication(){
 
+
+
     const urlSendEvents = '../../../staging/api/events';
       //
-    this.eventPayload.orgUnit  = "JLA7wl59oN3";
+    this.eventPayload.orgUnit  = this.orgunit;
     this.eventPayload.program  = "perc4ZpWBWr";
-    this.eventPayload.trackedEntityInstance = "jWqdXOMyozX";
+    this.eventPayload.trackedEntityInstance = this.instanceId;
     this.eventPayload.status ="COMPLETED";
     this.eventPayload.eventDate ="2017-10-03";
     this.eventPayload.completedDate = "2017-10-03";
@@ -124,6 +138,13 @@ eventurl: string= '../../../staging/api/';
       this.applicationDate.dataElement = "M9OXsIODpaY";
       this.dataValuesArray.push(this.applicationDate);
     }
+
+    if ( this.applicationNotes.value)
+    {
+      this.applicationNotes.dataElement = "JsgUaaZqhaq";
+      this.dataValuesArray.push(this.applicationNotes);
+    }
+
 /*
     if ( this.applicationStatus.value)
     {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"

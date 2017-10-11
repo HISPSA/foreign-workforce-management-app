@@ -435,7 +435,6 @@ qualificationType: any
   //const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance='+userid;
   this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances[0].attributes).catch(error => console.log(error));
 
-
   }
 
 
@@ -444,8 +443,6 @@ qualificationType: any
 
 
   }
-
-
 
 //Map model to the UI
   saveTrackedEntityInstance(){
