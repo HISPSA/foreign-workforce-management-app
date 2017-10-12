@@ -223,6 +223,10 @@ qualificationType: any
     const userurl = '../../../staging/api/me.json';
 
 
+    const fileResourceURL =  '../../../staging/api/fileResources';
+
+
+
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
 
       this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {this.applicantDetails =  result.trackedEntityInstances[0].attributes;
