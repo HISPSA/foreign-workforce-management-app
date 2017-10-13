@@ -817,12 +817,12 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
     if  (event.target.name = "wKg02nSAnth"){}
     if  (event.target.name = "Gcpk3BqfTfY"){}
     if  (event.target.name = "kL7nLPq9HmS"){}
+    if  (event.target.name = "TeUV3frsYEc"){}
 
     //duplicate
-    if  (event.target.name = "TeUV3frsYEc"){}
-    //duplicate
     if  (event.target.name = "QCGwC8WHzIV"){}
     if  (event.target.name = "QCGwC8WHzIV"){}
+    
 
 
     if  (event.target.name = "Gcpk3BqfTfY"){}
