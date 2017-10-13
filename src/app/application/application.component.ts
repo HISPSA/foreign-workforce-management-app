@@ -99,12 +99,42 @@ qualificationType: any
   attrCountrySpecialization:Attributes;
   attrProffBodyRegistrationYesNo: Attributes;
   attrProffBodyRegistrationName: Attributes;
-
   attrSpecializationYesNo: Attributes;
-
   attrUseruuid: Attributes;
-
   userId: string = "";
+
+
+  //Files
+  attrFilePassport: Attributes;
+  attrFileCV: Attributes;
+  attrFileQualifications: Attributes;
+  attrFileProfRegistration: Attributes;
+  attrFileRefLetter: Attributes;
+  attrFileSpouseID: Attributes;
+  attrFileMarriageCertificate: Attributes;
+  attrFileSpouseIDDoc: Attributes;
+  attrFileResidencePermit: Attributes;
+  attrFileAffidavit: Attributes;
+  attrFileSpouseEmploymentContract: Attributes;
+  attrFileSpouseWorkPermit: Attributes;
+  attrFileSpouseSalarySlip: Attributes;
+  attrFileEmploymentLetter: Attributes;
+
+  attrFilePassportId: string;
+  attrFileCVId: string;
+  attrFileQualificationsId: string;
+  attrFileProfRegistrationId: string;
+  attrFileRefLetterId: string;
+  attrFileSpouseIDId: string;
+  attrFileMarriageCertificateId: string;
+  attrFileSpouseIDDocId: string;
+  attrFileResidencePermitId: string;
+  attrFileAffidavitId: string;
+  attrFileSpouseEmploymentContractId: string;
+  attrFileSpouseWorkPermitId: string;
+  attrFileSpouseSalarySlipId: string;
+  attrFileEmploymentLetterId: string;
+
 
 
 
@@ -177,10 +207,25 @@ qualificationType: any
     this.attrCountrySpecialization= new  Attributes();
     this.attrProffBodyRegistrationYesNo= new  Attributes();
     this.attrProffBodyRegistrationName= new  Attributes();
-
     this.attrSpecializationYesNo = new  Attributes();
-
     this.attrUseruuid =  new  Attributes();
+
+    this.attrFilePassport = new  Attributes();
+    this.attrFileCV = new  Attributes();
+    this.attrFileQualifications =new  Attributes();
+    this.attrFileProfRegistration= new  Attributes();
+    this.attrFileRefLetter = new Attributes();
+    this.attrFileSpouseID = new Attributes();
+    this.attrFileMarriageCertificate=new  Attributes();
+    this.attrFileSpouseIDDoc= new  Attributes();
+    this.attrFileResidencePermit = new Attributes();
+    this.attrFileAffidavit= new Attributes();
+    this.attrFileSpouseEmploymentContract = new Attributes();
+    this.attrFileSpouseWorkPermit = new Attributes();
+    this.attrFileSpouseSalarySlip = new Attributes();
+    this.attrFileEmploymentLetter=new Attributes();
+
+
 
     this.applicantDetails = [];
 
@@ -393,6 +438,16 @@ qualificationType: any
             {
               this.attrUseruuid.value = attr.attribute.value;
             }
+
+            //Files
+
+
+
+
+
+
+
+
           }
           //for iterator ends here
 
@@ -749,6 +804,37 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
     this.router.navigate(['staging/api/apps/fhwm/application']);
   }
   //create TrackedEntityInstance profile on load if it does not exist
+
+  onFileChange(event){
+    console.log(event.target.files[0])
+    console.log(event.target.name)
+
+  if  (event.target.name = "Gcpk3BqfTfY"){
+    //post a file here and get the id from the response
+
+
+  }
+    if  (event.target.name = "wKg02nSAnth"){}
+    if  (event.target.name = "Gcpk3BqfTfY"){}
+    if  (event.target.name = "kL7nLPq9HmS"){}
+
+    //duplicate
+    if  (event.target.name = "TeUV3frsYEc"){}
+    //duplicate
+    if  (event.target.name = "QCGwC8WHzIV"){}
+    if  (event.target.name = "QCGwC8WHzIV"){}
+
+
+    if  (event.target.name = "Gcpk3BqfTfY"){}
+    if  (event.target.name = "OOCZMGkv1SF"){}
+    if  (event.target.name = "Gcpk3BqfTfY"){}
+    if  (event.target.name = "BnAeQ9CfPqD"){}
+    if  (event.target.name = "xJUWub6Na81"){}
+    if  (event.target.name = "i63qGgDCqWK"){}
+    if  (event.target.name = "pCuas8xccgp"){}
+
+
+  }
 
 
 
