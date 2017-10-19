@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, RequestOptions,ResponseOptions, URLSearchParams } from '@angular/http';
 
 /*
   Generated class for the DataSets provider.
@@ -13,12 +13,18 @@ export class ProgramService {
     headers: Headers;
     options: RequestOptions;
 
-	  constructor(private http:Http) {
+  headersMultipart: Headers;
+  optionsMultipart: ResponseOptions;
+
+constructor(private http:Http) {
 this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
-this.options = new RequestOptions({ headers: this.headers });  }
+this.options = new RequestOptions({ headers: this.headers });
 
 
 
+this.headersMultipart = new Headers({'Accept': 'q=0.8;application/json;q=0.9;text/plain'});
+this.optionsMultipart =new ResponseOptions({ headers: this.headersMultipart });
+}
   getprograms(url: string): Promise<any> {
     return this.http
       .get(url, this.options)
@@ -63,12 +69,17 @@ this.options = new RequestOptions({ headers: this.headers });  }
       .catch(this.handleError);
   }
 
-
-
   registerEvent(url: string, param: any): Promise<any> {
     let body = JSON.stringify(param);
     return this.http
       .post(url, body, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+  postFile(url: string, formData: FormData): Promise<any> {
+       return this.http
+      .post(url, formData, this.optionsMultipart)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);

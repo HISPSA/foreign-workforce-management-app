@@ -1,5 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
 import 'rxjs/add/operator/toPromise';
 import {DataElementService} from '../providers/dataelement.service';
 import {OrganisationUnitService} from '../providers/organisation-unit.service';
@@ -17,7 +16,12 @@ import {TrackedEntityInstancesPayload} from "../trackEntityInstacePayload"
 import {TrackedEntityInstances} from "../tracked-entity-instances";
 import {Router} from '@angular/router';
 
+import { Http, Response, Headers, RequestOptions,ResponseOptions, URLSearchParams } from '@angular/http';
 
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Rx';
 
 
 
@@ -49,7 +53,7 @@ typeOfQualification: any
 visaDuration: any
 options: any
 qualificationType: any
-  prefferedComunnicationType: any
+prefferedComunnicationType: any
 
   attributes:Attributes[];
   enrollments: Enrollments[];
@@ -120,6 +124,8 @@ qualificationType: any
   attrFileSpouseSalarySlip: Attributes;
   attrFileEmploymentLetter: Attributes;
 
+
+  //This after the response after post
   attrFilePassportId: string;
   attrFileCVId: string;
   attrFileQualificationsId: string;
@@ -136,8 +142,18 @@ qualificationType: any
   attrFileEmploymentLetterId: string;
 
 
-
-
+  FilePassportFilename: string
+  CVFilename: string
+  ProfRegistrationFilename: string
+  RefLetterFilename: string
+  SpouseIDFilename: string
+  ResidencePermitFilename: string
+  MarriageCertificateFilename: string
+  AffidavitFilename: string
+  SpouseEmploymentContractFilename: string
+  SpouseWorkFilename: string
+  SpouseSalaryFilename: string
+  SpouseSalarySlipFilename: string
 
 
 
@@ -145,7 +161,7 @@ qualificationType: any
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
 
-  constructor(private programService: ProgramService,private user:User, private dataelemetservice:DataElementService, private organisationUnitService: OrganisationUnitService, private OptionSetsService: OptionSetsService, private router: Router) {
+  constructor(private http:Http,private programService: ProgramService,private user:User, private dataelemetservice:DataElementService, private organisationUnitService: OrganisationUnitService, private OptionSetsService: OptionSetsService, private router: Router) {
     this.gender = [];
     this.typeofApllication =[];
     this.title = [];
@@ -455,13 +471,6 @@ qualificationType: any
         {
           //here need to start creating a basic profile if does not exist already
           //surname, firstName, useruuid,primary, email, phoneNumber
-
-
-
-
-
-
-
         }
     }).catch(error => console.log(error));
 
@@ -476,6 +485,8 @@ qualificationType: any
     this.OptionSetsService.getOptionSetsService(lktypeOfQualiurl).then(result => this.typeOfQualification =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lkvisaurl).then(result => this.visaDuration =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lkCommunicationTypeurl).then(result => this.prefferedComunnicationType =  result.optionSets[0].options).catch(error => console.log(error));
+
+
 
     //get user
     this.user.getUser(userurl).then(result => {
@@ -511,7 +522,6 @@ qualificationType: any
       this.attrSurname.attribute = "adkMaBHuDha";
       this.attributes.push(this.attrSurname);
     }
-
 
     if (  this.attrFirstname.value)
     {
@@ -734,7 +744,6 @@ qualificationType: any
     {
       this.attrCountryWhereQualificationObtained.attribute = "kOoVDeW9qrp";
       this.attributes.push(this.attrCountryWhereQualificationObtained);
-
     }
 
 
@@ -744,8 +753,6 @@ qualificationType: any
       this.attributes.push(this.attrQualificationType);
     }
 
-
-
     if ( this.attrProffBodyRegistrationYesNo.value)
     {
       this.attrProffBodyRegistrationYesNo.attribute = "UtmTAD03WcJ";
@@ -753,26 +760,117 @@ qualificationType: any
     }
 
 
-    if (
-      this.attrProffBodyRegistrationName.value)
+    if (this.attrProffBodyRegistrationName.value)
     {
       this.attrProffBodyRegistrationName.attribute = "OTkJvWxLVuD";
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
-
     }
 
 
-    if (
-      this.attrSpecializationYesNo.value)
+    if (this.attrSpecializationYesNo.value)
     {
       this.attrSpecializationYesNo.attribute = "AiEiUfSNGTU";
       this.attributes.push(this.attrSpecializationYesNo);
     }
 
-      this.attrUseruuid.attribute = "UsZ89w0XS9f";
+    if (this.attrFilePassport.value)
+    {
+      this.attrFilePassport.attribute = "OTkJvWxLVuD";
+      this.attributes.push(this.attrProffBodyRegistrationYesNo);
+    }
+
+    if (this.attrFilePassportId != ""){
+    this.attrFilePassport.attribute = "Gcpk3BqfTfY";
+    this.attrFilePassport.value = this.attrFilePassportId;
+    this.attributes.push(this.attrFilePassport);
+    }
+
+    if (this.attrFileCVId != ""){
+    this.attrFileCV.attribute = "wKg02nSAnth";
+    this.attrFileCV.value = this.attrFileCVId;
+     this.attributes.push(this.attrFileCV);
+    }
+
+    if (this.attrFileCVId != "") {
+      this.attrFileQualifications.attribute = "Gcpk3BqfTfY";
+      this.attrFileQualifications.value = this.attrFileCVId;
+      this.attributes.push(this.attrFileQualifications);
+    }
+
+    if (this.attrFileProfRegistrationId != "") {
+      this.attrFileProfRegistration.value = "kL7nLPq9HmS";
+      this.attrFileProfRegistration.attribute = this.attrFileProfRegistrationId;
+      this.attributes.push(this.attrFileProfRegistration);
+    }
+
+    if (this.attrFileRefLetterId != "") {
+      this.attrFileRefLetter.attribute = "TeUV3frsYEc";
+      this.attrFileRefLetter.value = this.attrFileProfRegistrationId;
+      this.attributes.push(this.attrFileRefLetter);
+    }
+
+    if (this.attrFileSpouseIDId!= "") {
+      this.attrFileSpouseID.attribute = "QCGwC8WHzIV";
+      this.attrFileSpouseID.value = this.attrFileSpouseIDId
+      this.attributes.push(this.attrFileSpouseID);
+    }
+
+
+    if (this.attrFileProfRegistrationId!= "") {
+
+      this.attrFileMarriageCertificate.attribute = "TeUV3frsYEc";
+      this.attrFileMarriageCertificate.value = this.attrFileProfRegistrationId
+      this.attributes.push(this.attrFileMarriageCertificate);
+    }
+
+    if (this.attrFileSpouseIDDocId!= "") {
+      this.attrFileSpouseIDDoc.attribute = "QCGwC8WHzIV";
+      this.attrFileSpouseIDDoc.value = this.attrFileSpouseIDDocId;
+      this.attributes.push(this.attrFileSpouseIDDoc);
+    }
+
+    if (this.attrFileResidencePermitId!= "") {
+      this.attrFileResidencePermit.attribute = "QCGwC8WHzIV";
+      this.attrFileResidencePermit.value = this.attrFileResidencePermitId;
+      this.attributes.push(this.attrFileResidencePermit);
+    }
+
+
+    if (this.attrFileAffidavitId!= "") {
+      this.attrFileAffidavit.attribute = "OOCZMGkv1SF";
+      this.attrFileAffidavit.value = this.attrFileAffidavitId;
+      this.attributes.push(this.attrFileAffidavit);
+    }
+
+    if (this.attrFileSpouseEmploymentContractId!= "") {
+      this.attrFileSpouseEmploymentContract.attribute = "BnAeQ9CfPqD";
+      this.attrFileSpouseEmploymentContract.value = this.attrFileSpouseEmploymentContractId;
+      this.attributes.push(this.attrFileSpouseEmploymentContract);
+    }
+
+    if (this.attrFileSpouseWorkPermitId!= "") {
+      this.attrFileSpouseWorkPermit.attribute = "xJUWub6Na81";
+      this.attrFileSpouseWorkPermit.value = this.attrFileSpouseWorkPermitId;
+      this.attributes.push(this.attrFileSpouseWorkPermit);
+    }
+
+
+    if (this.attrFileSpouseSalarySlipId!= "") {
+      this.attrFileSpouseSalarySlip.attribute = "i63qGgDCqWK";
+      this.attrFileSpouseSalarySlip.value = this.attrFileSpouseSalarySlipId;
+      this.attributes.push(this.attrFileSpouseSalarySlip);
+    }
+
+
+    if (this.attrFileSpouseEmploymentContractId!= "") {
+      this.attrFileEmploymentLetter.attribute = "pCuas8xccgp";
+      this.attrFileEmploymentLetter.value = this.attrFileSpouseEmploymentContractId;
+      this.attributes.push(this.attrFileEmploymentLetter);
+    }
+
+    this.attrUseruuid.attribute = "UsZ89w0XS9f";
       this.attrUseruuid.value = this.userId;
       this.attributes.push(this.attrUseruuid);
-
 
     this.enrollment.orgUnit = "JLA7wl59oN3";
     this.enrollment.program ="perc4ZpWBWr";
@@ -806,32 +904,389 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
   //create TrackedEntityInstance profile on load if it does not exist
 
   onFileChange(event){
-    console.log(event.target.files[0])
-    console.log(event.target.name)
+    const fileResourceURL =  '../../../staging/api/fileResources';
+
+    let fileList: FileList = event.target.files;
+    let file: File = event.target.files[0];
+    let fileSize:number=fileList[0].size;
+
+      console.log(event.target.files[0])
+      console.log(event.target.name)
 
   if  (event.target.name = "Gcpk3BqfTfY"){
-    //post a file here and get the id from the response
 
+      //post a file here and get the id from the response
+    let passportfileformData:FormData = new FormData();
+   // passportfileformData.append('file',file.name);
 
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    passportfileformData.append("file",file, file.name);
+
+    this.http.post(fileResourceURL, passportfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+        data => {
+        // Consume Files
+        // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFilePassportId =data.response.fileResource.id;
+        },
+        error => {
+          console.log(error)
+        },
+      () => {
+        //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+      });
   }
-    if  (event.target.name = "wKg02nSAnth"){}
-    if  (event.target.name = "Gcpk3BqfTfY"){}
-    if  (event.target.name = "kL7nLPq9HmS"){}
-    if  (event.target.name = "TeUV3frsYEc"){}
+
+    if  (event.target.name = "wKg02nSAnth"){
+      let cvfileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      cvfileformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, cvfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileCVId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+      }
+    if  (event.target.name = "kL7nLPq9HmS"){
+      let profRegfileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      profRegfileformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, profRegfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileProfRegistrationId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+    if  (event.target.name = "TeUV3frsYEc"){
+      let RefLetterformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      RefLetterformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, RefLetterformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileRefLetterId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
 
     //duplicate
-    if  (event.target.name = "QCGwC8WHzIV"){}
-    if  (event.target.name = "QCGwC8WHzIV"){}
-    
+    if  (event.target.name = "QCGwC8WHzIV"){
+
+      let lifePatnerFileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      lifePatnerFileformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, lifePatnerFileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileSpouseIDId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+    if  (event.target.name = "OOCZMGkv1SF"){
+      let affidavitFileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      affidavitFileformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, affidavitFileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileAffidavitId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+
+    if  (event.target.name = "BnAeQ9CfPqD"){
+      let spouseContractFileIdformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      spouseContractFileIdformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, spouseContractFileIdformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
 
 
-    if  (event.target.name = "Gcpk3BqfTfY"){}
-    if  (event.target.name = "OOCZMGkv1SF"){}
-    if  (event.target.name = "Gcpk3BqfTfY"){}
-    if  (event.target.name = "BnAeQ9CfPqD"){}
-    if  (event.target.name = "xJUWub6Na81"){}
-    if  (event.target.name = "i63qGgDCqWK"){}
-    if  (event.target.name = "pCuas8xccgp"){}
+    }
+    if  (event.target.name = "xJUWub6Na81"){
+      let SpouseWorkPermitformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      SpouseWorkPermitformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, SpouseWorkPermitformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileSpouseWorkPermitId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+
+    }
+    if  (event.target.name = "i63qGgDCqWK"){
+      let SpouseSalarySlipformData:FormData = new FormData();
+
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      SpouseSalarySlipformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, SpouseSalarySlipformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileSpouseSalarySlipId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+
+    }
+    if  (event.target.name = "pCuas8xccgp"){
+      let SpouseEmploymentContractformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      SpouseEmploymentContractformData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, SpouseEmploymentContractformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+    if  (event.target.name = "TeUV3frsYEc"){
+      let marriageCertificateFormData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      marriageCertificateFormData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, marriageCertificateFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileMarriageCertificateId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+        });
+
+    }
+
+    if  (event.target.name = "Gcpk3BqfTfY"){
+      let qualificationFormData:FormData = new FormData();
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      qualificationFormData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, qualificationFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileQualificationsId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+    if  (event.target.name = "QCGwC8WHzIV"){
+      let FileResidencePermitFormData:FormData = new FormData();
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      FileResidencePermitFormData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, FileResidencePermitFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileResidencePermitId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+        });
+    }
+
+
+    if  (event.target.name = "QCGwC8WHzIV"){
+      let FileResidencePermitFormData:FormData = new FormData();
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      FileResidencePermitFormData.append("file",file, file.name);
+
+      this.http.post(fileResourceURL, FileResidencePermitFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          this.attrFileResidencePermitId =data.response.fileResource.id;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
 
 
   }
