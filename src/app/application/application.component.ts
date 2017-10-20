@@ -766,7 +766,6 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
-
     if (this.attrSpecializationYesNo.value)
     {
       this.attrSpecializationYesNo.attribute = "AiEiUfSNGTU";
@@ -816,9 +815,9 @@ prefferedComunnicationType: any
     }
 
 
-    if (this.attrFileProfRegistrationId!= "") {
+    if (this.attrFileMarriageCertificateId!= "") {
 
-      this.attrFileMarriageCertificate.attribute = "TeUV3frsYEc";
+      this.attrFileMarriageCertificate.attribute = "ukQzrmcUQgu";
       this.attrFileMarriageCertificate.value = this.attrFileProfRegistrationId
       this.attributes.push(this.attrFileMarriageCertificate);
     }
@@ -869,8 +868,8 @@ prefferedComunnicationType: any
     }
 
     this.attrUseruuid.attribute = "UsZ89w0XS9f";
-      this.attrUseruuid.value = this.userId;
-      this.attributes.push(this.attrUseruuid);
+    this.attrUseruuid.value = this.userId;
+    this.attributes.push(this.attrUseruuid);
 
     this.enrollment.orgUnit = "JLA7wl59oN3";
     this.enrollment.program ="perc4ZpWBWr";
@@ -913,7 +912,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
       console.log(event.target.files[0])
       console.log(event.target.name)
 
-  if  (event.target.name = "Gcpk3BqfTfY"){
+  if  (event.target.name == "Gcpk3BqfTfY"){
 
       //post a file here and get the id from the response
     let passportfileformData:FormData = new FormData();
@@ -931,6 +930,8 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFilePassportId =data.response.fileResource.id;
+
+          fileList = null;
         },
         error => {
           console.log(error)
@@ -942,7 +943,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
       });
   }
 
-    if  (event.target.name = "wKg02nSAnth"){
+    if  (event.target.name == "wKg02nSAnth"){
       let cvfileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -957,6 +958,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileCVId =data.response.fileResource.id;
+          fileList = null;
         },
           error => {
           console.log(error)
@@ -967,7 +969,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
         });
       }
-    if  (event.target.name = "kL7nLPq9HmS"){
+    if  (event.target.name == "kL7nLPq9HmS"){
       let profRegfileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -982,6 +984,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileProfRegistrationId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -993,7 +996,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
         });
 
     }
-    if  (event.target.name = "TeUV3frsYEc"){
+    if  (event.target.name == "TeUV3frsYEc"){
       let RefLetterformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1008,6 +1011,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileRefLetterId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1021,8 +1025,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
     }
 
     //duplicate
-    if  (event.target.name = "QCGwC8WHzIV"){
-
+    if  (event.target.name == "QCGwC8WHzIV"){
       let lifePatnerFileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1037,6 +1040,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileSpouseIDId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1049,7 +1053,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
     }
 
-    if  (event.target.name = "OOCZMGkv1SF"){
+    if  (event.target.name == "OOCZMGkv1SF"){
       let affidavitFileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1064,6 +1068,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileAffidavitId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1075,7 +1080,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
         });
     }
 
-    if  (event.target.name = "BnAeQ9CfPqD"){
+    if  (event.target.name == "BnAeQ9CfPqD"){
       let spouseContractFileIdformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1090,6 +1095,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1102,7 +1108,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
 
     }
-    if  (event.target.name = "xJUWub6Na81"){
+    if  (event.target.name == "xJUWub6Na81"){
       let SpouseWorkPermitformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1117,6 +1123,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileSpouseWorkPermitId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1129,7 +1136,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
 
     }
-    if  (event.target.name = "i63qGgDCqWK"){
+    if  (event.target.name == "i63qGgDCqWK"){
       let SpouseSalarySlipformData:FormData = new FormData();
 
 
@@ -1145,6 +1152,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileSpouseSalarySlipId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1157,7 +1165,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
 
     }
-    if  (event.target.name = "pCuas8xccgp"){
+    if  (event.target.name == "pCuas8xccgp"){
       let SpouseEmploymentContractformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1172,6 +1180,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1184,7 +1193,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
     }
 
-    if  (event.target.name = "TeUV3frsYEc"){
+    if  (event.target.name == "ukQzrmcUQgu"){
       let marriageCertificateFormData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1199,6 +1208,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileMarriageCertificateId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1210,7 +1220,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
     }
 
-    if  (event.target.name = "Gcpk3BqfTfY"){
+    if  (event.target.name == "BQAchMg4aMq"){
       let qualificationFormData:FormData = new FormData();
       let headers = new Headers();
       headers.set('Accept', 'application/json');
@@ -1224,6 +1234,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileQualificationsId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1236,7 +1247,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
 
     }
 
-    if  (event.target.name = "QCGwC8WHzIV"){
+    if  (event.target.name == "QCGwC8WHzIV"){
       let FileResidencePermitFormData:FormData = new FormData();
       let headers = new Headers();
       headers.set('Accept', 'application/json');
@@ -1250,6 +1261,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileResidencePermitId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
@@ -1260,8 +1272,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
         });
     }
 
-
-    if  (event.target.name = "QCGwC8WHzIV"){
+    if  (event.target.name == "QCGwC8WHzIV"){
       let FileResidencePermitFormData:FormData = new FormData();
       let headers = new Headers();
       headers.set('Accept', 'application/json');
@@ -1275,6 +1286,7 @@ this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityIn
           console.log(data);
           console.log(data.response.fileResource.id);
           this.attrFileResidencePermitId =data.response.fileResource.id;
+            fileList = null;
         },
           error => {
           console.log(error)
