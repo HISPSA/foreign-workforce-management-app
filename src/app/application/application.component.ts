@@ -288,6 +288,7 @@ prefferedComunnicationType: any
 
 
 
+
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
 
       this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {this.applicantDetails =  result.trackedEntityInstances[0].attributes;
@@ -475,6 +476,8 @@ prefferedComunnicationType: any
     }).catch(error => console.log(error));
 
     //create entity Instance
+    this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => this.gender =  result.optionSets[0].options).catch(error => console.log(error));
+
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => this.typeofApllication =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(titleurl).then(result => this.title =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lkcountryOriginurl).then(result => this.countryOfOrigin =  result.optionSets[0].options).catch(error => console.log(error));
@@ -778,90 +781,89 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
-    if (this.attrFilePassportId != ""){
+    if (this.attrFilePassportId.length > 0){
     this.attrFilePassport.attribute = "Gcpk3BqfTfY";
     this.attrFilePassport.value = this.attrFilePassportId;
     this.attributes.push(this.attrFilePassport);
     }
 
-    if (this.attrFileCVId != ""){
+    if (this.attrFileCVId.length > 0){
     this.attrFileCV.attribute = "wKg02nSAnth";
     this.attrFileCV.value = this.attrFileCVId;
      this.attributes.push(this.attrFileCV);
     }
 
-    if (this.attrFileCVId != "") {
+    if (this.attrFileCVId.length > 0) {
       this.attrFileQualifications.attribute = "Gcpk3BqfTfY";
       this.attrFileQualifications.value = this.attrFileCVId;
       this.attributes.push(this.attrFileQualifications);
     }
 
-    if (this.attrFileProfRegistrationId != "") {
+    if (this.attrFileProfRegistrationId.length > 0) {
       this.attrFileProfRegistration.value = "kL7nLPq9HmS";
       this.attrFileProfRegistration.attribute = this.attrFileProfRegistrationId;
       this.attributes.push(this.attrFileProfRegistration);
     }
 
-    if (this.attrFileRefLetterId != "") {
+    if (this.attrFileRefLetterId.length > 0 ) {
       this.attrFileRefLetter.attribute = "TeUV3frsYEc";
       this.attrFileRefLetter.value = this.attrFileProfRegistrationId;
       this.attributes.push(this.attrFileRefLetter);
     }
 
-    if (this.attrFileSpouseIDId!= "") {
+    if (this.attrFileSpouseIDId.length > 0) {
       this.attrFileSpouseID.attribute = "QCGwC8WHzIV";
       this.attrFileSpouseID.value = this.attrFileSpouseIDId
       this.attributes.push(this.attrFileSpouseID);
     }
 
 
-    if (this.attrFileMarriageCertificateId!= "") {
+    if (this.attrFileMarriageCertificateId.length > 0) {
 
       this.attrFileMarriageCertificate.attribute = "ukQzrmcUQgu";
       this.attrFileMarriageCertificate.value = this.attrFileProfRegistrationId
       this.attributes.push(this.attrFileMarriageCertificate);
     }
 
-    if (this.attrFileSpouseIDDocId!= "") {
+    if (this.attrFileSpouseIDDocId.length > 0) {
       this.attrFileSpouseIDDoc.attribute = "QCGwC8WHzIV";
       this.attrFileSpouseIDDoc.value = this.attrFileSpouseIDDocId;
       this.attributes.push(this.attrFileSpouseIDDoc);
     }
 
-    if (this.attrFileResidencePermitId!= "") {
+    if (this.attrFileResidencePermitId.length > 0) {
       this.attrFileResidencePermit.attribute = "QCGwC8WHzIV";
       this.attrFileResidencePermit.value = this.attrFileResidencePermitId;
       this.attributes.push(this.attrFileResidencePermit);
     }
 
 
-    if (this.attrFileAffidavitId!= "") {
+    if (this.attrFileAffidavitId.length > 0) {
       this.attrFileAffidavit.attribute = "OOCZMGkv1SF";
       this.attrFileAffidavit.value = this.attrFileAffidavitId;
       this.attributes.push(this.attrFileAffidavit);
     }
 
-    if (this.attrFileSpouseEmploymentContractId!= "") {
+    if (this.attrFileSpouseEmploymentContractId.length > 0) {
       this.attrFileSpouseEmploymentContract.attribute = "BnAeQ9CfPqD";
       this.attrFileSpouseEmploymentContract.value = this.attrFileSpouseEmploymentContractId;
       this.attributes.push(this.attrFileSpouseEmploymentContract);
     }
 
-    if (this.attrFileSpouseWorkPermitId!= "") {
+    if (this.attrFileSpouseWorkPermitId.length > 0) {
       this.attrFileSpouseWorkPermit.attribute = "xJUWub6Na81";
       this.attrFileSpouseWorkPermit.value = this.attrFileSpouseWorkPermitId;
       this.attributes.push(this.attrFileSpouseWorkPermit);
     }
 
 
-    if (this.attrFileSpouseSalarySlipId!= "") {
+    if (this.attrFileSpouseSalarySlipId.length > 0) {
       this.attrFileSpouseSalarySlip.attribute = "i63qGgDCqWK";
       this.attrFileSpouseSalarySlip.value = this.attrFileSpouseSalarySlipId;
       this.attributes.push(this.attrFileSpouseSalarySlip);
     }
 
-
-    if (this.attrFileSpouseEmploymentContractId!= "") {
+    if (this.attrFileSpouseEmploymentContractId.length > 0) {
       this.attrFileEmploymentLetter.attribute = "pCuas8xccgp";
       this.attrFileEmploymentLetter.value = this.attrFileSpouseEmploymentContractId;
       this.attributes.push(this.attrFileEmploymentLetter);
