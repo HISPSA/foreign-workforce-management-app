@@ -455,16 +455,7 @@ prefferedComunnicationType: any
             {
               this.attrUseruuid.value = attr.attribute.value;
             }
-
             //Files
-
-
-
-
-
-
-
-
           }
           //for iterator ends here
 
@@ -870,8 +861,6 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrFileEmploymentLetter);
     }
 
-
-
     this.attrUseruuid.attribute = "UsZ89w0XS9f";
     this.attrUseruuid.value = this.userId;
     this.attributes.push(this.attrUseruuid);
@@ -1024,7 +1013,6 @@ prefferedComunnicationType: any
           // .. Post Upload Delayed Action
 
         });
-
     }
 
     //duplicate

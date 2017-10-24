@@ -104,7 +104,7 @@
               <div>
               <label>Preffered Method Of Communication</label>
               <div *ngIf="prefferedComunnicationType" class="form-group input-sm" >
-                <select class="form-control" id="commId" name = "U16h9pm5aL6" [(ngModel)] = "attrPrefferedMethodOfCommunication.value" required="required" >
+                <select class="form-control" id="commId" name = "U16h9pm5aL6" [(ngModel)] = "attrPrefferedMethodOfCommunication.value" >
                   <option value = "">Please select preffered channel</option>
                   <option *ngFor = "let commuType of prefferedComunnicationType" [value] = "commuType.name">{{commuType.name}}</option>
                 </select>
