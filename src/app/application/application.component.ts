@@ -781,93 +781,96 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
-    if (this.attrFilePassportId.length > 0){
+
+    if (this.attrFilePassportId){
     this.attrFilePassport.attribute = "Gcpk3BqfTfY";
     this.attrFilePassport.value = this.attrFilePassportId;
     this.attributes.push(this.attrFilePassport);
     }
 
-    if (this.attrFileCVId.length > 0){
+    if (this.attrFileCVId){
     this.attrFileCV.attribute = "wKg02nSAnth";
     this.attrFileCV.value = this.attrFileCVId;
      this.attributes.push(this.attrFileCV);
     }
 
-    if (this.attrFileCVId.length > 0) {
+    if (this.attrFileCVId) {
       this.attrFileQualifications.attribute = "Gcpk3BqfTfY";
       this.attrFileQualifications.value = this.attrFileCVId;
       this.attributes.push(this.attrFileQualifications);
     }
 
-    if (this.attrFileProfRegistrationId.length > 0) {
+    if (this.attrFileProfRegistrationId) {
       this.attrFileProfRegistration.value = "kL7nLPq9HmS";
       this.attrFileProfRegistration.attribute = this.attrFileProfRegistrationId;
       this.attributes.push(this.attrFileProfRegistration);
     }
 
-    if (this.attrFileRefLetterId.length > 0 ) {
+    if (this.attrFileRefLetterId ) {
       this.attrFileRefLetter.attribute = "TeUV3frsYEc";
       this.attrFileRefLetter.value = this.attrFileProfRegistrationId;
       this.attributes.push(this.attrFileRefLetter);
     }
 
-    if (this.attrFileSpouseIDId.length > 0) {
+    if (this.attrFileSpouseIDId) {
       this.attrFileSpouseID.attribute = "QCGwC8WHzIV";
       this.attrFileSpouseID.value = this.attrFileSpouseIDId
       this.attributes.push(this.attrFileSpouseID);
     }
 
 
-    if (this.attrFileMarriageCertificateId.length > 0) {
+    if (this.attrFileMarriageCertificateId) {
 
       this.attrFileMarriageCertificate.attribute = "ukQzrmcUQgu";
       this.attrFileMarriageCertificate.value = this.attrFileProfRegistrationId
       this.attributes.push(this.attrFileMarriageCertificate);
     }
 
-    if (this.attrFileSpouseIDDocId.length > 0) {
+    if (this.attrFileSpouseIDDocId) {
       this.attrFileSpouseIDDoc.attribute = "QCGwC8WHzIV";
       this.attrFileSpouseIDDoc.value = this.attrFileSpouseIDDocId;
       this.attributes.push(this.attrFileSpouseIDDoc);
     }
 
-    if (this.attrFileResidencePermitId.length > 0) {
+    if (this.attrFileResidencePermitId) {
       this.attrFileResidencePermit.attribute = "QCGwC8WHzIV";
       this.attrFileResidencePermit.value = this.attrFileResidencePermitId;
       this.attributes.push(this.attrFileResidencePermit);
     }
 
 
-    if (this.attrFileAffidavitId.length > 0) {
+    if (this.attrFileAffidavitId) {
       this.attrFileAffidavit.attribute = "OOCZMGkv1SF";
       this.attrFileAffidavit.value = this.attrFileAffidavitId;
       this.attributes.push(this.attrFileAffidavit);
     }
 
-    if (this.attrFileSpouseEmploymentContractId.length > 0) {
+    if (this.attrFileSpouseEmploymentContractId) {
       this.attrFileSpouseEmploymentContract.attribute = "BnAeQ9CfPqD";
       this.attrFileSpouseEmploymentContract.value = this.attrFileSpouseEmploymentContractId;
       this.attributes.push(this.attrFileSpouseEmploymentContract);
     }
 
-    if (this.attrFileSpouseWorkPermitId.length > 0) {
+    if (this.attrFileSpouseWorkPermitId) {
       this.attrFileSpouseWorkPermit.attribute = "xJUWub6Na81";
       this.attrFileSpouseWorkPermit.value = this.attrFileSpouseWorkPermitId;
       this.attributes.push(this.attrFileSpouseWorkPermit);
     }
 
 
-    if (this.attrFileSpouseSalarySlipId.length > 0) {
+    if (this.attrFileSpouseSalarySlipId) {
       this.attrFileSpouseSalarySlip.attribute = "i63qGgDCqWK";
       this.attrFileSpouseSalarySlip.value = this.attrFileSpouseSalarySlipId;
       this.attributes.push(this.attrFileSpouseSalarySlip);
     }
 
-    if (this.attrFileSpouseEmploymentContractId.length > 0) {
+    if (this.attrFileSpouseEmploymentContractId) {
       this.attrFileEmploymentLetter.attribute = "pCuas8xccgp";
       this.attrFileEmploymentLetter.value = this.attrFileSpouseEmploymentContractId;
       this.attributes.push(this.attrFileEmploymentLetter);
     }
+
+
 
     this.attrUseruuid.attribute = "UsZ89w0XS9f";
     this.attrUseruuid.value = this.userId;
@@ -891,15 +894,13 @@ prefferedComunnicationType: any
     //steps
     //create track entity instance
     //Enrol a tracked entity instance to a program
-
     const trackedEntityInstanceUrl = '../../../staging/api/trackedEntityInstances';
-
-this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityInstancesPayload ).then(result => console.log(result)).catch(error => console.log(error));
+    this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityInstancesPayload ).then(result => console.log(result)).catch(error => console.log(error));
   }
 
   //Save TrackedEntityInstance Profile
   OnButtonSubmit(){
-    this.saveTrackedEntityInstance()
+    this.saveTrackedEntityInstance();
     this.router.navigate(['staging/api/apps/fhwm/application']);
   }
   //create TrackedEntityInstance profile on load if it does not exist
