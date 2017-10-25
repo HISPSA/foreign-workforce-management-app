@@ -772,7 +772,7 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
-
+/*
     if (this.attrFilePassportId){
     this.attrFilePassport.attribute = "Gcpk3BqfTfY";
     this.attrFilePassport.value = this.attrFilePassportId;
@@ -861,6 +861,8 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrFileEmploymentLetter);
     }
 
+
+*/
     this.attrUseruuid.attribute = "UsZ89w0XS9f";
     this.attrUseruuid.value = this.userId;
     this.attributes.push(this.attrUseruuid);
@@ -870,7 +872,7 @@ prefferedComunnicationType: any
     this.enrollments.push(this.enrollment);
 
     this.trackedEntityInstances.trackedEntity = "HlrC9bKsuIg";
-    this.trackedEntityInstances.orgUnit = "JLA7wl59oN3";
+    this.trackedEntityInstances.orgUnit =  this.enrollment.orgUnit;
     this.trackedEntityInstances.enrollments = this.enrollments;
     this.trackedEntityInstances.attributes = this.attributes;
 
