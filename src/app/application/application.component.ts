@@ -155,6 +155,12 @@ prefferedComunnicationType: any
   SpouseSalaryFilename: string
   SpouseSalarySlipFilename: string
 
+  //URL
+  entityInstanceUrl: string;
+
+
+
+
 
 
   //Documents attributes will go under here
@@ -283,197 +289,12 @@ prefferedComunnicationType: any
     const lkCommunicationTypeurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
     const userurl = '../../../staging/api/me.json';
 
-
     const fileResourceURL =  '../../../staging/api/fileResources';
-
-
-
-
+    /*
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
-
       this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {this.applicantDetails =  result.trackedEntityInstances[0].attributes;
-      console.log("applicant is : "+ this.applicantDetails);
-      console.log("There are this number of attributes : "+  Object.keys(this.applicantDetails).length);
-
-        if (this.applicantDetails){
-          //for iterator starts here
-          for (let attr of this.applicantDetails ) {
-                                    console.log(attr)
-            if (attr.attribute == "adkMaBHuDha")
-            {
-              console.log("surname : "+attr.value);
-              this.attrSurname.value = attr.value
-            }
-            if (attr.attribute ==  "JLIDUSiUQTl")
-            {
-              console.log("firstname : "+attr.value);
-              this.attrFirstname.value = attr.value;
-            }
-            if (attr.attribute == "lMjqbn6uwKs")
-            {
-              console.log("Maiden name :"+ attr.value);
-              this.attrMaidenname.value = attr.value;
-            }
-            if (attr.attribute ==  "GQQtlqqDRmz" )
-            {
-              console.log("Initials : "+attr.value);
-              this.attrInitialsname.value = attr.value;
-            }
-
-            if (attr.attribute ==  "p0ci9AQcqcI")
-            {
-              this.attrProffession.value = attr.value;
-            }
-            if (attr.attribute ==  "hQNk6ODZnXM")
-            {
-              this.attrGender.value = attr.value;
-            }
-            if ( attr.attribute ==  "M7vAlF8LTUK")
-            {
-              this.attrTitle.value = attr.value;
-            }
-            if (attr.attribute ==  "Cd2NLEe7pMi")
-            {
-              this.attrDatOfBirth.value = attr.value;
-            }
-            if ( attr.attribute ==  "SKyaaiQyMQj")
-            {
-              this.attrMaritaStatus.value =attr.value;
-            }
-            if (attr.attribute ==  "B22oDF7CWVF")
-            {
-              this.attrSpouseDetails.value = attr.value;
-            }
-            if ( attr.attribute ==  "fVNyIxlIYuP")
-            {
-              this.attrCurrentCountryOfResidence.value = attr.value;
-            }
-            if ( attr.attribute ==  "XSZCrXMiCjo")
-            {
-              this.attrCurrentResidentialStatus.value = attr.value;
-            }
-            if (  attr.attribute ==  "yv4ipn1dKoT")
-            {
-              this.attrSouthAfricanID.value = attr.value;
-            }
-            if ( attr.attribute ==  "JqLIzp2KYnH")
-            {
-              this.attrPassportNumber.value = attr.value;
-            }
-            if (  attr.attribute ==  "SWtBa8bXcOi")
-            {
-              this.attrRefugeeID.value = attr.value;
-            }
-            if (attr.attribute ==  "uezzshW3BN6" )
-            {
-              this.attrStreetAddressLine1.value = attr.value;
-            }
-            if ( attr.attribute ==  "CWlbP1cTK7u")
-            {
-              this.attrStreetAddressLine2.value = attr.value;
-            }
-            if (attr.attribute ==  "rxFinyRVA9T")
-            {
-              this.attrStreetAddressLine3.value = attr.value;
-            }
-            if (attr.attribute ==  "xDz6lSwCt7Y")
-            {
-              this.attrStreetPostalCode.value = attr.value;
-            }
-            if (attr.attribute ==  "fIVeC4j6YD8")
-            {
-              this.attrStreetZipCode.value = attr.value;
-            }
-            if (attr.attribute ==  "qMGmfAObIs6")
-            {
-             this.attrStreetAddressLine1Home.value = attr.value;
-            }
-            if (attr.attribute==  "gqixvHELgUO")
-            {
-              this.attrStreetAddressLine2Home.value = attr.value;
-            }
-            if ( attr.attribute ==  "hTEwEq41nnj")
-            {
-              this.attrStreetAddressLine3Home.value = attr.value;
-            }
-            if (attr.attribute ==  "e2aboFrKVe5")
-            {
-              this.attrStreetPostalCodeHome.value = attr.value;
-            }
-            if (attr.attribute ==  "fIVeC4j6YD8")
-            {
-              this.attrStreetZipCodeHome.value = attr.value;
-            }
-            if (attr.attribute ==  "CezOf26uGZ4")
-            {
-              this.attrCellphoneNumber.value = attr.value;
-            }
-            if (  attr.attribute ==  "ixHqdNQYfqF")
-            {
-              this.attrWorkTelephoneNumber.value = attr.value;
-            }
-
-            if ( attr.attribute ==  "t2Blc1cnEwd")
-            {
-              this.attrHomeTelephoneNumber.value = attr.value;
-            }
-
-            if (  attr.attribute ==  "QicAcX9cLKQ")
-            {
-              this.attrEmailAddressPrimary.value = attr.value;
-            }
-            if ( attr.attribute ==  "jbwHv5SYiME")
-            {
-              this.attrEmailAddressAlternative.value = attr.value;
-            }
-
-            if ( attr.attribute ==  "U16h9pm5aL6")
-            {
-              this.attrPrefferedMethodOfCommunication.value = attr.value;
-            }
-
-            if ( attr.attribute ==  "kOoVDeW9qrp")
-            {
-              this.attrCountryWhereQualificationObtained.value = attr.value;
-            }
-
-            if ( attr.attribute ==  "BQAchMg4aMq")
-            {
-              this.attrQualificationType.value = attr.value;
-            }
-            if ( attr.attribute ==  "UtmTAD03WcJ")
-            {
-              this.attrProffBodyRegistrationYesNo.value = attr.value;
-            }
-            if (
-              attr.attribute ==  "OTkJvWxLVuD")
-            {
-              this.attrProffBodyRegistrationName.value = attr.value;
-            }
-            if (
-              attr.attribute ==  "AiEiUfSNGTU")
-            {
-              this.attrSpecializationYesNo.value = attr.value;
-            }
-            if (
-              attr.attribute ==  "UsZ89w0XS9f")
-            {
-              this.attrUseruuid.value = attr.value;
-            }
-
-
-
-            //Files
-          }
-          //for iterator ends here
-
-        }else
-        {
-          //here need to start creating a basic profile if does not exist already
-          //surname, firstName, useruuid,primary, email, phoneNumber
-        }
     }).catch(error => console.log(error));
-
+    */
     //create entity Instance
     this.OptionSetsService.getOptionSetsService(lkgenderurl).then(result => this.gender =  result.optionSets[0].options).catch(error => console.log(error));
 
@@ -488,33 +309,181 @@ prefferedComunnicationType: any
     this.OptionSetsService.getOptionSetsService(lkvisaurl).then(result => this.visaDuration =  result.optionSets[0].options).catch(error => console.log(error));
     this.OptionSetsService.getOptionSetsService(lkCommunicationTypeurl).then(result => this.prefferedComunnicationType =  result.optionSets[0].options).catch(error => console.log(error));
 
-
-
     //get user
     this.user.getUser(userurl).then(result => {
     console.log(result); this.userId = result.id;
     console.log("User Id is : "+ this.userId );
+
+    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&=filter=UsZ89w0XS9f:eq:'+this.userId;
+    this.entityInstanceUrl = urlTrackedEntityInstance;
+
+    this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {
+      this.applicantDetails = result.trackedEntityInstances[5].attributes
+      console.log("applicant is : " + this.applicantDetails);
+      console.log("There are this number of attributes : " + Object.keys(this.applicantDetails).length);
+
+      if (this.applicantDetails) {
+        //for iterator starts here
+        for (let attr of  this.applicantDetails
+      )
+        {
+          console.log(attr)
+          if (attr.attribute == "adkMaBHuDha") {
+            console.log("surname : " + attr.value);
+            this.attrSurname.value = attr.value
+          }
+          if (attr.attribute == "JLIDUSiUQTl") {
+            console.log("firstname : " + attr.value);
+            this.attrFirstname.value = attr.value;
+          }
+          if (attr.attribute == "lMjqbn6uwKs") {
+            console.log("Maiden name :" + attr.value);
+            this.attrMaidenname.value = attr.value;
+          }
+          if (attr.attribute == "GQQtlqqDRmz") {
+            console.log("Initials : " + attr.value);
+            this.attrInitialsname.value = attr.value;
+          }
+
+          if (attr.attribute == "p0ci9AQcqcI") {
+            this.attrProffession.value = attr.value;
+          }
+          if (attr.attribute == "hQNk6ODZnXM") {
+            this.attrGender.value = attr.value;
+          }
+          if (attr.attribute == "M7vAlF8LTUK") {
+            this.attrTitle.value = attr.value;
+          }
+          if (attr.attribute == "Cd2NLEe7pMi") {
+            this.attrDatOfBirth.value = attr.value;
+          }
+          if (attr.attribute == "SKyaaiQyMQj") {
+            this.attrMaritaStatus.value = attr.value;
+          }
+          if (attr.attribute == "B22oDF7CWVF") {
+            this.attrSpouseDetails.value = attr.value;
+          }
+          if (attr.attribute == "fVNyIxlIYuP") {
+            this.attrCurrentCountryOfResidence.value = attr.value;
+          }
+          if (attr.attribute == "XSZCrXMiCjo") {
+            this.attrCurrentResidentialStatus.value = attr.value;
+          }
+          if (attr.attribute == "yv4ipn1dKoT") {
+            this.attrSouthAfricanID.value = attr.value;
+          }
+          if (attr.attribute == "JqLIzp2KYnH") {
+            this.attrPassportNumber.value = attr.value;
+          }
+          if (attr.attribute == "SWtBa8bXcOi") {
+            this.attrRefugeeID.value = attr.value;
+          }
+          if (attr.attribute == "uezzshW3BN6") {
+            this.attrStreetAddressLine1.value = attr.value;
+          }
+          if (attr.attribute == "CWlbP1cTK7u") {
+            this.attrStreetAddressLine2.value = attr.value;
+          }
+          if (attr.attribute == "rxFinyRVA9T") {
+            this.attrStreetAddressLine3.value = attr.value;
+          }
+          if (attr.attribute == "xDz6lSwCt7Y") {
+            this.attrStreetPostalCode.value = attr.value;
+          }
+          if (attr.attribute == "fIVeC4j6YD8") {
+            this.attrStreetZipCode.value = attr.value;
+          }
+          if (attr.attribute == "qMGmfAObIs6") {
+            this.attrStreetAddressLine1Home.value = attr.value;
+          }
+          if (attr.attribute == "gqixvHELgUO") {
+            this.attrStreetAddressLine2Home.value = attr.value;
+          }
+          if (attr.attribute == "hTEwEq41nnj") {
+            this.attrStreetAddressLine3Home.value = attr.value;
+          }
+          if (attr.attribute == "e2aboFrKVe5") {
+            this.attrStreetPostalCodeHome.value = attr.value;
+          }
+          if (attr.attribute == "fIVeC4j6YD8") {
+            this.attrStreetZipCodeHome.value = attr.value;
+          }
+          if (attr.attribute == "CezOf26uGZ4") {
+            this.attrCellphoneNumber.value = attr.value;
+          }
+          if (attr.attribute == "ixHqdNQYfqF") {
+            this.attrWorkTelephoneNumber.value = attr.value;
+          }
+
+          if (attr.attribute == "t2Blc1cnEwd") {
+            this.attrHomeTelephoneNumber.value = attr.value;
+          }
+
+          if (attr.attribute == "QicAcX9cLKQ") {
+            this.attrEmailAddressPrimary.value = attr.value;
+          }
+          if (attr.attribute == "jbwHv5SYiME") {
+            this.attrEmailAddressAlternative.value = attr.value;
+          }
+
+          if (attr.attribute == "U16h9pm5aL6") {
+            this.attrPrefferedMethodOfCommunication.value = attr.value;
+          }
+
+          if (attr.attribute == "kOoVDeW9qrp") {
+            this.attrCountryWhereQualificationObtained.value = attr.value;
+          }
+
+          if (attr.attribute == "BQAchMg4aMq") {
+            this.attrQualificationType.value = attr.value;
+          }
+          if (attr.attribute == "UtmTAD03WcJ") {
+            this.attrProffBodyRegistrationYesNo.value = attr.value;
+          }
+          if (
+            attr.attribute == "OTkJvWxLVuD") {
+            this.attrProffBodyRegistrationName.value = attr.value;
+          }
+          if (
+            attr.attribute == "AiEiUfSNGTU") {
+            this.attrSpecializationYesNo.value = attr.value;
+          }
+          if (
+            attr.attribute == "UsZ89w0XS9f") {
+            this.attrUseruuid.value = attr.value;
+          }
+          //Files
+        }
+        //for iterator ends here
+
+      } else {
+        //here need to start creating a basic profile if does not exist already
+        //surname, firstName, useruuid,primary, email, phoneNumber
+      }
+    }).catch(error => console.log(error));
     }).catch(error => console.log(error));
   }
+
+
+
+
   fileEvent(event){
     let files = event.target.files.name;
 }
   //load track enity instance profile at page load
-  LoadTrackEntityInstance(url: string, userid: string){
-
-
-    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
-  //const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance='+userid;
-  this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances[0].attributes).catch(error => console.log(error));
-
-  }
-
-
   checkIdTrackEntityExists()
   {
 
+    //
+
+
 
   }
+
+
+
+
+
 
 //Map model to the UI
   saveTrackedEntityInstance(){
@@ -571,9 +540,8 @@ prefferedComunnicationType: any
     }
 
 
-    if (   this.attrMaritaStatus.value)
+    if (this.attrMaritaStatus.value)
     {
-
       this.attrMaritaStatus.attribute = "SKyaaiQyMQj";
       this.attributes.push(this.attrMaritaStatus);
     }
