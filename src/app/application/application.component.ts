@@ -443,7 +443,7 @@ prefferedComunnicationType: any
             }
             if ( attr.attribute ==  "UtmTAD03WcJ")
             {
-              this.attrProffBodyRegistrationYesNo.value = attr..value;
+              this.attrProffBodyRegistrationYesNo.value = attr.value;
             }
             if (
               attr.attribute ==  "OTkJvWxLVuD")
@@ -543,7 +543,6 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrInitialsname);
     }
 
-
     if (this.attrProffession.value)
     {
       this.attrProffession.attribute = "p0ci9AQcqcI";
@@ -614,8 +613,6 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrPassportNumber);
 
     }
-
-
 
     if (  this.attrRefugeeID.value)
     {
