@@ -39,10 +39,10 @@ export class ApplicantProfileComponent implements OnInit {
   dataValuesArray: dataValues[];
   programStage:  any;
   trackEntityInstance: any;
-instanceId: string;
+  instanceId: string;
   orgunit: string;
   trackEntity: string;
-
+  enrollment: Enrollments;
   //URLs
 eventurl: string= '../../../staging/api/';
   constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
@@ -58,6 +58,8 @@ eventurl: string= '../../../staging/api/';
     this.programStage = [];
     this.apllication = [];
     this.trackEntityInstance = [];
+
+    this.enrollment = new Enrollments();
 
   }
 
@@ -81,17 +83,15 @@ eventurl: string= '../../../staging/api/';
       console.log(result); this.userId = result.id;
       console.log("User Id is : "+ this.userId );
 
-    this.programservice.getTrackEntityInstance(trackEntityIntanceUrl+this.userId).then(result => {this.trackEntityInstance = result.trackedEntityInstances[0].attributes
-      for (let trackInstance of this.trackEntityInstance ) {
+    this.programservice.getTrackEntityInstance(trackEntityIntanceUrl+this.userId).then(result => {this.trackEntityInstance = result.trackedEntityInstances
 
-        for (let attribute of trackInstance.attributes) {
-          if (attribute="UsZ89w0XS9f")
-          {
+      console.log(this.trackEntityInstance)
+
+      for (let trackInstance of this.trackEntityInstance ) {
+            console.log("InstanceId "+  trackInstance.attribute)
             this.instanceId = trackInstance.trackedEntityInstance;
             this.orgunit =  trackInstance.orgUnit;
             this.trackEntity = trackInstance.trackedEntity;
-          }
-        }
       }
     }).catch(error => console.log(error));
 
@@ -112,16 +112,21 @@ eventurl: string= '../../../staging/api/';
   }
 
   SubmitApplication(){
-
-
-
     const urlSendEvents = '../../../staging/api/events';
+    const urlSendEnrol = '../../../staging/api/enrollments'
+
+
+
+
       //
     this.eventPayload.orgUnit  = this.orgunit;
     this.eventPayload.program  = "perc4ZpWBWr";
     this.eventPayload.trackedEntityInstance = this.instanceId;
+
+    console.log(this.eventPayload.trackedEntityInstance);
+
     this.eventPayload.status ="COMPLETED";
-    this.eventPayload.eventDate ="2017-10-03";
+  //  this.eventPayload.eventDate ="2017-10-03";
     this.eventPayload.completedDate = "2017-10-03";
     this.eventPayload.programStage = "EaLamgPg9IE";
     this.eventPayload.storedBy = "admin";
@@ -139,21 +144,37 @@ eventurl: string= '../../../staging/api/';
       this.dataValuesArray.push(this.applicationDate);
     }
 
-    if ( this.applicationNotes.value)
+      if ( this.applicationNotes.value)
     {
       this.applicationNotes.dataElement = "JsgUaaZqhaq";
       this.dataValuesArray.push(this.applicationNotes);
     }
 
-/*
-    if ( this.applicationStatus.value)
-    {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
-      this.dataValuesArray.push(this.applicationStatus);
-    }
-**/
+
+
+
+
+    /*
+        if ( this.applicationStatus.value)
+        {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
+          this.dataValuesArray.push(this.applicationStatus);
+        }
+    **/
+    this.enrollment.orgUnit =  this.eventPayload.orgUnit;
+    this.enrollment.program = "perc4ZpWBWr";
+    this.enrollment.trackedEntity = this.trackEntity;
+    this.enrollment.trackedEntityInstance = this.instanceId;
+
+    console.log("Enrolment Payload :" + JSON.stringify(this.enrollment));
+    this.programservice.registerEvent(urlSendEnrol,this.enrollment );
+
     this.eventPayload.dataValues = this.dataValuesArray;
     console.log("Application Payload :" + JSON.stringify(this.eventPayload));
     this.programservice.registerEvent(urlSendEvents,this.eventPayload );
+
+
+    this.eventPayload = null;
+    this.enrollment =  null;
   }
 
   ValidateApplicationRequiredDocs(){

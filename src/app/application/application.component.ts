@@ -879,7 +879,6 @@ prefferedComunnicationType: any
     this.trackedEntityInstancesArray.push(this.trackedEntityInstances);
 
     this.trackedEntityInstancesPayload.trackedEntityInstances =this.trackedEntityInstancesArray;
-
     console.log("Inside the TrackEntityInstance" + "  "+ JSON.stringify(this.trackedEntityInstancesPayload));
 
     //steps
@@ -887,6 +886,7 @@ prefferedComunnicationType: any
     //Enrol a tracked entity instance to a program
     const trackedEntityInstanceUrl = '../../../staging/api/trackedEntityInstances';
     this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityInstancesPayload ).then(result => console.log(result)).catch(error => console.log(error));
+    this.trackedEntityInstancesPayload=null;
   }
 
   //Save TrackedEntityInstance Profile
