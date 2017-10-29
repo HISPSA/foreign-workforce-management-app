@@ -473,8 +473,10 @@ prefferedComunnicationType: any
   //load track enity instance profile at page load
   checkIdTrackEntityExists()
   {
+    //get trackentityInstance  from the useruuid
+    //check if records exist
 
-    //
+
 
 
 
