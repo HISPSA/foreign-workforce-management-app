@@ -10,6 +10,7 @@ import {OptionSet} from "../option-set"
 
 import {Attributes} from "../attributes";
 import {Enrollments} from "../enrollments";
+import {TrackedEntityInstancesWithoutEnrollment} from "../trackEntityInstanceWithoutEnrollment";
 
 
 import {TrackedEntityInstancesPayload} from "../trackEntityInstacePayload"
@@ -59,6 +60,8 @@ prefferedComunnicationType: any
   attributes:Attributes[];
   enrollments: Enrollments[];
   trackedEntityInstances:TrackedEntityInstances;
+
+  trackedEntityInstancesWithoutEnrollment: TrackedEntityInstancesWithoutEnrollment;
 
   trackedEntityInstancesArray: TrackedEntityInstances[];
   trackedEntityInstancesPayload: TrackedEntityInstancesPayload;
@@ -159,6 +162,7 @@ prefferedComunnicationType: any
   //URL
   entityInstanceUrl: string;
   trackentityAtributeCount: number;
+  trackentityInstance: string;
 
 
 
@@ -190,6 +194,8 @@ prefferedComunnicationType: any
     this.enrollment =  new Enrollments();
 
     this.trackedEntityInstances= new TrackedEntityInstances();
+    this.trackedEntityInstancesWithoutEnrollment = new TrackedEntityInstancesWithoutEnrollment();
+
     this.trackedEntityInstancesArray = [];
 
 
@@ -320,10 +326,11 @@ prefferedComunnicationType: any
     this.entityInstanceUrl = urlTrackedEntityInstance;
 
     this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {
-      this.applicantDetails = result.trackedEntityInstances[5].attributes
+      this.applicantDetails = result.trackedEntityInstances[4].attributes
       console.log("applicant is : " + this.applicantDetails);
       console.log("There are this number of attributes : " + Object.keys(this.applicantDetails).length);
       this.trackentityAtributeCount = Object.keys(this.applicantDetails).length;
+      this.trackentityInstance = result.trackedEntityInstances[4].trackedEntityInstance;
 
       if (this.applicantDetails) {
         //for iterator starts here
@@ -484,398 +491,384 @@ prefferedComunnicationType: any
 
 
   }
-
-
-
-
-
-
 //Map model to the UI
-  saveTrackedEntityInstance(){
-//validate for nulls and exclude in the payload
-    if (this.attrSurname.value)
+  saveTrackedEntityInstance() {
+    if (this.trackedEntityInstancesWithoutEnrollment){
+      this.trackedEntityInstancesWithoutEnrollment = new TrackedEntityInstancesWithoutEnrollment();
+     // this.trackedEntityInstances = new TrackedEntityInstances();
+      this.enrollments =  [];
+      this.attributes = [];
+      console.log(" new TrackedEntityInstances() passess")
+    }
+    else
     {
+
+    }
+    this.trackedEntityInstances = new TrackedEntityInstances();
+    if (this.trackedEntityInstances){
+      this.trackedEntityInstancesPayload=  new TrackedEntityInstancesPayload();
+      this.trackedEntityInstances = new TrackedEntityInstances();
+      this.enrollments =  [];
+      this.attributes = [];
+      this.trackedEntityInstancesArray = [];
+
+      console.log("new TrackedEntityInstancesPayload() passess")
+    }else
+    {
+
+    }
+
+//validate for nulls and exclude in the payload
+    if (this.attrSurname.value) {
       this.attrSurname.attribute = "adkMaBHuDha";
       this.attributes.push(this.attrSurname);
     }
 
-    if (  this.attrFirstname.value)
-    {
+    if (this.attrFirstname.value) {
       this.attrFirstname.attribute = "JLIDUSiUQTl";
       this.attributes.push(this.attrFirstname);
     }
 
-    if (this.attrMaidenname.value)
-    {
+    if (this.attrMaidenname.value) {
       this.attrMaidenname.attribute = "lMjqbn6uwKs";
       this.attributes.push(this.attrMaidenname);
     }
-    if (this.attrInitialsname.value)
-    {
+    if (this.attrInitialsname.value) {
 
       this.attrInitialsname.attribute = "GQQtlqqDRmz";
       this.attributes.push(this.attrInitialsname);
     }
 
-    if (this.attrProffession.value)
-    {
+    if (this.attrProffession.value) {
       this.attrProffession.attribute = "p0ci9AQcqcI";
       this.attributes.push(this.attrProffession);
     }
 
-    if (this.attrGender.value )
-    {
+    if (this.attrGender.value) {
       this.attrGender.attribute = "hQNk6ODZnXM";
       this.attributes.push(this.attrGender);
     }
 
 
-    if ( this.attrTitle.value)
-    {
+    if (this.attrTitle.value) {
       this.attrTitle.attribute = "M7vAlF8LTUK";
       this.attributes.push(this.attrTitle);
     }
 
 
-    if ( this.attrDatOfBirth.value)
-    {
+    if (this.attrDatOfBirth.value) {
       this.attrDatOfBirth.attribute = "Cd2NLEe7pMi";
       this.attributes.push(this.attrDatOfBirth);
 
     }
 
 
-    if (this.attrMaritaStatus.value)
-    {
+    if (this.attrMaritaStatus.value) {
       this.attrMaritaStatus.attribute = "SKyaaiQyMQj";
       this.attributes.push(this.attrMaritaStatus);
     }
 
 
-    if ( this.attrSpouseDetails.value)
-    {
+    if (this.attrSpouseDetails.value) {
       this.attrSpouseDetails.attribute = "B22oDF7CWVF";
       this.attributes.push(this.attrSpouseDetails);
     }
 
 
-    if (this.attrCurrentCountryOfResidence.value)
-    {
+    if (this.attrCurrentCountryOfResidence.value) {
       this.attrCurrentCountryOfResidence.attribute = "fVNyIxlIYuP";
       this.attributes.push(this.attrCurrentCountryOfResidence);
     }
 
-    if (this.attrCurrentResidentialStatus.value)
-    {
+    if (this.attrCurrentResidentialStatus.value) {
       this.attrCurrentResidentialStatus.attribute = "XSZCrXMiCjo";
       this.attributes.push(this.attrCurrentResidentialStatus);
 
     }
 
 
-
-    if ( this.attrSouthAfricanID.value)
-    {
+    if (this.attrSouthAfricanID.value) {
       this.attrSouthAfricanID.attribute = "yv4ipn1dKoT";
       this.attributes.push(this.attrSouthAfricanID);
 
     }
-    if (this.attrPassportNumber.value)
-    {
+    if (this.attrPassportNumber.value) {
       this.attrPassportNumber.attribute = "JqLIzp2KYnH";
       this.attributes.push(this.attrPassportNumber);
 
     }
 
-    if (  this.attrRefugeeID.value)
-    {
+    if (this.attrRefugeeID.value) {
       this.attrRefugeeID.attribute = "SWtBa8bXcOi";
       this.attributes.push(this.attrRefugeeID);
     }
 
-    if (this.attrStreetAddressLine1.value)
-    {
+    if (this.attrStreetAddressLine1.value) {
       this.attrStreetAddressLine1.attribute = "uezzshW3BN6";
       this.attributes.push(this.attrStreetAddressLine1);
 
     }
 
 
-
-
-    if (this.attrStreetAddressLine2.value)
-    {
+    if (this.attrStreetAddressLine2.value) {
       this.attrStreetAddressLine2.attribute = "CWlbP1cTK7u";
       this.attributes.push(this.attrStreetAddressLine2);
     }
 
 
-
-    if (this.attrStreetAddressLine3.value)
-    {
+    if (this.attrStreetAddressLine3.value) {
       this.attrStreetAddressLine3.attribute = "rxFinyRVA9T";
       this.attributes.push(this.attrStreetAddressLine3);
 
     }
 
 
-    if ( this.attrStreetPostalCode.value)
-    {
+    if (this.attrStreetPostalCode.value) {
       this.attrStreetPostalCode.attribute = "xDz6lSwCt7Y";
       this.attributes.push(this.attrStreetPostalCode);
     }
 
 
-
-    if ( this.attrStreetZipCode.value)
-    {
+    if (this.attrStreetZipCode.value) {
       this.attrStreetZipCode.attribute = "fIVeC4j6YD8";
       this.attributes.push(this.attrStreetZipCode);
     }
 
-    if (this.attrStreetAddressLine1Home.value)
-    {this.attrStreetAddressLine1Home.attribute = "qMGmfAObIs6";
+    if (this.attrStreetAddressLine1Home.value) {
+      this.attrStreetAddressLine1Home.attribute = "qMGmfAObIs6";
     }
 
-    if ( this.attrStreetAddressLine2Home.value)
-    {
+    if (this.attrStreetAddressLine2Home.value) {
 
       this.attrStreetAddressLine2Home.attribute = "gqixvHELgUO";
       this.attributes.push(this.attrStreetAddressLine2Home);
     }
 
-    if (this.attrStreetAddressLine3Home.value)
-    {
+    if (this.attrStreetAddressLine3Home.value) {
       this.attrStreetAddressLine3Home.attribute = "hTEwEq41nnj";
       this.attributes.push(this.attrStreetAddressLine3Home);
 
     }
 
-    if (   this.attrStreetPostalCodeHome.value)
-    {
+    if (this.attrStreetPostalCodeHome.value) {
 
       this.attrStreetPostalCodeHome.attribute = "e2aboFrKVe5";
       this.attributes.push(this.attrStreetPostalCodeHome);
     }
 
 
-
-    if (this.attrStreetZipCodeHome.value)
-    {
+    if (this.attrStreetZipCodeHome.value) {
       this.attrStreetZipCodeHome.attribute = "fIVeC4j6YD8";
       this.attributes.push(this.attrStreetZipCodeHome);
 
     }
 
-    if (this.attrCellphoneNumber.value)
-    {
+    if (this.attrCellphoneNumber.value) {
       this.attrCellphoneNumber.attribute = "CezOf26uGZ4";
       this.attributes.push(this.attrCellphoneNumber);
 
     }
 
-    if (  this.attrWorkTelephoneNumber.value)
-    {
+    if (this.attrWorkTelephoneNumber.value) {
 
       this.attrWorkTelephoneNumber.attribute = "ixHqdNQYfqF";
       this.attributes.push(this.attrWorkTelephoneNumber);
     }
 
 
-    if (this.attrHomeTelephoneNumber.value)
-    {
+    if (this.attrHomeTelephoneNumber.value) {
       this.attrHomeTelephoneNumber.attribute = "t2Blc1cnEwd";
       this.attributes.push(this.attrHomeTelephoneNumber);
     }
 
 
-    if (  this.attrEmailAddressPrimary.value)
-    {
+    if (this.attrEmailAddressPrimary.value) {
       this.attrEmailAddressPrimary.attribute = "QicAcX9cLKQ";
       this.attributes.push(this.attrEmailAddressPrimary);
     }
 
 
-
-    if ( this.attrEmailAddressAlternative.value)
-    {
+    if (this.attrEmailAddressAlternative.value) {
       this.attrEmailAddressAlternative.attribute = "jbwHv5SYiME";
       this.attributes.push(this.attrEmailAddressAlternative);
     }
 
-    if ( this.attrPrefferedMethodOfCommunication.value)
-    {
+    if (this.attrPrefferedMethodOfCommunication.value) {
 
       this.attrPrefferedMethodOfCommunication.attribute = "U16h9pm5aL6";
       this.attributes.push(this.attrPrefferedMethodOfCommunication);
     }
 
 
-
-    if ( this.attrCountryWhereQualificationObtained.value)
-    {
+    if (this.attrCountryWhereQualificationObtained.value) {
       this.attrCountryWhereQualificationObtained.attribute = "kOoVDeW9qrp";
       this.attributes.push(this.attrCountryWhereQualificationObtained);
     }
 
 
-    if ( this.attrQualificationType.value)
-    {
+    if (this.attrQualificationType.value) {
       this.attrQualificationType.attribute = "BQAchMg4aMq";
       this.attributes.push(this.attrQualificationType);
     }
 
-    if ( this.attrProffBodyRegistrationYesNo.value)
-    {
+    if (this.attrProffBodyRegistrationYesNo.value) {
       this.attrProffBodyRegistrationYesNo.attribute = "UtmTAD03WcJ";
       this.attributes.push(this.attrCountrySpecialization);
     }
 
 
-    if (this.attrProffBodyRegistrationName.value)
-    {
+    if (this.attrProffBodyRegistrationName.value) {
       this.attrProffBodyRegistrationName.attribute = "OTkJvWxLVuD";
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
-    if (this.attrSpecializationYesNo.value)
-    {
+    if (this.attrSpecializationYesNo.value) {
       this.attrSpecializationYesNo.attribute = "AiEiUfSNGTU";
       this.attributes.push(this.attrSpecializationYesNo);
     }
 
-    if (this.attrFilePassport.value)
-    {
+    if (this.attrFilePassport.value) {
       this.attrFilePassport.attribute = "OTkJvWxLVuD";
       this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
 
-    if (this.attrFilePassportId){
-    this.attrFilePassport.attribute = "Gcpk3BqfTfY";
-    this.attrFilePassport.value = this.attrFilePassportId;
-    this.attributes.push(this.attrFilePassport);
+    if (this.attrFilePassportId) {
+      this.attrFilePassport.attribute = "Gcpk3BqfTfY";
+      this.attrFilePassport.value = this.attrFilePassportId;
+      this.attributes.push(this.attrFilePassport);
     }
 
     /*
-    if (this.attrFileCVId){
-    this.attrFileCV.attribute = "wKg02nSAnth";
-    this.attrFileCV.value = this.attrFileCVId;
+     if (this.attrFileCVId){
+     this.attrFileCV.attribute = "wKg02nSAnth";
+     this.attrFileCV.value = this.attrFileCVId;
      this.attributes.push(this.attrFileCV);
-    }
+     }
 
-    if (this.attrFileCVId) {
-      this.attrFileQualifications.attribute = "Gcpk3BqfTfY";
-      this.attrFileQualifications.value = this.attrFileCVId;
-      this.attributes.push(this.attrFileQualifications);
-    }
+     if (this.attrFileCVId) {
+     this.attrFileQualifications.attribute = "Gcpk3BqfTfY";
+     this.attrFileQualifications.value = this.attrFileCVId;
+     this.attributes.push(this.attrFileQualifications);
+     }
 
-    if (this.attrFileProfRegistrationId) {
-      this.attrFileProfRegistration.value = "kL7nLPq9HmS";
-      this.attrFileProfRegistration.attribute = this.attrFileProfRegistrationId;
-      this.attributes.push(this.attrFileProfRegistration);
-    }
+     if (this.attrFileProfRegistrationId) {
+     this.attrFileProfRegistration.value = "kL7nLPq9HmS";
+     this.attrFileProfRegistration.attribute = this.attrFileProfRegistrationId;
+     this.attributes.push(this.attrFileProfRegistration);
+     }
 
-    if (this.attrFileRefLetterId ) {
-      this.attrFileRefLetter.attribute = "TeUV3frsYEc";
-      this.attrFileRefLetter.value = this.attrFileProfRegistrationId;
-      this.attributes.push(this.attrFileRefLetter);
-    }
-
-
-    if (this.attrFileSpouseIDId) {
-      this.attrFileSpouseID.attribute = "QCGwC8WHzIV";
-      this.attrFileSpouseID.value = this.attrFileSpouseIDId
-      this.attributes.push(this.attrFileSpouseID);
-    }
+     if (this.attrFileRefLetterId ) {
+     this.attrFileRefLetter.attribute = "TeUV3frsYEc";
+     this.attrFileRefLetter.value = this.attrFileProfRegistrationId;
+     this.attributes.push(this.attrFileRefLetter);
+     }
 
 
-    if (this.attrFileMarriageCertificateId) {
-
-      this.attrFileMarriageCertificate.attribute = "ukQzrmcUQgu";
-      this.attrFileMarriageCertificate.value = this.attrFileProfRegistrationId
-      this.attributes.push(this.attrFileMarriageCertificate);
-    }
-
-    if (this.attrFileSpouseIDDocId) {
-      this.attrFileSpouseIDDoc.attribute = "QCGwC8WHzIV";
-      this.attrFileSpouseIDDoc.value = this.attrFileSpouseIDDocId;
-      this.attributes.push(this.attrFileSpouseIDDoc);
-    }
-
-    if (this.attrFileResidencePermitId) {
-      this.attrFileResidencePermit.attribute = "QCGwC8WHzIV";
-      this.attrFileResidencePermit.value = this.attrFileResidencePermitId;
-      this.attributes.push(this.attrFileResidencePermit);
-    }
+     if (this.attrFileSpouseIDId) {
+     this.attrFileSpouseID.attribute = "QCGwC8WHzIV";
+     this.attrFileSpouseID.value = this.attrFileSpouseIDId
+     this.attributes.push(this.attrFileSpouseID);
+     }
 
 
-    if (this.attrFileAffidavitId) {
-      this.attrFileAffidavit.attribute = "OOCZMGkv1SF";
-      this.attrFileAffidavit.value = this.attrFileAffidavitId;
-      this.attributes.push(this.attrFileAffidavit);
-    }
+     if (this.attrFileMarriageCertificateId) {
 
-    if (this.attrFileSpouseEmploymentContractId) {
-      this.attrFileSpouseEmploymentContract.attribute = "BnAeQ9CfPqD";
-      this.attrFileSpouseEmploymentContract.value = this.attrFileSpouseEmploymentContractId;
-      this.attributes.push(this.attrFileSpouseEmploymentContract);
-    }
+     this.attrFileMarriageCertificate.attribute = "ukQzrmcUQgu";
+     this.attrFileMarriageCertificate.value = this.attrFileProfRegistrationId
+     this.attributes.push(this.attrFileMarriageCertificate);
+     }
 
-    if (this.attrFileSpouseWorkPermitId) {
-      this.attrFileSpouseWorkPermit.attribute = "xJUWub6Na81";
-      this.attrFileSpouseWorkPermit.value = this.attrFileSpouseWorkPermitId;
-      this.attributes.push(this.attrFileSpouseWorkPermit);
-    }
+     if (this.attrFileSpouseIDDocId) {
+     this.attrFileSpouseIDDoc.attribute = "QCGwC8WHzIV";
+     this.attrFileSpouseIDDoc.value = this.attrFileSpouseIDDocId;
+     this.attributes.push(this.attrFileSpouseIDDoc);
+     }
 
-
-    if (this.attrFileSpouseSalarySlipId) {
-      this.attrFileSpouseSalarySlip.attribute = "i63qGgDCqWK";
-      this.attrFileSpouseSalarySlip.value = this.attrFileSpouseSalarySlipId;
-      this.attributes.push(this.attrFileSpouseSalarySlip);
-    }
-
-    if (this.attrFileSpouseEmploymentContractId) {
-      this.attrFileEmploymentLetter.attribute = "pCuas8xccgp";
-      this.attrFileEmploymentLetter.value = this.attrFileSpouseEmploymentContractId;
-      this.attributes.push(this.attrFileEmploymentLetter);
-    }
+     if (this.attrFileResidencePermitId) {
+     this.attrFileResidencePermit.attribute = "QCGwC8WHzIV";
+     this.attrFileResidencePermit.value = this.attrFileResidencePermitId;
+     this.attributes.push(this.attrFileResidencePermit);
+     }
 
 
-*/
+     if (this.attrFileAffidavitId) {
+     this.attrFileAffidavit.attribute = "OOCZMGkv1SF";
+     this.attrFileAffidavit.value = this.attrFileAffidavitId;
+     this.attributes.push(this.attrFileAffidavit);
+     }
+
+     if (this.attrFileSpouseEmploymentContractId) {
+     this.attrFileSpouseEmploymentContract.attribute = "BnAeQ9CfPqD";
+     this.attrFileSpouseEmploymentContract.value = this.attrFileSpouseEmploymentContractId;
+     this.attributes.push(this.attrFileSpouseEmploymentContract);
+     }
+
+     if (this.attrFileSpouseWorkPermitId) {
+     this.attrFileSpouseWorkPermit.attribute = "xJUWub6Na81";
+     this.attrFileSpouseWorkPermit.value = this.attrFileSpouseWorkPermitId;
+     this.attributes.push(this.attrFileSpouseWorkPermit);
+     }
+
+
+     if (this.attrFileSpouseSalarySlipId) {
+     this.attrFileSpouseSalarySlip.attribute = "i63qGgDCqWK";
+     this.attrFileSpouseSalarySlip.value = this.attrFileSpouseSalarySlipId;
+     this.attributes.push(this.attrFileSpouseSalarySlip);
+     }
+
+     if (this.attrFileSpouseEmploymentContractId) {
+     this.attrFileEmploymentLetter.attribute = "pCuas8xccgp";
+     this.attrFileEmploymentLetter.value = this.attrFileSpouseEmploymentContractId;
+     this.attributes.push(this.attrFileEmploymentLetter);
+     }
+
+
+     */
     this.attrUseruuid.attribute = "UsZ89w0XS9f";
     this.attrUseruuid.value = this.userId;
     this.attributes.push(this.attrUseruuid);
 
     this.enrollment.orgUnit = "JLA7wl59oN3";
-    this.enrollment.program ="perc4ZpWBWr";
+    this.enrollment.program = "perc4ZpWBWr";
     this.enrollments.push(this.enrollment);
 
     this.trackedEntityInstances.trackedEntity = "HlrC9bKsuIg";
-    this.trackedEntityInstances.orgUnit =  this.enrollment.orgUnit;
+    this.trackedEntityInstances.orgUnit = this.enrollment.orgUnit;
     this.trackedEntityInstances.enrollments = this.enrollments;
     this.trackedEntityInstances.attributes = this.attributes;
 
     this.trackedEntityInstancesArray.push(this.trackedEntityInstances);
 
-    this.trackedEntityInstancesPayload.trackedEntityInstances =this.trackedEntityInstancesArray;
-    console.log("Inside the TrackEntityInstance" + "  "+ JSON.stringify(this.trackedEntityInstancesPayload));
+    this.trackedEntityInstancesWithoutEnrollment.orgUnit =  this.trackedEntityInstances.orgUnit;
+    this.trackedEntityInstancesWithoutEnrollment.trackedEntity = this.trackedEntityInstances.trackedEntity;
+    this.trackedEntityInstancesWithoutEnrollment.attributes = this.trackedEntityInstances.attributes;
+
+    this.trackedEntityInstancesPayload.trackedEntityInstances = this.trackedEntityInstancesArray;
+    console.log("Inside the TrackEntityInstance" + "  " + JSON.stringify(this.trackedEntityInstancesPayload));
 
     //steps
     //create track entity instance
     //Enrol a tracked entity instance to a program
     const trackedEntityInstanceUrl = '../../../staging/api/trackedEntityInstances';
-
+    const trackedEntityInstancePUTUrl =  '../../../staging/api/trackedEntityInstances/'+  this.trackentityInstance;
 
     //if profile exist update the profile else create/insert a new profile
-    if (this.trackentityAtributeCount > 0)
-    {}
-    else {}
+    if (this.trackentityAtributeCount > 0) {
+      console.log("TrackEntityInstance to update: " + "  " + JSON.stringify(this.trackedEntityInstances));
+      this.programService.updateEnrolApplicant(trackedEntityInstancePUTUrl, this.trackedEntityInstancesWithoutEnrollment).then(result => {
+      console.log(result)
+      }).catch(error => console.log(error));
 
+    }
+    else {
+      this.programService.enrolApplicant(trackedEntityInstanceUrl, this.trackedEntityInstancesPayload).then(result => {
+        this.trackentityInstance = result.reference;
+        this.trackentityAtributeCount = 1;
+        console.log(result)
+      }).catch(error => console.log(error));
+    }
 
-
-    this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityInstancesPayload ).then(result => console.log(result)).catch(error => console.log(error));
-    this.trackedEntityInstancesPayload=null;
   }
 
   //Save TrackedEntityInstance Profile

@@ -86,4 +86,14 @@ this.optionsMultipart =new ResponseOptions({ headers: this.headersMultipart });
   }
 
 
+  updateEnrolApplicant(url: string, param: any): Promise<any> {
+    let body = JSON.stringify(param);
+    return this.http
+      .put(url, body, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
+
 }
