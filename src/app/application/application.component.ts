@@ -163,12 +163,6 @@ prefferedComunnicationType: any
   entityInstanceUrl: string;
   trackentityAtributeCount: number;
   trackentityInstance: string;
-
-
-
-
-
-
   //Documents attributes will go under here
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
@@ -326,11 +320,11 @@ prefferedComunnicationType: any
     this.entityInstanceUrl = urlTrackedEntityInstance;
 
     this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {
-      this.applicantDetails = result.trackedEntityInstances[4].attributes
+      this.applicantDetails = result.trackedEntityInstances[0].attributes
       console.log("applicant is : " + this.applicantDetails);
       console.log("There are this number of attributes : " + Object.keys(this.applicantDetails).length);
       this.trackentityAtributeCount = Object.keys(this.applicantDetails).length;
-      this.trackentityInstance = result.trackedEntityInstances[4].trackedEntityInstance;
+      this.trackentityInstance = result.trackedEntityInstances[0].trackedEntityInstance;
 
       if (this.applicantDetails) {
         //for iterator starts here
@@ -738,6 +732,8 @@ prefferedComunnicationType: any
       this.attrFilePassport.value = this.attrFilePassportId;
       this.attributes.push(this.attrFilePassport);
     }
+
+    //start here with the files
 
     /*
      if (this.attrFileCVId){

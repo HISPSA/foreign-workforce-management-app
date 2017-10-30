@@ -129,7 +129,7 @@ eventurl: string= '../../../staging/api/';
   //  this.eventPayload.eventDate ="2017-10-03";
     this.eventPayload.completedDate = "2017-10-03";
     this.eventPayload.programStage = "EaLamgPg9IE";
-    this.eventPayload.storedBy = "admin";
+  //  this.eventPayload.storedBy = "admin";
     this.applicationDate.value = "2017-10-03";
     this.applicationStatus.value = "COMPLETED";
 
