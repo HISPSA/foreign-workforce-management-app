@@ -25,6 +25,7 @@ import { Observable } from 'rxjs/Rx';
 
 
 
+
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
@@ -157,6 +158,7 @@ prefferedComunnicationType: any
 
   //URL
   entityInstanceUrl: string;
+  trackentityAtributeCount: number;
 
 
 
@@ -321,6 +323,7 @@ prefferedComunnicationType: any
       this.applicantDetails = result.trackedEntityInstances[5].attributes
       console.log("applicant is : " + this.applicantDetails);
       console.log("There are this number of attributes : " + Object.keys(this.applicantDetails).length);
+      this.trackentityAtributeCount = Object.keys(this.applicantDetails).length;
 
       if (this.applicantDetails) {
         //for iterator starts here
@@ -489,7 +492,7 @@ prefferedComunnicationType: any
 
 //Map model to the UI
   saveTrackedEntityInstance(){
-    //validate for nulls and exclude in the payload
+//validate for nulls and exclude in the payload
     if (this.attrSurname.value)
     {
       this.attrSurname.attribute = "adkMaBHuDha";
@@ -862,6 +865,15 @@ prefferedComunnicationType: any
     //create track entity instance
     //Enrol a tracked entity instance to a program
     const trackedEntityInstanceUrl = '../../../staging/api/trackedEntityInstances';
+
+
+    //if profile exist update the profile else create/insert a new profile
+    if (this.trackentityAtributeCount > 0)
+    {}
+    else {}
+
+
+
     this.programService.enrolApplicant(trackedEntityInstanceUrl,this.trackedEntityInstancesPayload ).then(result => console.log(result)).catch(error => console.log(error));
     this.trackedEntityInstancesPayload=null;
   }
