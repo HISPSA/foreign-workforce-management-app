@@ -24,9 +24,6 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 
-
-
-
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
@@ -854,6 +851,8 @@ prefferedComunnicationType: any
       console.log("TrackEntityInstance to update: " + "  " + JSON.stringify(this.trackedEntityInstances));
       this.programService.updateEnrolApplicant(trackedEntityInstancePUTUrl, this.trackedEntityInstancesWithoutEnrollment).then(result => {
       console.log(result)
+
+        alert("Profile updated");
       }).catch(error => console.log(error));
 
     }
@@ -862,6 +861,7 @@ prefferedComunnicationType: any
         this.trackentityInstance = result.reference;
         this.trackentityAtributeCount = 1;
         console.log(result)
+        alert("Profile Created");
       }).catch(error => console.log(error));
     }
 
