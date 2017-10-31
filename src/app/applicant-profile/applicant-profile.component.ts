@@ -43,8 +43,12 @@ export class ApplicantProfileComponent implements OnInit {
   orgunit: string;
   trackEntity: string;
   enrollment: Enrollments;
+  applicationTypeSuccessMessage: string
   //URLs
-eventurl: string= '../../../staging/api/';
+eventurl: string= '../../../staging/api/events';
+
+  userDisplayname: string;
+
   constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
 
     this.eventPayload = new events();
@@ -72,7 +76,7 @@ eventurl: string= '../../../staging/api/';
 
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
-    const trackEntityIntanceUrl= '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&filter=UsZ89w0XS9f:eq:';
+    const trackEntityIntanceUrl= '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:';
 
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => {this.apllication =  result.optionSets[0].options;
       console.log("This is  the array" + this.apllication);
@@ -80,7 +84,12 @@ eventurl: string= '../../../staging/api/';
 
 
     this.user.getUser(userurl).then(result => {
-      console.log(result); this.userId = result.id;
+      console.log(result);
+
+      this.userId = result.id;
+
+      this.userDisplayname = result.displayName;
+
       console.log("User Id is : "+ this.userId );
 
     this.programservice.getTrackEntityInstance(trackEntityIntanceUrl+this.userId).then(result => {this.trackEntityInstance = result.trackedEntityInstances
@@ -115,9 +124,13 @@ eventurl: string= '../../../staging/api/';
     const urlSendEvents = '../../../staging/api/events';
     const urlSendEnrol = '../../../staging/api/enrollments'
 
+    this.eventPayload = null;
+    this.enrollment = null;
+    this.dataValuesArray = null;
 
-
-
+    this.eventPayload = new events();
+    this.enrollment =  new Enrollments;
+    this.dataValuesArray = [];
       //
     this.eventPayload.orgUnit  = this.orgunit;
     this.eventPayload.program  = "perc4ZpWBWr";
@@ -178,9 +191,11 @@ eventurl: string= '../../../staging/api/';
     console.log("Application Payload :" + JSON.stringify(this.eventPayload));
     this.programservice.registerEvent(urlSendEvents,this.eventPayload );
 
-
-    this.eventPayload = new events();
-    this.enrollment =  new Enrollments;
+    if ( this.applicationType.value)
+    {
+this.applicationTypeSuccessMessage = this.applicationType.value;
+      alert(this.userDisplayname+ " : "+ this.applicationTypeSuccessMessage+ " applied for successfuly.");
+    }
   }
 
   ValidateApplicationRequiredDocs(){

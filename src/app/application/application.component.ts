@@ -160,6 +160,8 @@ prefferedComunnicationType: any
   entityInstanceUrl: string;
   trackentityAtributeCount: number;
   trackentityInstance: string;
+  userDisplayname: string;
+
   //Documents attributes will go under here
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
@@ -251,6 +253,8 @@ prefferedComunnicationType: any
     this.applicantDetails = [];
 
 
+
+
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
 
@@ -310,10 +314,12 @@ prefferedComunnicationType: any
 
     //get user
     this.user.getUser(userurl).then(result => {
-    console.log(result); this.userId = result.id;
+    console.log(result);
+      this.userDisplayname = result.displayName
+      this.userId = result.id;
     console.log("User Id is : "+ this.userId );
 
-    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&=filter=UsZ89w0XS9f:eq:'+this.userId;
+    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:'+this.userId;
     this.entityInstanceUrl = urlTrackedEntityInstance;
 
     this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {
@@ -373,7 +379,7 @@ prefferedComunnicationType: any
           if (attr.attribute == "yv4ipn1dKoT") {
             this.attrSouthAfricanID.value = attr.value;
           }
-          if (attr.attribute == "JqLIzp2KYnH") {
+          if (attr.attribute == "Uk8P0cvXKyD") {
             this.attrPassportNumber.value = attr.value;
           }
           if (attr.attribute == "SWtBa8bXcOi") {
@@ -584,7 +590,7 @@ prefferedComunnicationType: any
 
     }
     if (this.attrPassportNumber.value) {
-      this.attrPassportNumber.attribute = "JqLIzp2KYnH";
+      this.attrPassportNumber.attribute = "Uk8P0cvXKyD";
       this.attributes.push(this.attrPassportNumber);
 
     }
@@ -852,7 +858,7 @@ prefferedComunnicationType: any
       this.programService.updateEnrolApplicant(trackedEntityInstancePUTUrl, this.trackedEntityInstancesWithoutEnrollment).then(result => {
       console.log(result)
 
-        alert("Profile updated");
+        alert(this.userDisplayname+ " your profile has been updated.");
       }).catch(error => console.log(error));
 
     }
@@ -861,7 +867,7 @@ prefferedComunnicationType: any
         this.trackentityInstance = result.reference;
         this.trackentityAtributeCount = 1;
         console.log(result)
-        alert("Profile Created");
+        alert(this.userDisplayname+ " your profile is created.");
       }).catch(error => console.log(error));
     }
 
