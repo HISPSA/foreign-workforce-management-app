@@ -451,15 +451,18 @@ prefferedComunnicationType: any
             this.attrProffBodyRegistrationYesNo.value = attr.value;
           }
           if (
-            attr.attribute == "OTkJvWxLVuD") {
+            attr.attribute == "qYlxUNzBpdo") {
             this.attrProffBodyRegistrationName.value = attr.value;
           }
-          if (
-            attr.attribute == "AiEiUfSNGTU") {
+
+          if (attr.attribute == "AiEiUfSNGTU") {
             this.attrSpecializationYesNo.value = attr.value;
           }
           if (
-            attr.attribute == "UsZ89w0XS9f") {
+            attr.attribute == "OTkJvWxLVuD"){
+            this.attrCountrySpecialization.value = attr.value;
+          }
+          if (attr.attribute == "UsZ89w0XS9f") {
             this.attrUseruuid.value = attr.value;
           }
           //Files
@@ -636,6 +639,7 @@ prefferedComunnicationType: any
 
     if (this.attrStreetAddressLine1Home.value) {
       this.attrStreetAddressLine1Home.attribute = "qMGmfAObIs6";
+      this.attributes.push(this.attrStreetAddressLine1Home);
     }
 
     if (this.attrStreetAddressLine2Home.value) {
@@ -718,7 +722,7 @@ prefferedComunnicationType: any
 
 
     if (this.attrProffBodyRegistrationName.value) {
-      this.attrProffBodyRegistrationName.attribute = "OTkJvWxLVuD";
+      this.attrProffBodyRegistrationName.attribute = "qYlxUNzBpdo";
       this.attributes.push(this.attrProffBodyRegistrationName);
     }
 
@@ -727,11 +731,19 @@ prefferedComunnicationType: any
       this.attributes.push(this.attrSpecializationYesNo);
     }
 
-    if (this.attrFilePassport.value) {
-      this.attrFilePassport.attribute = "OTkJvWxLVuD";
-      this.attributes.push(this.attrProffBodyRegistrationYesNo);
+
+    if (this.attrCountrySpecialization.value) {
+      this.attrCountrySpecialization.attribute = "OTkJvWxLVuD";
+      this.attributes.push(this.attrCountrySpecialization);
     }
 
+    /*
+     if (this.attrFilePassport.value) {
+       this.attrFilePassport.attribute = "OTkJvWxLVuD";
+       this.attributes.push(this.attrFilePassport);
+     }
+
+     */
 
     if (this.attrFilePassportId) {
       this.attrFilePassport.attribute = "Gcpk3BqfTfY";
