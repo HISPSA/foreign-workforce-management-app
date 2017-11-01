@@ -50,7 +50,10 @@
                     <option *ngFor = "let marital of maritalstatus" [value] = "marital.name">{{marital.name}}</option>
                   </select>
                 </div>
+
+                <div *ngIf="attrMaritaStatus.value=='Married'">
                 <label>Spouse Details (If Married):</label> <input type="text" class="form-control" name = "B22oDF7CWVF" [(ngModel)] = "attrSpouseDetails.value" />
+                  </div>
 
               <label>Current Country of Residence: </label>
 
@@ -71,8 +74,10 @@
               </div>
 
                 <label>South African ID: </label> <input type="text" class="form-control" name = "yv4ipn1dKoT" [(ngModel)] = "attrSouthAfricanID.value" />
-                <label>Passport Number: </label> <input type="text" class="form-control"  name = "Uk8P0cvXKyD" [(ngModel)] = "attrPassportNumber.value" />
+
+                <label>Passport Number: </label> <input   type="text" class="form-control"  name = "Uk8P0cvXKyD" [(ngModel)] = "attrPassportNumber.value"  />
                 <label>Refugee ID: </label> <input type="text" class="form-control"  name = "SWtBa8bXcOi" [(ngModel)] = "attrRefugeeID.value" />
+
 
               </div>
               <div class="panel panel-default">
@@ -81,7 +86,7 @@
               <label>Street Address Line 2(e.g. Town Name):</label> <input type="text" class="form-control" id="addr2" name = "CWlbP1cTK7u" [(ngModel)] = "attrStreetAddressLine2.value"/>
               <label>Street Address Line 3(e.g. Country Name):</label> <input type="text" class="form-control" id="addr3" name = "rxFinyRVA9T" [(ngModel)] = "attrStreetAddressLine3.value"/>
               <label>Postal Code:</label> <input type="text" class="form-control" id="postalCode" name = "xDz6lSwCt7Y" [(ngModel)] = "attrStreetPostalCode.value"/>
-                <label>Zip Code:</label> <input type="text" class="form-control" id="zipCode" name = "fIVeC4j6YD8" [(ngModel)] = "attrStreetZipCode.value"/>
+                <label>Zip Code:</label> <input type="text" class="form-control" id="zipCode" name = "jbwHv5SYiME" [(ngModel)] = "attrStreetZipCode.value"/>
               </div>
 
               <div class="panel panel-default">
@@ -98,7 +103,7 @@
                 <label>Work Telephone Number: </label> <input type="text" class="form-control" id="workTel" name = "ixHqdNQYfqF" [(ngModel)] = "attrWorkTelephoneNumber.value"/>
                 <label>Home Telephone Number: </label> <input type="text" class="form-control" id="homeTel" name = "t2Blc1cnEwd" [(ngModel)] = "attrHomeTelephoneNumber.value"/>
               <label>E-mail address (primary): </label> <input type="email" class="form-control" id = "emailPrimary" name = "QicAcX9cLKQ" [(ngModel)] = "attrEmailAddressPrimary.value" required="required"/>
-              <label>E-mail address (alternative): </label> <input type="email" class="form-control" id="emailAlternative" name = "jbwHv5SYiME" [(ngModel)] = "attrEmailAddressAlternative.value"/>
+              <label>E-mail address (alternative): </label> <input type="email" class="form-control" id="emailAlternative" name = "FmeEL6WAOOi" [(ngModel)] = "attrEmailAddressAlternative.value"/>
               </div>
 
               <div>
@@ -132,8 +137,10 @@
                     <label>Are you registered as a specialist in any country? </label>
                     <div class="radio"  >
                       <label><input type="radio" name="AiEiUfSNGTU" id ="opCountry"  [(ngModel)] = "attrSpecializationYesNo.value"  value = "true">Yes</label>
-                      <label><input type="radio" name="AiEiUfSNGTU" id = "opCountry" [(ngModel)] = "attrSpecializationYesNo.value" value = "false">No</label>
+                      <label ><input type="radio" name="AiEiUfSNGTU" id = "opCountry" [(ngModel)] = "attrSpecializationYesNo.value" value = "false">No</label>
                     </div>
+
+                    <div  *ngIf= "attrSpecializationYesNo.value=='true'">
                     <label>If yes, state the name of country? </label>
                     <div *ngIf="countryOfOrigin" class="form-group input-sm">
                       <select class="form-control" id="countryQuaid" name = "OTkJvWxLVuD" [(ngModel)] = "attrCountrySpecialization.value">
@@ -141,15 +148,19 @@
                         <option *ngFor = "let specialCountry of countryOfOrigin" [value]="specialCountry.name" >{{specialCountry.name}}</option>
                       </select>
                     </div>
-
+</div>
                     <div>
                     <label>Are you registered with any professional body? </label>
                     <div class="radio">
                       <label><input type="radio" name="UtmTAD03WcJ" id = "profbody" [(ngModel)] = "attrProffBodyRegistrationYesNo.value" value = "true" >Yes</label>
                       <label><input type="radio" name="UtmTAD03WcJ" id = "profbody" [(ngModel)] = "attrProffBodyRegistrationYesNo.value" value = "false">No</label>
                     </div>
+
+                      <div   *ngIf= "attrProffBodyRegistrationYesNo.value=='true'">
                       <label>If yes, state the name of the professional body </label>
                       <input type="text" class="form-control" id="profBodyName" name = "qYlxUNzBpdo" [(ngModel)] = "attrProffBodyRegistrationName.value"/>
+                      </div>
+
                     </div>
                   </div>
                 <!--

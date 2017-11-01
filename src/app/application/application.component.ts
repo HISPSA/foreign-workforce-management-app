@@ -397,7 +397,7 @@ prefferedComunnicationType: any
           if (attr.attribute == "xDz6lSwCt7Y") {
             this.attrStreetPostalCode.value = attr.value;
           }
-          if (attr.attribute == "fIVeC4j6YD8") {
+          if (attr.attribute == "jbwHv5SYiME") {
             this.attrStreetZipCode.value = attr.value;
           }
           if (attr.attribute == "qMGmfAObIs6") {
@@ -429,7 +429,10 @@ prefferedComunnicationType: any
           if (attr.attribute == "QicAcX9cLKQ") {
             this.attrEmailAddressPrimary.value = attr.value;
           }
-          if (attr.attribute == "jbwHv5SYiME") {
+
+
+
+          if (attr.attribute == "FmeEL6WAOOi") {
             this.attrEmailAddressAlternative.value = attr.value;
           }
 
@@ -627,7 +630,7 @@ prefferedComunnicationType: any
 
 
     if (this.attrStreetZipCode.value) {
-      this.attrStreetZipCode.attribute = "fIVeC4j6YD8";
+      this.attrStreetZipCode.attribute = "jbwHv5SYiME";
       this.attributes.push(this.attrStreetZipCode);
     }
 
@@ -686,7 +689,7 @@ prefferedComunnicationType: any
 
 
     if (this.attrEmailAddressAlternative.value) {
-      this.attrEmailAddressAlternative.attribute = "jbwHv5SYiME";
+      this.attrEmailAddressAlternative.attribute = "FmeEL6WAOOi";
       this.attributes.push(this.attrEmailAddressAlternative);
     }
 
@@ -710,13 +713,13 @@ prefferedComunnicationType: any
 
     if (this.attrProffBodyRegistrationYesNo.value) {
       this.attrProffBodyRegistrationYesNo.attribute = "UtmTAD03WcJ";
-      this.attributes.push(this.attrCountrySpecialization);
+      this.attributes.push(this.attrProffBodyRegistrationYesNo);
     }
 
 
     if (this.attrProffBodyRegistrationName.value) {
       this.attrProffBodyRegistrationName.attribute = "OTkJvWxLVuD";
-      this.attributes.push(this.attrProffBodyRegistrationYesNo);
+      this.attributes.push(this.attrProffBodyRegistrationName);
     }
 
     if (this.attrSpecializationYesNo.value) {
@@ -738,7 +741,7 @@ prefferedComunnicationType: any
 
     //start here with the files
 
-    /*
+
      if (this.attrFileCVId){
      this.attrFileCV.attribute = "wKg02nSAnth";
      this.attrFileCV.value = this.attrFileCVId;
@@ -823,7 +826,7 @@ prefferedComunnicationType: any
      }
 
 
-     */
+
     this.attrUseruuid.attribute = "UsZ89w0XS9f";
     this.attrUseruuid.value = this.userId;
     this.attributes.push(this.attrUseruuid);
@@ -887,8 +890,32 @@ prefferedComunnicationType: any
     let file: File = event.target.files[0];
     let fileSize:number=fileList[0].size;
 
+    let filetype:any=fileList[0].type;
+
       console.log(event.target.files[0])
       console.log(event.target.name)
+
+
+    //all events for file uploads must go in here. If a file is not .pdf do not upload it
+
+    if (filetype=="application/pdf"){
+
+      //check the file size here if bigger than 2MB do not allow upload
+      if (fileSize > 2097152 )
+      {
+      }
+      //events will go in here and that is  it
+      else
+      {
+        //events for file upload in here
+
+      }
+    }else
+    {
+      alert("Only pdf files are allowed uploaded ");
+    }
+
+
 
   if  (event.target.name == "Gcpk3BqfTfY"){
 
