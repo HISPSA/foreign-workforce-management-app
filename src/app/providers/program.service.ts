@@ -49,6 +49,13 @@ this.optionsMultipart =new ResponseOptions({ headers: this.headersMultipart });
       .catch(this.handleError);
   }
 
+  getListOfApplications(url: string): Promise<any> {
+    return this.http
+      .get(url, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
 
   private extractData(res: Response) {
         let body = res.json();
@@ -94,6 +101,8 @@ this.optionsMultipart =new ResponseOptions({ headers: this.headersMultipart });
       .then(this.extractData)
       .catch(this.handleError);
   }
+
+
 
 
 }

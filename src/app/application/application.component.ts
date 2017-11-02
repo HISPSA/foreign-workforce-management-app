@@ -247,13 +247,7 @@ prefferedComunnicationType: any
     this.attrFileSpouseWorkPermit = new Attributes();
     this.attrFileSpouseSalarySlip = new Attributes();
     this.attrFileEmploymentLetter=new Attributes();
-
-
-
     this.applicantDetails = [];
-
-
-
 
     const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
@@ -859,7 +853,7 @@ prefferedComunnicationType: any
     this.trackedEntityInstancesWithoutEnrollment.attributes = this.trackedEntityInstances.attributes;
 
     this.trackedEntityInstancesPayload.trackedEntityInstances = this.trackedEntityInstancesArray;
-    console.log("Inside the TrackEntityInstance" + "  " + JSON.stringify(this.trackedEntityInstancesPayload));
+
 
     //steps
     //create track entity instance
@@ -869,21 +863,31 @@ prefferedComunnicationType: any
 
     //if profile exist update the profile else create/insert a new profile
     if (this.trackentityAtributeCount > 0) {
-      console.log("TrackEntityInstance to update: " + "  " + JSON.stringify(this.trackedEntityInstances));
+      console.log("TrackEntityInstance to update: " + "  " + JSON.stringify(this.trackedEntityInstancesWithoutEnrollment));
       this.programService.updateEnrolApplicant(trackedEntityInstancePUTUrl, this.trackedEntityInstancesWithoutEnrollment).then(result => {
       console.log(result)
 
-        alert(this.userDisplayname+ " your profile has been updated.");
-      }).catch(error => console.log(error));
+        alert(result.this.userDisplayname+ " your profile has been updated.");
+      }).catch(error => {
+          console.log(error)
+          alert("error updating the profile :" + error)
+        }
+      );
 
     }
     else {
       this.programService.enrolApplicant(trackedEntityInstanceUrl, this.trackedEntityInstancesPayload).then(result => {
+        console.log("Inside the TrackEntityInstance" + "  " + JSON.stringify(this.trackedEntityInstancesPayload));
         this.trackentityInstance = result.reference;
         this.trackentityAtributeCount = 1;
         console.log(result)
         alert(this.userDisplayname+ " your profile is created.");
-      }).catch(error => console.log(error));
+      }).catch(error => {
+          console.log(error)
+
+          alert("error creating the profile :" + error);
+        }
+      );
     }
 
   }
