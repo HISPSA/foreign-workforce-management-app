@@ -42,6 +42,8 @@ export class ApplicationListViewComponent implements OnInit {
 
   applicantDetails:any[];
 
+  busy: Promise<any>;
+
   constructor(private http:Http, private programService:ProgramService, private user:User, private dataelemetservice:DataElementService, private organisationUnitService:OrganisationUnitService, private OptionSetsService:OptionSetsService, private router:Router) {
     this.listOfApplications = [];
     this.applicantDetails = [];

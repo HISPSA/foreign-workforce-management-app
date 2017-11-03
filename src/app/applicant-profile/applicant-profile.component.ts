@@ -49,6 +49,20 @@ eventurl: string= '../../../staging/api/events';
 
   userDisplayname: string;
 
+  outstandingDocsCheck: boolean;
+
+  RequiredDocuments:any[];
+  trackEnUrl: string;
+
+
+  documentsprogram: string="FvVIOpqnKOJ";
+  orgUnitSA: string = "JLA7wl59oN3";
+  applicationNameValue: string;
+
+
+
+
+
   constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
 
     this.eventPayload = new events();
@@ -64,6 +78,9 @@ eventurl: string= '../../../staging/api/events';
     this.trackEntityInstance = [];
 
     this.enrollment = new Enrollments();
+    this.outstandingDocsCheck = false;
+
+    this.RequiredDocuments = [];
 
   }
 
@@ -77,6 +94,15 @@ eventurl: string= '../../../staging/api/events';
     const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
     const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
     const trackEntityIntanceUrl= '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:';
+
+
+
+
+
+
+
+
+
 
     this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => {this.apllication =  result.optionSets[0].options;
       console.log("This is  the array" + this.apllication);
@@ -93,6 +119,10 @@ eventurl: string= '../../../staging/api/events';
       console.log("User Id is : "+ this.userId );
 
     this.programservice.getTrackEntityInstance(trackEntityIntanceUrl+this.userId).then(result => {this.trackEntityInstance = result.trackedEntityInstances
+
+
+
+
 
       console.log(this.trackEntityInstance)
 
@@ -163,10 +193,6 @@ eventurl: string= '../../../staging/api/events';
       this.dataValuesArray.push(this.applicationNotes);
     }
 
-
-
-
-
     /*
         if ( this.applicationStatus.value)
         {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
@@ -204,6 +230,15 @@ this.applicationTypeSuccessMessage = this.applicationType.value;
 
   ValidateEnrollmentCheckDuplicates(){
     //check application types here and show relevant docs here under here
+  }
+  onApplicationSelection()
+  {
+    this.applicationNameValue = this.applicationType.value;
+    this.trackEnUrl = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:'+this.applicationNameValue+'&filter=fKLGaOy03uB:eq:true';
+
+    this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {this.RequiredDocuments = result.trackedEntityInstances
+      console.log("Required Docs for "+this.RequiredDocuments)
+    }).catch(error => console.log(error));
   }
 
 }

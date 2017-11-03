@@ -51,6 +51,8 @@ import {Attributes} from "./attributes";
 import {Enrollments} from "./enrollments";
 import {TrackedEntityInstances} from "./tracked-entity-instances";
 
+import {BusyModule} from 'angular2-busy';
+
 
 const appRoutes: Routes = [
   { path: 'staging/api/apps/fhwm/letters', component: LettersGenerateComponent },
