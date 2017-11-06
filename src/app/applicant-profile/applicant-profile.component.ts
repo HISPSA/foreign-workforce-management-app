@@ -60,6 +60,8 @@ eventurl: string= '../../../staging/api/events';
   applicationNameValue: string;
 
 
+  docs:any[];
+
 
 
 
@@ -81,6 +83,8 @@ eventurl: string= '../../../staging/api/events';
     this.outstandingDocsCheck = false;
 
     this.RequiredDocuments = [];
+
+    this.docs=[];
 
   }
 
@@ -238,6 +242,21 @@ this.applicationTypeSuccessMessage = this.applicationType.value;
 
     this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {this.RequiredDocuments = result.trackedEntityInstances
       console.log("Required Docs for "+this.RequiredDocuments)
+
+      for (let docs of  this.RequiredDocuments){
+        for (let attr of  docs.attributes  ){
+          if (attr.attribute === "QJl47J6Exm0" )
+          {
+            this.docs.push(attr.value)
+
+          }
+        }
+      }
+
+
+      console.log("doc types required " +this.docs);
+
+
     }).catch(error => console.log(error));
   }
 
