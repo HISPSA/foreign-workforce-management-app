@@ -249,7 +249,7 @@ prefferedComunnicationType: any
     this.attrFileEmploymentLetter=new Attributes();
     this.applicantDetails = [];
 
-    const lkgenderurlTest  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
+    const lkgenderurlTest  = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF';
     this.OptionSetsService.getData(lkgenderurlTest).subscribe(data =>{this.GenderTest = data
 
     console.log("Genter Test", this.GenderTest )});
@@ -258,37 +258,37 @@ prefferedComunnicationType: any
 
   ngOnInit() {
     var test = [];
-    const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
-    const provincesurl = '../../../staging/api/organisationUnits?paging=false&fields=:all&filter=level:eq:2'
+    const dataelementUrl='../../../dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
+    const provincesurl = '../../../organisationUnits?paging=false&fields=:all&filter=level:eq:2'
 
 //optionsets
     //gender
-    const lkgenderurl  = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF&order=name:asc';
+    const lkgenderurl  = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:zL9imKevTiF&order=name:asc';
     //type of application
-    const lktypeOfApplicationurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
+    const lktypeOfApplicationurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
     //Title
-    const titleurl =  '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:kSqeSdY8rlg';
+    const titleurl =  '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:kSqeSdY8rlg';
     //country of origin
-    const lkcountryOriginurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:cURBuyAHItE';
+    const lkcountryOriginurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:cURBuyAHItE';
     //Marital Status List
-    const lkmaritalStatusurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:VFjzsjC56Z5';
+    const lkmaritalStatusurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:VFjzsjC56Z5';
     //proffesions
-    const lkproffesionsurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:te7ulkuE2k6';
+    const lkproffesionsurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:te7ulkuE2k6';
     //Residential Status
-    const Residentialstatusurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:Dw2owuxZfDj';
+    const Residentialstatusurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:Dw2owuxZfDj';
     //type of id
-    const lktypeofidurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:zpxdEupX6T7';
+    const lktypeofidurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:zpxdEupX6T7';
     //type of qualification
-    const lktypeOfQualiurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:kdg3F9nZKIV';
+    const lktypeOfQualiurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:kdg3F9nZKIV';
     //visa durations
-    const lkvisaurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
+    const lkvisaurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:mOkBI4CVzoK';
     //communication Type
-    const lkCommunicationTypeurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
-    const userurl = '../../../staging/api/me.json';
+    const lkCommunicationTypeurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:qOVusNGHZ0q';
+    const userurl = '../../../me.json';
 
-    const fileResourceURL =  '../../../staging/api/fileResources';
+    const fileResourceURL =  '../../../fileResources';
     /*
-    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
+    const urlTrackedEntityInstance = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
       this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {this.applicantDetails =  result.trackedEntityInstances[0].attributes;
     }).catch(error => console.log(error));
     */
@@ -313,7 +313,7 @@ prefferedComunnicationType: any
       this.userId = result.id;
     console.log("User Id is : "+ this.userId );
 
-    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:'+this.userId;
+    const urlTrackedEntityInstance = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:'+this.userId;
     this.entityInstanceUrl = urlTrackedEntityInstance;
 
     this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {
@@ -858,8 +858,8 @@ prefferedComunnicationType: any
     //steps
     //create track entity instance
     //Enrol a tracked entity instance to a program
-    const trackedEntityInstanceUrl = '../../../staging/api/trackedEntityInstances';
-    const trackedEntityInstancePUTUrl =  '../../../staging/api/trackedEntityInstances/'+  this.trackentityInstance;
+    const trackedEntityInstanceUrl = '../../../trackedEntityInstances';
+    const trackedEntityInstancePUTUrl =  '../../../trackedEntityInstances/'+  this.trackentityInstance;
 
     //if profile exist update the profile else create/insert a new profile
     if (this.trackentityAtributeCount > 0) {
@@ -895,12 +895,12 @@ prefferedComunnicationType: any
   //Save TrackedEntityInstance Profile
   OnButtonSubmit(){
     this.saveTrackedEntityInstance();
-    this.router.navigate(['staging/api/apps/fhwm/application']);
+    this.router.navigate(['application']);
   }
   //create TrackedEntityInstance profile on load if it does not exist
 
   onFileChange(event){
-    const fileResourceURL =  '../../../staging/api/fileResources';
+    const fileResourceURL =  '../../../fileResources';
 
     let fileList: FileList = event.target.files;
     let file: File = event.target.files[0];

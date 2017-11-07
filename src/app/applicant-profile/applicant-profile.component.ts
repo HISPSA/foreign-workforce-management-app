@@ -45,7 +45,7 @@ export class ApplicantProfileComponent implements OnInit {
   enrollment: Enrollments;
   applicationTypeSuccessMessage: string
   //URLs
-eventurl: string= '../../../staging/api/events';
+eventurl: string= '../../../events';
 
   userDisplayname: string;
 
@@ -90,14 +90,14 @@ eventurl: string= '../../../staging/api/events';
 
   ngOnInit() {
     //
-    const lktypeOfApplicationurl = '../../../staging/api/optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
+    const lktypeOfApplicationurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
 
-    const userurl = '../../../staging/api/me.json';
-    const programStage = '../../../staging/api/programStages.json?paging=false&filter=id:eq:EaLamgPg9IE';
+    const userurl = '../../../me.json';
+    const programStage = '../../../programStages.json?paging=false&filter=id:eq:EaLamgPg9IE';
 
-    const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
-    const dataelementUrl='../../../staging/api/dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
-    const trackEntityIntanceUrl= '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:';
+    const urlTrackedEntityInstance = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
+    const dataelementUrl='../../../dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
+    const trackEntityIntanceUrl= '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:';
 
 
 
@@ -155,8 +155,8 @@ eventurl: string= '../../../staging/api/events';
   }
 
   SubmitApplication(){
-    const urlSendEvents = '../../../staging/api/events';
-    const urlSendEnrol = '../../../staging/api/enrollments'
+    const urlSendEvents = '../../../events';
+    const urlSendEnrol = '../../../enrollments'
 
     this.eventPayload = null;
     this.enrollment = null;
@@ -237,8 +237,9 @@ this.applicationTypeSuccessMessage = this.applicationType.value;
   }
   onApplicationSelection()
   {
+    this.docs = [];
     this.applicationNameValue = this.applicationType.value;
-    this.trackEnUrl = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:'+this.applicationNameValue+'&filter=fKLGaOy03uB:eq:true';
+    this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:'+this.applicationNameValue+'&filter=fKLGaOy03uB:eq:true';
     this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {this.RequiredDocuments = result.trackedEntityInstances
       console.log("Required Docs for "+this.RequiredDocuments)
 
@@ -251,8 +252,6 @@ this.applicationTypeSuccessMessage = this.applicationType.value;
           }
         }
       }
-
-
       console.log("doc types required " +this.docs);
 
 

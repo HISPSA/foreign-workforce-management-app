@@ -55,19 +55,19 @@ import {BusyModule} from 'angular2-busy';
 
 
 const appRoutes: Routes = [
-  { path: 'staging/api/apps/fhwm/letters', component: LettersGenerateComponent },
-  { path: 'staging/api/apps/fhwm/approval',  component: ApprovalScreenComponent },
-  { path: 'staging/api/apps/fhwm/application',component: ApplicationComponent },
-  { path: 'staging/api/apps/fhwm/applicationList',component: ApplicationListViewComponent },
-  { path: 'staging/api/apps/fhwm/notification',component: NotificationsListViewPageComponent },
-  { path: 'staging/api/apps/fhwm/applicationDetail',component: ApplicationDetailViewComponent },
-  { path: 'staging/api/apps/fhwm/notifications',component: NotificationsListViewPageComponent },
-  { path: 'staging/api/apps/fhwm/home',component: HomeComponent },
-  { path: 'staging/api/apps/fhwm/applicationList',component: ApplicantListComponent },
-  { path: 'staging/api/apps/fhwm/applicationDetail',component: ApplicantDetailsComponent },
-  { path: 'staging/api/apps/fhwm/applicationStatus',component: ApplicationStatusComponent },
-  { path: 'staging/api/apps/fhwm/faq',component: FaqFormsComponent },
-  { path: 'staging/api/apps/fhwm/profile',component: ApplicantProfileComponent }
+  { path: 'letters', component: LettersGenerateComponent },
+  { path: 'approval',  component: ApprovalScreenComponent },
+  { path: 'application',component: ApplicationComponent },
+  { path: 'applicationList',component: ApplicationListViewComponent },
+  { path: 'notification',component: NotificationsListViewPageComponent },
+  { path: 'applicationDetail',component: ApplicationDetailViewComponent },
+  { path: 'notifications',component: NotificationsListViewPageComponent },
+  { path: 'home',component: HomeComponent },
+  { path: 'applicationList',component: ApplicantListComponent },
+  { path: 'applicationDetail',component: ApplicantDetailsComponent },
+  { path: 'applicationStatus',component: ApplicationStatusComponent },
+  { path: 'faq',component: FaqFormsComponent },
+  { path: 'profile',component: ApplicantProfileComponent }
 
 ];
 

@@ -51,7 +51,7 @@ export class ApplicationListViewComponent implements OnInit {
 
   ngOnInit() {
 
-    const userurl = '../../../staging/api/me.json';
+    const userurl = '../../../me.json';
 
 
     this.user.getUser(userurl).then(result => {
@@ -60,7 +60,7 @@ export class ApplicationListViewComponent implements OnInit {
       this.userId = result.id;
       console.log("User Id is : " + this.userId);
 
-      const urlTrackedEntityInstance = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:' + this.userId;
+      const urlTrackedEntityInstance = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:' + this.userId;
 
       this.programService.getTrackEntityInstance(urlTrackedEntityInstance).then(result => {
         this.applicantDetails = result.trackedEntityInstances[0].attributes
@@ -69,7 +69,7 @@ export class ApplicationListViewComponent implements OnInit {
         this.trackentityAtributeCount = Object.keys(this.applicantDetails).length;
         this.trackentityInstance = result.trackedEntityInstances[0].trackedEntityInstance;
 
-        const listOfApplicationurl = '../../../staging/api/events.json?ou=JLA7wl59oN3&program=perc4ZpWBWr&trackedEntityInstance='+this.trackentityInstance;
+        const listOfApplicationurl = '../../../events.json?ou=JLA7wl59oN3&program=perc4ZpWBWr&trackedEntityInstance='+this.trackentityInstance;
 
         this.programService.getListOfApplications(listOfApplicationurl).then(result => {
           this.listOfApplications = result.events;
