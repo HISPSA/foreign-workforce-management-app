@@ -867,7 +867,7 @@ prefferedComunnicationType: any
       this.programService.updateEnrolApplicant(trackedEntityInstancePUTUrl, this.trackedEntityInstancesWithoutEnrollment).then(result => {
       console.log(result)
 
-        alert(result.this.userDisplayname+ " your profile has been updated.");
+        alert(this.userDisplayname+ " your profile has been updated.");
       }).catch(error => {
           console.log(error)
           alert("error updating the profile :" + error)

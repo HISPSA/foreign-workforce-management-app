@@ -19,6 +19,17 @@ import {Router} from '@angular/router';
 import {dataValues} from "../dataValues";
 import {events} from "../event";
 
+import { Http, Response, Headers, RequestOptions,ResponseOptions, URLSearchParams } from '@angular/http';
+
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+
+
+
+
+
+
 
 @Component({
   selector: 'app-applicant-profile',
@@ -26,50 +37,48 @@ import {events} from "../event";
   styleUrls: ['./applicant-profile.component.css']
 })
 export class ApplicantProfileComponent implements OnInit {
-  apllication: any;
-  eventPayload : events;
-  applicationType: dataValues;
-  applicationDate: dataValues;
-  applicationStatus: dataValues;
-  applicationNotes: dataValues;
+  apllication:any;
+  eventPayload:events;
+  applicationType:dataValues;
+  applicationDate:dataValues;
+  applicationStatus:dataValues;
+  applicationNotes:dataValues;
 
-  userId: string;
-  storedBy: string;
-  applicantDetails: any;
-  dataValuesArray: dataValues[];
-  programStage:  any;
-  trackEntityInstance: any;
-  instanceId: string;
-  orgunit: string;
-  trackEntity: string;
-  enrollment: Enrollments;
-  applicationTypeSuccessMessage: string
+  userId:string;
+  storedBy:string;
+  applicantDetails:any;
+  dataValuesArray:dataValues[];
+  programStage:any;
+  trackEntityInstance:any;
+  instanceId:string;
+  orgunit:string;
+  trackEntity:string;
+  enrollment:Enrollments;
+  applicationTypeSuccessMessage:string
   //URLs
-eventurl: string= '../../../events';
+  eventurl:string = '../../../events';
 
-  userDisplayname: string;
+  userDisplayname:string = "";
 
-  outstandingDocsCheck: boolean;
+  outstandingDocsCheck:boolean;
 
   RequiredDocuments:any[];
-  trackEnUrl: string;
+  trackEnUrl:string;
 
 
-  documentsprogram: string="FvVIOpqnKOJ";
-  orgUnitSA: string = "JLA7wl59oN3";
-  applicationNameValue: string;
+  documentsprogram:string = "FvVIOpqnKOJ";
+  orgUnitSA:string = "JLA7wl59oN3";
+  applicationNameValue:string;
 
 
   docs:any[];
 
 
-
-
-  constructor(private dataelemetservice:DataElementService,  private OptionSetsService: OptionSetsService, private programservice: ProgramService, private user:User  ) {
+  constructor(private router:Router, private http:Http, private dataelemetservice:DataElementService, private OptionSetsService:OptionSetsService, private programservice:ProgramService, private user:User) {
 
     this.eventPayload = new events();
-    this.applicationType =  new dataValues();
-    this.applicationDate =  new dataValues();
+    this.applicationType = new dataValues();
+    this.applicationDate = new dataValues();
     this.applicationStatus = new dataValues();
     this.applicationNotes = new dataValues();
 
@@ -84,7 +93,7 @@ eventurl: string= '../../../events';
 
     this.RequiredDocuments = [];
 
-    this.docs=[];
+    this.docs = [];
 
   }
 
@@ -96,65 +105,58 @@ eventurl: string= '../../../events';
     const programStage = '../../../programStages.json?paging=false&filter=id:eq:EaLamgPg9IE';
 
     const urlTrackedEntityInstance = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&trackedEntityInstance=Z5ZQbIkSTND';
-    const dataelementUrl='../../../dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
-    const trackEntityIntanceUrl= '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:';
+    const dataelementUrl = '../../../dataElements' + '.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
+    const trackEntityIntanceUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=UsZ89w0XS9f:eq:';
 
 
-
-
-
-
-
-
-
-
-    this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => {this.apllication =  result.optionSets[0].options;
+    this.OptionSetsService.getOptionSetsService(lktypeOfApplicationurl).then(result => {
+      this.apllication = result.optionSets[0].options;
       console.log("This is  the array" + this.apllication);
     }).catch(error => console.log(error));
 
 
     this.user.getUser(userurl).then(result => {
       console.log(result);
-
       this.userId = result.id;
-
       this.userDisplayname = result.displayName;
 
-      console.log("User Id is : "+ this.userId );
+      console.log("User Id is : " + this.userId);
 
-    this.programservice.getTrackEntityInstance(trackEntityIntanceUrl+this.userId).then(result => {this.trackEntityInstance = result.trackedEntityInstances
+      this.programservice.getTrackEntityInstance(trackEntityIntanceUrl + this.userId).then(result => {
+        this.trackEntityInstance = result.trackedEntityInstances
 
+        console.log(this.trackEntityInstance)
 
+        for (let trackInstance of
+        this.trackEntityInstance
+        )
+        {
+          console.log("InstanceId " + trackInstance.attribute)
+          this.instanceId = trackInstance.trackedEntityInstance;
+          this.orgunit = trackInstance.orgUnit;
+          this.trackEntity = trackInstance.trackedEntity;
+        }
+      }).catch(error => console.log(error));
 
-
-
-      console.log(this.trackEntityInstance)
-
-      for (let trackInstance of this.trackEntityInstance ) {
-            console.log("InstanceId "+  trackInstance.attribute)
-            this.instanceId = trackInstance.trackedEntityInstance;
-            this.orgunit =  trackInstance.orgUnit;
-            this.trackEntity = trackInstance.trackedEntity;
-      }
     }).catch(error => console.log(error));
 
-    }).catch(error => console.log(error));
-
-    this.programservice.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances).catch(error => console.log(error));
+    // this.programservice.getTrackEntityInstance(urlTrackedEntityInstance).then(result => this.applicantDetails =  result.trackedEntityInstances).catch(error => console.log(error));
 
     this.programservice.getTrackEntityInstance(userurl).then(result => {
-      console.log(result); this.userId = result.id;
-      console.log("User Id is : "+ this.userId );
+      console.log(result);
+      this.userId = result.id;
+      console.log("User Id is : " + this.userId);
     }).catch(error => console.log(error));
 
 
     this.programservice.getProgramStage(programStage).then(result => {
-      console.log(result); this.userId = result.id;
-      console.log("User Id is : "+ this.userId );
+      console.log(result);
+      this.userId = result.id;
+      console.log("User Id is : " + this.userId);
     }).catch(error => console.log(error));
   }
 
-  SubmitApplication(){
+  SubmitApplication() {
     const urlSendEvents = '../../../events';
     const urlSendEnrol = '../../../enrollments'
 
@@ -163,99 +165,517 @@ eventurl: string= '../../../events';
     this.dataValuesArray = null;
 
     this.eventPayload = new events();
-    this.enrollment =  new Enrollments;
+    this.enrollment = new Enrollments;
     this.dataValuesArray = [];
-      //
-    this.eventPayload.orgUnit  = this.orgunit;
-    this.eventPayload.program  = "perc4ZpWBWr";
+    //
+    this.eventPayload.orgUnit = this.orgunit;
+    this.eventPayload.program = "perc4ZpWBWr";
     this.eventPayload.trackedEntityInstance = this.instanceId;
 
     console.log(this.eventPayload.trackedEntityInstance);
 
-    this.eventPayload.status ="COMPLETED";
-  //  this.eventPayload.eventDate ="2017-10-03";
-   // this.eventPayload.completedDate = new Date().getDate().toString();
+    this.eventPayload.status = "COMPLETED";
+    //  this.eventPayload.eventDate ="2017-10-03";
+    // this.eventPayload.completedDate = new Date().getDate().toString();
     this.eventPayload.programStage = "EaLamgPg9IE";
-  //  this.eventPayload.storedBy = "admin";
- //   this.applicationDate.value = new Date().getDate().toString();
+    //  this.eventPayload.storedBy = "admin";
+    //   this.applicationDate.value = new Date().getDate().toString();
     this.applicationStatus.value = "COMPLETED";
 
-    if ( this.applicationType.value)
-    {
+    if (this.applicationType.value) {
       this.applicationType.dataElement = "HBI7F3arBXR";
       this.dataValuesArray.push(this.applicationType);
     }
-    if ( this.applicationDate.value)
-    {
+    if (this.applicationDate.value) {
       this.applicationDate.dataElement = "M9OXsIODpaY";
       this.dataValuesArray.push(this.applicationDate);
     }
 
-      if ( this.applicationNotes.value)
-    {
+    if (this.applicationNotes.value) {
       this.applicationNotes.dataElement = "JsgUaaZqhaq";
       this.dataValuesArray.push(this.applicationNotes);
     }
 
     /*
-        if ( this.applicationStatus.value)
-        {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
-          this.dataValuesArray.push(this.applicationStatus);
-        }
-    **/
+     if ( this.applicationStatus.value)
+     {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
+     this.dataValuesArray.push(this.applicationStatus);
+     }
+     **/
 
     /*
-    this.enrollment.orgUnit =  this.eventPayload.orgUnit;
-    this.enrollment.program = "perc4ZpWBWr";
-    this.enrollment.trackedEntity = this.trackEntity;
-    this.enrollment.trackedEntityInstance = this.instanceId;
-    console.log("Enrolment Payload :" + JSON.stringify(this.enrollment));
-    this.programservice.registerEvent(urlSendEnrol,this.enrollment );
+     this.enrollment.orgUnit =  this.eventPayload.orgUnit;
+     this.enrollment.program = "perc4ZpWBWr";
+     this.enrollment.trackedEntity = this.trackEntity;
+     this.enrollment.trackedEntityInstance = this.instanceId;
+     console.log("Enrolment Payload :" + JSON.stringify(this.enrollment));
+     this.programservice.registerEvent(urlSendEnrol,this.enrollment );
      */
 
     this.eventPayload.dataValues = this.dataValuesArray;
 
 
-
-
     console.log("Application Payload :" + JSON.stringify(this.eventPayload));
-    this.programservice.registerEvent(urlSendEvents,this.eventPayload );
+    this.programservice.registerEvent(urlSendEvents, this.eventPayload);
 
-    if ( this.applicationType.value)
-    {
-this.applicationTypeSuccessMessage = this.applicationType.value;
-      alert(this.userDisplayname+ " : "+ this.applicationTypeSuccessMessage+ " applied for successfuly.");
+    if (this.applicationType.value) {
+      this.applicationTypeSuccessMessage = this.applicationType.value;
+      alert(this.userDisplayname + " : " + this.applicationTypeSuccessMessage + " applied for successfuly.");
     }
   }
 
-  ValidateApplicationRequiredDocs(){
-  //check application types here and show relevant docs here under here
-  }
-
-  ValidateEnrollmentCheckDuplicates(){
+  ValidateApplicationRequiredDocs() {
     //check application types here and show relevant docs here under here
   }
-  onApplicationSelection()
-  {
+
+  ValidateEnrollmentCheckDuplicates() {
+    //check application types here and show relevant docs here under here
+  }
+
+  onApplicationSelection() {
     this.docs = [];
     this.applicationNameValue = this.applicationType.value;
-    this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:'+this.applicationNameValue+'&filter=fKLGaOy03uB:eq:true';
-    this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {this.RequiredDocuments = result.trackedEntityInstances
-      console.log("Required Docs for "+this.RequiredDocuments)
+    this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:' + this.applicationNameValue + '&filter=fKLGaOy03uB:eq:true';
+    this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {
+      this.RequiredDocuments = result.trackedEntityInstances
+      console.log("Required Docs for " + this.RequiredDocuments)
 
-      for (let document of  this.RequiredDocuments){
-        for (let attr of  document.attributes  ){
-          if (attr.attribute == "QJl47J6Exm0" )
+      if (Object.keys(this.RequiredDocuments).length > 0) {
+        this.outstandingDocsCheck = true;
+
+        for (let document of this.RequiredDocuments
+      )
+        {
+          for (let attr of document.attributes
+        )
           {
-            this.docs.push(attr.value)
+            if (attr.attribute == "QJl47J6Exm0") {
+              this.docs.push(attr.value)
 
+            }
           }
         }
+        console.log("doc types required " + this.docs);
+
       }
-      console.log("doc types required " +this.docs);
-
-
     }).catch(error => console.log(error));
   }
 
+  //create TrackedEntityInstance profile on load if it does not exist
+
+  onFileChange(event) {
+    const fileResourceURL = '../../../fileResources';
+
+    let fileList:FileList = event.target.files;
+    let file:File = event.target.files[0];
+    let fileSize:number = fileList[0].size;
+
+    let filetype:any = fileList[0].type;
+
+    console.log(event.target.files[0])
+    console.log(event.target.name)
+
+
+    //all events for file uploads must go in here. If a file is not .pdf do not upload it
+
+    if (filetype == "application/pdf") {
+
+      //check the file size here if bigger than 2MB do not allow upload
+      if (fileSize > 2097152) {
+      }
+      //events will go in here and that is  it
+      else {
+        //events for file upload in here
+
+      }
+    } else {
+      alert("Only pdf files are allowed uploaded ");
+    }
+
+
+    if (event.target.name == "Gcpk3BqfTfY") {
+      //post a file here and get the id from the response
+      let passportfileformData:FormData = new FormData();
+      // passportfileformData.append('file',file.name);
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      passportfileformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, passportfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //  this.attrFilePassportId =data.response.fileResource.id;
+
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+
+    if (event.target.name == "wKg02nSAnth") {
+      let cvfileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      cvfileformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, cvfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //   this.attrFileCVId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+    if (event.target.name == "kL7nLPq9HmS") {
+      let profRegfileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      profRegfileformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, profRegfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          // this.attrFileProfRegistrationId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+    if (event.target.name == "TeUV3frsYEc") {
+      let RefLetterformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      RefLetterformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, RefLetterformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //     this.attrFileRefLetterId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+
+    //duplicate
+    if (event.target.name == "QCGwC8WHzIV") {
+      let lifePatnerFileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      lifePatnerFileformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, lifePatnerFileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //   this.attrFileSpouseIDId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+    if (event.target.name == "OOCZMGkv1SF") {
+      let affidavitFileformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      affidavitFileformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, affidavitFileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //   this.attrFileAffidavitId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+
+    if (event.target.name == "BnAeQ9CfPqD") {
+      let spouseContractFileIdformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      spouseContractFileIdformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, spouseContractFileIdformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //   this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+
+    }
+    if (event.target.name == "xJUWub6Na81") {
+      let SpouseWorkPermitformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      SpouseWorkPermitformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, SpouseWorkPermitformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //   this.attrFileSpouseWorkPermitId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+
+    }
+    if (event.target.name == "i63qGgDCqWK") {
+      let SpouseSalarySlipformData:FormData = new FormData();
+
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      SpouseSalarySlipformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, SpouseSalarySlipformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //  this.attrFileSpouseSalarySlipId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+    if (event.target.name == "pCuas8xccgp") {
+      let SpouseEmploymentContractformData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      SpouseEmploymentContractformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, SpouseEmploymentContractformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //  this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+    if (event.target.name == "ukQzrmcUQgu") {
+      let marriageCertificateFormData:FormData = new FormData();
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      marriageCertificateFormData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, marriageCertificateFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          // this.attrFileMarriageCertificateId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+        });
+
+    }
+
+    if (event.target.name == "BQAchMg4aMq") {
+      let qualificationFormData:FormData = new FormData();
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      qualificationFormData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, qualificationFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //   this.attrFileQualificationsId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+    if (event.target.name == "QCGwC8WHzIV") {
+      let FileResidencePermitFormData:FormData = new FormData();
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      FileResidencePermitFormData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, FileResidencePermitFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //this.attrFileResidencePermitId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+        });
+    }
+
+    if (event.target.name == "QCGwC8WHzIV") {
+      let FileResidencePermitFormData:FormData = new FormData();
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      FileResidencePermitFormData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, FileResidencePermitFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //  this.attrFileResidencePermitId =data.response.fileResource.id;
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+
+    }
+
+
+  }
 }
