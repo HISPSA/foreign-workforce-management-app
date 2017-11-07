@@ -239,13 +239,12 @@ this.applicationTypeSuccessMessage = this.applicationType.value;
   {
     this.applicationNameValue = this.applicationType.value;
     this.trackEnUrl = '../../../staging/api/trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:'+this.applicationNameValue+'&filter=fKLGaOy03uB:eq:true';
-
     this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {this.RequiredDocuments = result.trackedEntityInstances
       console.log("Required Docs for "+this.RequiredDocuments)
 
-      for (let docs of  this.RequiredDocuments){
-        for (let attr of  docs.attributes  ){
-          if (attr.attribute === "QJl47J6Exm0" )
+      for (let document of  this.RequiredDocuments){
+        for (let attr of  document.attributes  ){
+          if (attr.attribute == "QJl47J6Exm0" )
           {
             this.docs.push(attr.value)
 
