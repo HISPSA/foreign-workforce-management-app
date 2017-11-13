@@ -30,6 +30,7 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent {
+loading: boolean=false;
 
 dataElements: any[] = [] ;
 organisationUnits : any[] = [];
@@ -468,7 +469,11 @@ prefferedComunnicationType: any
         //surname, firstName, useruuid,primary, email, phoneNumber
       }
     }).catch(error => console.log(error));
-    }).catch(error => console.log(error));
+    this.loading=true;
+    }).catch(error => {console.log(error)
+   this.loading=true;
+
+    });
   }
 
 
