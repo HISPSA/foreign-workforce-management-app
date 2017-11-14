@@ -7,7 +7,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Type Of Application</div>
       <label>What are you applying for?</label> <div class="form-group input-sm">
-      <select class="form-control" id="applicationTypeId" name = "HBI7F3arBXR" [(ngModel)] = "applicationType.value"  (change) = "onApplicationSelection()" >
+      <select class="form-control" id="applicationTypeId" name = "HBI7F3arBXR" [(ngModel)] = "applicationType.value"  (change) = "onApplicationSelection($event)" >
         <option value = "">Please select a type of application</option>
         <option *ngFor = "let apptype of apllication"  [value] = "apptype.name"> {{apptype.name}}</option>
       </select>
@@ -25,14 +25,13 @@
             <div class="panel panel-default">
               <div class="panel-heading">REQUIRED DOCUMENTS </div>
 
-              <label> Notarised copy of Passport / Identity Document / Refugee Status / Permanent Residence Certificate </label>
-              <div>
+              <div *ngIf="copyPassportRequired">
+                <label> Notarised copy of Passport / Identity Document / Refugee Status / Permanent Residence Certificate </label>
                 <input type="file" id = "passportfileId" data-max-size="2048" name = "Gcpk3BqfTfY"  (change)="onFileChange($event)" >
               </div>
 
-
-              <label> Copy of Curriculum Vitae </label>
-              <div>
+              <div *ngIf="copycvbol">
+                <label> Copy of Curriculum Vitae </label>
                 <input type="file"  id = "cvfileId" data-max-size="2048" name = "wKg02nSAnth" (change)="onFileChange($event)" >
                 <!--
                  <label class="btn btn-default btn-file">
@@ -40,52 +39,60 @@
                  <font size = "1"><label style="font-weight:normal;"> Max. file size: 2MB</label></font>
                  -->
               </div>
-              <label> Original Notarised Copy of Qualifications</label>
-              <div>
+              <div *ngIf="copyOfQualificationRequired">
+                <label> Original Notarised Copy of Qualifications</label>
                 <input type="file"  id = "qualificationFileId" data-max-size="2048" name = "Gcpk3BqfTfY" (change)="onFileChange($event)">
 
               </div>
-              <label> Original Notarised copy of Professional Registration</label>
-              <div>
-                <input type="file"  id = "profRegId" data-max-size="2048" name = "kL7nLPq9HmS" (change)="onFileChange($event)">
 
+              <div *ngIf="copyOfProffesionalRegistrationRequired">
+                <label> Original Notarised copy of Professional Registration</label>
+                <input type="file"  id = "profRegId" data-max-size="2048" name = "kL7nLPq9HmS" (change)="onFileChange($event)">
               </div>
-              <label> Original Notarised copy of Reference Letters / Service Certificates of previous employers</label>
-              <div>
+
+              <div *ngIf="copyOfReferenceLetters">
+                <label> Original Notarised copy of Reference Letters / Service Certificates of previous employers</label>
                 <input type="file"  id = "refenLetterFile" data-max-size="2048" name = "TeUV3frsYEc" (change)="onFileChange($event)">
               </div>
-              <label> Original Notarised copy of spouse’s / life-partner’s identity document (not older than 30 days at time of submission)</label>
-              <div>
+
+              <div *ngIf="copySpouseIdRequired">
+                <label> Original Notarised copy of spouse’s / life-partner’s identity document (not older than 30 days at time of submission)</label>
                 <input type="file" id = "lifePatnerFileId" data-max-size="2048" name = "QCGwC8WHzIV" (change)="onFileChange($event)">
               </div>
 
-              <label> Original electronic marriage certificate / Notarised copy of life-partner agreement (not older than 30 days at time of submission)</label>
-              <div>
+
+              <div *ngIf="copyOfMarriageCertificate">
+                <label> Original electronic marriage certificate / Notarised copy of life-partner agreement (not older than 30 days at time of submission)</label>
                 <input type="file"  class="form-control-file" id = "marriageCertificatefileId" data-max-size="2048" name = "ukQzrmcUQgu" (change)="onFileChange($event)">
               </div>
-              <label> Original Notarised copy of residence permit, indicating “to reside with SA spouse / life-partner</label>
-              <div>
+
+              <div *ngIf="copyResidenceVISARequired">
+                <label> Original Notarised copy of residence permit, indicating “to reside with SA spouse / life-partner</label>
                 <input type="file" id="residencePermitfileId" data-max-size="2048" name = "QCGwC8WHzIV" (change)="onFileChange($event)">
               </div>
-              <label> Police Affidavit signed by spouse / life-partner, clearly stating that you are cohabiting, that your spouse / life-partner supports your employment in south Africa and that he / she is willing to relocate with you wherever you are posted</label>
-              <div>
+
+              <div *ngIf="copyPoliceAffidavit">
+                <label> Police Affidavit signed by spouse / life-partner, clearly stating that you are cohabiting, that your spouse / life-partner supports your employment in south Africa and that he / she is willing to relocate with you wherever you are posted</label>
                 <input type="file" id = "affidavitFileId" data-max-size="2048" name = "OOCZMGkv1SF" (change)="onFileChange($event)">
               </div>
 
-              <label> Original Notarised copy of spouse’s employment contract</label>
-              <div>
+               <div *ngIf="copySpouseEmploymentContract">
+                 <label> Original Notarised copy of spouse’s employment contract</label>
                 <input type="file"  id = "spouseContractFileId" data-max-size="2048" name = "BnAeQ9CfPqD" (change)="onFileChange($event)">
               </div>
-              <label> Original Notarised copy of spouse’s work permit</label>
-              <div>
+
+              <div *ngIf="copySpouseVISA">
+                <label> Original Notarised copy of spouse’s work permit</label>
                 <input type="file" id = "spouseWorkPermitfileId" data-max-size="2048" name = "xJUWub6Na81" (change)="onFileChange($event)">
               </div>
-              <label> Original Notarised copy of spouse’s latest salary slip</label>
-              <div>
+
+              <div *ngIf="copySpouseLatestSalaryRequired">
+                <label> Original Notarised copy of spouse’s latest salary slip</label>
                 <input type="file" id = "spousePayslipfileId" data-max-size="2048" name = "i63qGgDCqWK" (change)="onFileChange($event)">
               </div>
-              <label> Original Letter from spouse’s employer confirming employment (not older than 30 days at time of submission</label>
-              <div>
+
+              <div *ngIf="copySpouseEmploymentLetterRequired">
+                <label> Original Letter from spouse’s employer confirming employment (not older than 30 days at time of submission</label>
                 <input type="file" id="spouseEmploymentId" data-max-size="2048" name = "pCuas8xccgp" (change)="onFileChange($event)">
               </div>
             </div>

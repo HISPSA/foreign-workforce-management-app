@@ -163,6 +163,10 @@ prefferedComunnicationType: any
   trackentityInstance: string;
   userDisplayname: string;
 
+
+// loading: boolean=false;
+
+
   //Documents attributes will go under here
 
   private GenderTest: OptionSet[] = new Array<OptionSet>();
@@ -258,6 +262,9 @@ prefferedComunnicationType: any
   }
 
   ngOnInit() {
+    this.loading = false;
+
+
     var test = [];
     const dataelementUrl='../../../dataElements'+'.json?paging=false&fields=:all,id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[:all,!compulsoryDataElementOperands]'
     const provincesurl = '../../../organisationUnits?paging=false&fields=:all&filter=level:eq:2'
@@ -474,6 +481,7 @@ prefferedComunnicationType: any
    this.loading=true;
 
     });
+
   }
 
 

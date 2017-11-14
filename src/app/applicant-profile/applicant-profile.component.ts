@@ -21,14 +21,8 @@ import {events} from "../event";
 
 import { Http, Response, Headers, RequestOptions,ResponseOptions, URLSearchParams } from '@angular/http';
 
-
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-
-
-
-
-
 
 
 @Component({
@@ -73,6 +67,26 @@ export class ApplicantProfileComponent implements OnInit {
 
   docs:any[];
 
+  loading: boolean=false;
+  //
+  copyformalapplicationletterRequiredbol: boolean = false;
+  copyPassportRequired: boolean  = false;
+  copyOfQualificationRequired: boolean  = false;
+  copyOfProffesionalRegistrationRequired: boolean = false;
+  copyOfReferenceLetters: boolean = false;
+  copySpouseIdRequired: boolean = false;
+  copyOfMarriageCertificate: boolean = false;
+  copyResidenceVISARequired: boolean = false;
+  copyPoliceAffidavit: boolean = false;
+  copySpouseEmploymentContract: boolean = false;
+  copySpouseVISA: boolean = false;
+  copySpouseLatestSalaryRequired: boolean = false;
+  copySpouseEmploymentLetterRequired: boolean = false;
+  supernumerarybol: boolean = false;
+  copycvbol:boolean =false;
+
+  selectedApplicationType: string;
+
 
   constructor(private router:Router, private http:Http, private dataelemetservice:DataElementService, private OptionSetsService:OptionSetsService, private programservice:ProgramService, private user:User) {
 
@@ -90,14 +104,13 @@ export class ApplicantProfileComponent implements OnInit {
 
     this.enrollment = new Enrollments();
     this.outstandingDocsCheck = false;
-
     this.RequiredDocuments = [];
-
     this.docs = [];
 
   }
 
   ngOnInit() {
+    this.loading = false;
     //
     const lktypeOfApplicationurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
 
@@ -127,9 +140,7 @@ export class ApplicantProfileComponent implements OnInit {
 
         console.log(this.trackEntityInstance)
 
-        for (let trackInstance of
-        this.trackEntityInstance
-        )
+        for (let trackInstance of this.trackEntityInstance)
         {
           console.log("InstanceId " + trackInstance.attribute)
           this.instanceId = trackInstance.trackedEntityInstance;
@@ -154,6 +165,8 @@ export class ApplicantProfileComponent implements OnInit {
       this.userId = result.id;
       console.log("User Id is : " + this.userId);
     }).catch(error => console.log(error));
+
+    this.loading = true;
   }
 
   SubmitApplication() {
@@ -196,6 +209,12 @@ export class ApplicantProfileComponent implements OnInit {
       this.dataValuesArray.push(this.applicationNotes);
     }
 
+    if (this.applicationStatus.value) {
+      this.applicationStatus.dataElement = "dCJ1BpFGMyv";
+      this.dataValuesArray.push(this.applicationStatus);
+    }
+
+
     /*
      if ( this.applicationStatus.value)
      {   this.applicationStatus.dataElement = "dCJ1BpFGMyv"
@@ -232,13 +251,267 @@ export class ApplicantProfileComponent implements OnInit {
     //check application types here and show relevant docs here under here
   }
 
-  onApplicationSelection() {
+  onApplicationSelection($event) {
+
+    console.log("selected dropdown value: " +$event.target.value);
+
+    this.selectedApplicationType = $event.target.value;
+
+
+
+
     this.docs = [];
     this.applicationNameValue = this.applicationType.value;
     this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:' + this.applicationNameValue + '&filter=fKLGaOy03uB:eq:true';
     this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {
-      this.RequiredDocuments = result.trackedEntityInstances
+      this.RequiredDocuments = result.trackedEntityInstances;
+
+
       console.log("Required Docs for " + this.RequiredDocuments)
+
+      if (this.selectedApplicationType.trim() == "First Time Application"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= true;
+        this.copyOfProffesionalRegistrationRequired=true;
+        this.copyOfReferenceLetters=true;
+        this.copySpouseIdRequired=true;
+        this.copyOfMarriageCertificate=true;
+        this.copyResidenceVISARequired=true;
+        this.copyPoliceAffidavit=true;
+        this.copySpouseEmploymentContract=true;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=true;
+        this.copySpouseEmploymentLetterRequired=true;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Supervise Practice Employment"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= true;
+
+        //Proof of being successful in exams (HPCSA)
+
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=true;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=false;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Extension"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=true;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=false;
+        this.copySpouseLatestSalaryRequired=true;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Permanent Residence"){
+        this.copyformalapplicationletterRequiredbol= false;
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=true;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=true;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=true;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Transfer"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=true;
+        this.copySpouseEmploymentLetterRequired=false;
+
+        this.copySpouseIdRequired=true;
+        this.copycvbol = true;
+      }
+      else if (this.selectedApplicationType.trim() == "Internship") {
+        this.copyformalapplicationletterRequiredbol= true
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=true;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=true;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=false;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Community Service"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=false;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Seeking employment"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=true;
+        this.copyOfReferenceLetters=true;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Registration and Employment"){
+        this.copyformalapplicationletterRequiredbol= true
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= true;
+        this.copyOfProffesionalRegistrationRequired=true;
+        this.copyOfReferenceLetters=true;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=true;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+      }
+
+      else if (this.selectedApplicationType.trim() == "Volunteer"){
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=false;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType.trim() == "Postgraduate Studies") {
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+      }
+
+      else if (this.selectedApplicationType == "Exchange Programme") {
+
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=false;
+        this.copySpouseLatestSalaryRequired=true;
+        this.copySpouseEmploymentLetterRequired=false;
+        this.copycvbol = true;
+
+
+      }
+      else if (this.selectedApplicationType == "Registration Only") {
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=true;
+        this.copycvbol = true;
+
+      }
+      else if (this.selectedApplicationType == "Supernumerary") {
+        this.copyformalapplicationletterRequiredbol= false
+        this.copyPassportRequired=false;
+        this.copyOfQualificationRequired= false;
+        this.copyOfProffesionalRegistrationRequired=false;
+        this.copyOfReferenceLetters=false;
+        this.copySpouseIdRequired=false;
+        this.copyOfMarriageCertificate=false;
+        this.copyResidenceVISARequired=false;
+        this.copyPoliceAffidavit=false;
+        this.copySpouseEmploymentContract=false;
+        this.copySpouseVISA=true;
+        this.copySpouseLatestSalaryRequired=false;
+        this.copySpouseEmploymentLetterRequired=true;
+        this.copycvbol = true;
+
+      }
 
       if (Object.keys(this.RequiredDocuments).length > 0) {
         this.outstandingDocsCheck = true;
@@ -251,11 +524,12 @@ export class ApplicantProfileComponent implements OnInit {
           {
             if (attr.attribute == "QJl47J6Exm0") {
               this.docs.push(attr.value)
-
             }
           }
         }
         console.log("doc types required " + this.docs);
+
+        this.docs = this.docs.sort();
 
       }
     }).catch(error => console.log(error));
