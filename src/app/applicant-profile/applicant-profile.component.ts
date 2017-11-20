@@ -370,8 +370,6 @@ export class ApplicantProfileComponent implements OnInit {
         this.copySpouseEmploymentLetterRequired=false;
         this.copycvbol = true;
 
-
-
         //additional applications
 
         this.copymotivationletterfromtheuniversitybol=false;
@@ -418,7 +416,7 @@ export class ApplicantProfileComponent implements OnInit {
 
         //additional applications
 
-        this.copymotivationletterfromtheuniversitybol=false;
+        this.copymotivationletterfromtheuniversitybol=true;
         // copyRegistrationcertificatefromcouncilsbol
         this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=false;
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
@@ -470,7 +468,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=true;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
         this.copyProoofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=true;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
