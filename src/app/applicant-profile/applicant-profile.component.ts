@@ -82,11 +82,36 @@ export class ApplicantProfileComponent implements OnInit {
   copySpouseVISA: boolean = false;
   copySpouseLatestSalaryRequired: boolean = false;
   copySpouseEmploymentLetterRequired: boolean = false;
-  supernumerarybol: boolean = false;
+  copysupernumerarybol: boolean = false;
   copycvbol:boolean =false;
 
   selectedApplicationType: string;
 
+  copymotivationletterfromtheuniversitybol: boolean = false;
+ // copyRegistrationcertificatefromcouncilsbol: boolean = false;
+  copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol: boolean = false;
+  copyProofofcompletinginternshipSupervisedpracticebol: boolean = false;
+  copyRegistrationcertificatefromcouncilsHPCSASAPCbol: boolean = false;
+  copyProofofcompletinginternshipSupervisedpracticebol: boolean = false;
+  copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol: boolean = false;
+  copyProoofcompletingcommunityservicebol: boolean = false;
+  copyOfficialcopyofstampedjoboffersignedbol: boolean = false;
+  copyLatestpayslipbol: boolean = false;
+  copyRegistrationcertificatebol: boolean = false;
+  copyMotivationletterfromemployerbol: boolean = false;
+  copyReleaseletterfromcurrentemployerbol: boolean = false;
+  copyLatestsalaryslipbol : boolean = false;
+  copyPermanentjobofferbol: boolean = false;
+  copyOfficialsupportletterfromUniversitybol: boolean = false;
+  copyMotivationletterfromemployerbol: boolean = false;
+  copyLetterfromthecurrentuniversitybol: boolean = false;
+  copyAcceptanceletterfromSAuniversitybol: boolean = false;
+  copycurriculumvitaebol: boolean = false;
+  copyoriginalcertifiedreferencelettersbol: boolean = false;
+  copyLetterfromtheUniversitybol: boolean = false;
+  copyLetterfromthehospitalbol: boolean = false;
+  copyJ1Visaformsbol: boolean = false;
+  copyStudentundertakingbol: boolean = false;
 
   constructor(private router:Router, private http:Http, private dataelemetservice:DataElementService, private OptionSetsService:OptionSetsService, private programservice:ProgramService, private user:User) {
 
@@ -112,7 +137,7 @@ export class ApplicantProfileComponent implements OnInit {
   ngOnInit() {
     this.loading = false;
     //
-    const lktypeOfApplicationurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:dD5o5dzM6PO';
+    const lktypeOfApplicationurl = '../../../optionSets.json?paging=false&fields=options[name]&filter=id:eq:Pomw5weaEyx';
 
     const userurl = '../../../me.json';
     const programStage = '../../../programStages.json?paging=false&filter=id:eq:EaLamgPg9IE';
@@ -262,7 +287,7 @@ export class ApplicantProfileComponent implements OnInit {
 
     this.docs = [];
     this.applicationNameValue = this.applicationType.value;
-    this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&paging=false&filter=wQxl0pBY1Dq:eq:' + this.applicationNameValue + '&filter=fKLGaOy03uB:eq:true';
+    this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&program=FvVIOpqnKOJ&paging=false&filter=wQxl0pBY1Dq:eq:' + this.applicationNameValue + '&filter=fKLGaOy03uB:eq:true';
     this.programservice.getTrackEntityInstance(this.trackEnUrl).then(result => {
       this.RequiredDocuments = result.trackedEntityInstances;
 
@@ -306,7 +331,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycvbol = true;
 
       }
-      else if (this.selectedApplicationType.trim() == "Extension"){
+      else if (this.selectedApplicationType.trim() == "Extensions"){
         this.copyformalapplicationletterRequiredbol= false
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
@@ -425,7 +450,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycvbol = true;
       }
 
-      else if (this.selectedApplicationType.trim() == "Volunteer"){
+      else if (this.selectedApplicationType.trim() == "Volunteer Application Form"){
         this.copyformalapplicationletterRequiredbol= false
         this.copyPassportRequired=false;
         this.copyOfQualificationRequired= false;
@@ -442,7 +467,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycvbol = true;
 
       }
-      else if (this.selectedApplicationType.trim() == "Postgraduate Studies") {
+      else if (this.selectedApplicationType.trim() == "Postgraduate Studies: University Exams") {
         this.copyformalapplicationletterRequiredbol= false
         this.copyPassportRequired=false;
         this.copyOfQualificationRequired= false;
@@ -478,7 +503,7 @@ export class ApplicantProfileComponent implements OnInit {
 
 
       }
-      else if (this.selectedApplicationType == "Registration Only") {
+      else if (this.selectedApplicationType == "Registration and Employment") {
         this.copyformalapplicationletterRequiredbol= false
         this.copyPassportRequired=false;
         this.copyOfQualificationRequired= false;
