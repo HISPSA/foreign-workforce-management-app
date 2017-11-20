@@ -164,6 +164,9 @@ prefferedComunnicationType: any
   userDisplayname: string;
 
 
+  order: string = "name";
+  ascending: boolean = true;
+
 // loading: boolean=false;
 
 

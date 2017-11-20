@@ -51,7 +51,8 @@ import {Attributes} from "./attributes";
 import {Enrollments} from "./enrollments";
 import {TrackedEntityInstances} from "./tracked-entity-instances";
 
-
+import {OrderBy} from './OrderByPipes';
+import {FilterPipe} from './FilterPipes';
 
 
 const appRoutes: Routes = [
@@ -94,7 +95,9 @@ const appRoutes: Routes = [
     NotificationDetailComponent,
     ApplicantPtofileComponent,
     FaqFormsComponent,
-    ApplicantProfileComponent
+    ApplicantProfileComponent,
+    OrderBy,
+    FilterPipe
 
   ],
   imports: [

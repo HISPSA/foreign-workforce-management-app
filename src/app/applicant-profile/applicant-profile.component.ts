@@ -93,7 +93,7 @@ export class ApplicantProfileComponent implements OnInit {
   copyProofofcompletinginternshipSupervisedpracticebol: boolean = false;
   copyRegistrationcertificatefromcouncilsHPCSASAPCbol: boolean = false;
   copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol: boolean = false;
-  copyProoofcompletingcommunityservicebol: boolean = false;
+  copyProofcompletingcommunityservicebol: boolean = false;
   copyOfficialcopyofstampedjoboffersignedbol: boolean = false;
   copyLatestpayslipbol: boolean = false;
   copyRegistrationcertificatebol: boolean = false;
@@ -110,6 +110,10 @@ export class ApplicantProfileComponent implements OnInit {
   copyLetterfromthehospitalbol: boolean = false;
   copyJ1Visaformsbol: boolean = false;
   copyStudentundertakingbol: boolean = false;
+
+
+  order: string = "name";
+  ascending: boolean = true;
 
   constructor(private router:Router, private http:Http, private dataelemetservice:DataElementService, private OptionSetsService:OptionSetsService, private programservice:ProgramService, private user:User) {
 
@@ -308,7 +312,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copySpouseEmploymentLetterRequired=true;
         this.copycvbol = true;
       }
-      else if (this.selectedApplicationType.trim() == "Supervise Practice Employment"){
+      else if (this.selectedApplicationType.trim() == "Supervise Practice"){
         this.copyformalapplicationletterRequiredbol= false
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= true;
@@ -336,7 +340,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=true;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
@@ -355,7 +359,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyStudentundertakingbol=false;
       }
       else if (this.selectedApplicationType.trim() == "Extensions"){
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true;
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
@@ -378,7 +382,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=true;
         this.copyRegistrationcertificatebol=false;
@@ -422,7 +426,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=true;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=true;
         this.copyRegistrationcertificatebol=false;
@@ -467,7 +471,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=true;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=true;
         this.copyRegistrationcertificatebol=false;
@@ -507,10 +511,10 @@ export class ApplicantProfileComponent implements OnInit {
         // copyRegistrationcertificatefromcouncilsbol
         this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=false;
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
-        this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
+        this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=true;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyProofcompletingcommunityservicebol=false;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
@@ -550,10 +554,10 @@ export class ApplicantProfileComponent implements OnInit {
         this.copymotivationletterfromtheuniversitybol=false;
         // copyRegistrationcertificatefromcouncilsbol
         this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=false;
-        this.copyProofofcompletinginternshipSupervisedpracticebol=false;
-        this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
+        this.copyProofofcompletinginternshipSupervisedpracticebol=true;
+        this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=true;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
@@ -597,7 +601,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
@@ -640,8 +644,8 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyProofcompletingcommunityservicebol=true;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
@@ -659,10 +663,10 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyStudentundertakingbol=false;
       }
 
-      else if (this.selectedApplicationType.trim() == "Volunteer Application Form"){
-        this.copyformalapplicationletterRequiredbol= false
-        this.copyPassportRequired=false;
-        this.copyOfQualificationRequired= false;
+      else if (this.selectedApplicationType.trim() == "Volunteer"){
+        this.copyformalapplicationletterRequiredbol= true
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= true;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
         this.copySpouseIdRequired=false;
@@ -684,8 +688,8 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyProofcompletingcommunityservicebol=false;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
@@ -696,7 +700,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthecurrentuniversitybol=false;
         this.copyAcceptanceletterfromSAuniversitybol=false;
         this.copycurriculumvitaebol=false;
-        this.copyoriginalcertifiedreferencelettersbol=false;
+        this.copyoriginalcertifiedreferencelettersbol=true;
         this.copyLetterfromtheUniversitybol=false;
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
@@ -728,7 +732,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
@@ -750,7 +754,7 @@ export class ApplicantProfileComponent implements OnInit {
       else if (this.selectedApplicationType == "Exchange Programme") {
 
         this.copyformalapplicationletterRequiredbol= false
-        this.copyPassportRequired=false;
+        this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
@@ -760,7 +764,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyPoliceAffidavit=false;
         this.copySpouseEmploymentContract=false;
         this.copySpouseVISA=false;
-        this.copySpouseLatestSalaryRequired=true;
+        this.copySpouseLatestSalaryRequired=false;
         this.copySpouseEmploymentLetterRequired=false;
         this.copycvbol = true;
 
@@ -774,7 +778,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
@@ -784,10 +788,10 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyPermanentjobofferbol=false;
         this.copyOfficialsupportletterfromUniversitybol=false;
         this.copyLetterfromthecurrentuniversitybol=false;
-        this.copyAcceptanceletterfromSAuniversitybol=false;
-        this.copycurriculumvitaebol=false;
+        this.copyAcceptanceletterfromSAuniversitybol=true;
+        this.copycurriculumvitaebol=true;
         this.copyoriginalcertifiedreferencelettersbol=false;
-        this.copyLetterfromtheUniversitybol=false;
+        this.copyLetterfromtheUniversitybol=true;
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
@@ -819,7 +823,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
@@ -863,7 +867,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProoofcompletingcommunityservicebol=false;
+        this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
