@@ -114,7 +114,6 @@ export class ApplicantProfileComponent implements OnInit {
 
   order: string = "name";
   ascending: boolean = true;
-
   constructor(private router:Router, private http:Http, private dataelemetservice:DataElementService, private OptionSetsService:OptionSetsService, private programservice:ProgramService, private user:User) {
 
     this.eventPayload = new events();
