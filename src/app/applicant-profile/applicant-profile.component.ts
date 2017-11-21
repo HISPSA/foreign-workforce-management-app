@@ -1020,7 +1020,6 @@ export class ApplicantProfileComponent implements OnInit {
       else {
         //events will go in here and that is it
         //events for file upload in here
-
         //post a file here and get the id from the response
         let formData:FormData = new FormData();
         let headers = new Headers();
@@ -1034,16 +1033,13 @@ export class ApplicantProfileComponent implements OnInit {
             // get the file uuid and store it.
             console.log(data);
             console.log(data.response.fileResource.id);
-            //  this.attrFilePassportId =data.response.fileResource.id;
-
+            //this.attrFilePassportId =data.response.fileResource.id;
             this.filetoupload.dataElement = event.target.name;
             this.filetoupload.value = data.response.fileResource.id;
-
               //check if the dataelement already exists. If it exists, replace the value.
-              //lopp through th daValuesArray
+              //loop through th daValuesArray
             this.dataValuesArray.push(this.filetoupload);
-
-              console.log("array values: "+this.dataValuesArray)
+            console.log("array values: "+this.dataValuesArray);
 
             fileList = null;
             this.filetoupload= new dataValues();
