@@ -252,13 +252,13 @@ export class ApplicantProfileComponent implements OnInit {
     const urlSendEvents = '../../../events';
     const urlSendEnrol = '../../../enrollments'
 
-    this.eventPayload = null;
-    this.enrollment = null;
+    //this.eventPayload = null;
+   // this.enrollment = null;
 //    this.dataValuesArray = null;
 
     this.eventPayload = new events();
     this.enrollment = new Enrollments;
-//   this.dataValuesArray = [];
+    this.dataValuesArray = [];
     //
     this.eventPayload.orgUnit = this.orgunit;
     this.eventPayload.program = "perc4ZpWBWr";
