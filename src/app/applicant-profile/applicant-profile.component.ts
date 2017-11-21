@@ -110,6 +110,8 @@ export class ApplicantProfileComponent implements OnInit {
   copyLetterfromthehospitalbol: boolean = false;
   copyJ1Visaformsbol: boolean = false;
   copyStudentundertakingbol: boolean = false;
+  copyCriticalExceptionalskillsbol :boolean =  false;
+  copyTransfertoanotherinstitutionbol: boolean = false;
 
 
   order: string = "name";
@@ -296,7 +298,7 @@ export class ApplicantProfileComponent implements OnInit {
       console.log("Required Docs for " + this.RequiredDocuments)
 
       if (this.selectedApplicationType.trim() == "First Time Application"){
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true;
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= true;
         this.copyOfProffesionalRegistrationRequired=true;
@@ -310,9 +312,11 @@ export class ApplicantProfileComponent implements OnInit {
         this.copySpouseLatestSalaryRequired=true;
         this.copySpouseEmploymentLetterRequired=true;
         this.copycvbol = true;
+
+
       }
       else if (this.selectedApplicationType.trim() == "Supervise Practice"){
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= true;
 
@@ -356,6 +360,8 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
       else if (this.selectedApplicationType.trim() == "Extensions"){
         this.copyformalapplicationletterRequiredbol= true;
@@ -384,7 +390,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=true;
-        this.copyRegistrationcertificatebol=false;
+        this.copyRegistrationcertificatebol=true;
         this.copyMotivationletterfromemployerbol=true;
         this.copyReleaseletterfromcurrentemployerbol=false;
         this.copyLatestsalaryslipbol=false;
@@ -398,10 +404,12 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
 
       }
       else if (this.selectedApplicationType.trim() == "Permanent Residence"){
-        this.copyformalapplicationletterRequiredbol= false;
+        this.copyformalapplicationletterRequiredbol= true;
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
@@ -442,11 +450,13 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
+        this.copyCriticalExceptionalskillsbol = true;
+        this.copyTransfertoanotherinstitutionbol = false;
 
       }
       else if (this.selectedApplicationType.trim() == "Transfer"){
-        this.copyformalapplicationletterRequiredbol= false
-        this.copyPassportRequired=false;
+        this.copyformalapplicationletterRequiredbol= true;
+        this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
@@ -486,10 +496,13 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
+
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = true;
       }
       else if (this.selectedApplicationType.trim() == "Internship") {
         this.copyformalapplicationletterRequiredbol= true
-        this.copyPassportRequired=false;
+        this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=true;
@@ -506,7 +519,7 @@ export class ApplicantProfileComponent implements OnInit {
 
         //additional applications
 
-        this.copymotivationletterfromtheuniversitybol=false;
+        this.copymotivationletterfromtheuniversitybol=true;
         // copyRegistrationcertificatefromcouncilsbol
         this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=false;
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
@@ -526,13 +539,14 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycurriculumvitaebol=false;
         this.copyoriginalcertifiedreferencelettersbol=false;
         this.copyLetterfromtheUniversitybol=false;
-        this.copyLetterfromthehospitalbol=false;
+        this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
-
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
       else if (this.selectedApplicationType.trim() == "Community Service"){
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true;
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
@@ -557,7 +571,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=true;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
         this.copyProofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
@@ -574,9 +588,12 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
 
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
+
       }
       else if (this.selectedApplicationType.trim() == "Seeking employment"){
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=true;
@@ -596,12 +613,12 @@ export class ApplicantProfileComponent implements OnInit {
 
         this.copymotivationletterfromtheuniversitybol=false;
         // copyRegistrationcertificatefromcouncilsbol
-        this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=false;
+        this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=true;
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
-        this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
+        this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=true;
         this.copyProofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
@@ -614,10 +631,12 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycurriculumvitaebol=false;
         this.copyoriginalcertifiedreferencelettersbol=false;
         this.copyLetterfromtheUniversitybol=false;
-        this.copyLetterfromthehospitalbol=false;
+        this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
 
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
       else if (this.selectedApplicationType.trim() == "Registration and Employment"){
         this.copyformalapplicationletterRequiredbol= true
@@ -657,13 +676,16 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycurriculumvitaebol=false;
         this.copyoriginalcertifiedreferencelettersbol=false;
         this.copyLetterfromtheUniversitybol=false;
-        this.copyLetterfromthehospitalbol=false;
+        this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
+
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
 
       else if (this.selectedApplicationType.trim() == "Volunteer"){
-        this.copyformalapplicationletterRequiredbol= true
+        this.copyformalapplicationletterRequiredbol= true;
         this.copyPassportRequired=true;
         this.copyOfQualificationRequired= true;
         this.copyOfProffesionalRegistrationRequired=false;
@@ -701,15 +723,18 @@ export class ApplicantProfileComponent implements OnInit {
         this.copycurriculumvitaebol=false;
         this.copyoriginalcertifiedreferencelettersbol=true;
         this.copyLetterfromtheUniversitybol=false;
-        this.copyLetterfromthehospitalbol=false;
+        this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
 
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
+
       }
       else if (this.selectedApplicationType.trim() == "Postgraduate Studies: University Exams") {
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true
         this.copyPassportRequired=false;
-        this.copyOfQualificationRequired= false;
+        this.copyOfQualificationRequired= true;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
         this.copySpouseIdRequired=false;
@@ -748,13 +773,16 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
+
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
 
       else if (this.selectedApplicationType == "Exchange Programme") {
 
-        this.copyformalapplicationletterRequiredbol= false
+        this.copyformalapplicationletterRequiredbol= true;
         this.copyPassportRequired=true;
-        this.copyOfQualificationRequired= false;
+        this.copyOfQualificationRequired= true;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
         this.copySpouseIdRequired=false;
@@ -780,7 +808,7 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyProofcompletingcommunityservicebol=false;
         this.copyOfficialcopyofstampedjoboffersignedbol=false;
         this.copyLatestpayslipbol=false;
-        this.copyRegistrationcertificatebol=false;
+        this.copyRegistrationcertificatebol=true;
         this.copyMotivationletterfromemployerbol=false;
         this.copyReleaseletterfromcurrentemployerbol=false;
         this.copyLatestsalaryslipbol=false;
@@ -789,17 +817,20 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthecurrentuniversitybol=false;
         this.copyAcceptanceletterfromSAuniversitybol=true;
         this.copycurriculumvitaebol=true;
-        this.copyoriginalcertifiedreferencelettersbol=false;
+        this.copyoriginalcertifiedreferencelettersbol=true;
         this.copyLetterfromtheUniversitybol=true;
         this.copyLetterfromthehospitalbol=false;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
 
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
+
 
       }
-      else if (this.selectedApplicationType == "Registration and Employment") {
-        this.copyformalapplicationletterRequiredbol= false
-        this.copyPassportRequired=false;
+      else if (this.selectedApplicationType == "Registration Only") {
+        this.copyformalapplicationletterRequiredbol= true;
+        this.copyPassportRequired=true;
         this.copyOfQualificationRequired= false;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
@@ -818,12 +849,12 @@ export class ApplicantProfileComponent implements OnInit {
 
         this.copymotivationletterfromtheuniversitybol=false;
         // copyRegistrationcertificatefromcouncilsbol
-        this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=false;
+        this.copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabol=true;
         this.copyProofofcompletinginternshipSupervisedpracticebol=false;
         this.copyRegistrationcertificatefromcouncilsHPCSASAPCbol=false;
         this.copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol=false;
-        this.copyProofcompletingcommunityservicebol=false;
-        this.copyOfficialcopyofstampedjoboffersignedbol=false;
+        this.copyProofcompletingcommunityservicebol=true;
+        this.copyOfficialcopyofstampedjoboffersignedbol=true;
         this.copyLatestpayslipbol=false;
         this.copyRegistrationcertificatebol=false;
         this.copyMotivationletterfromemployerbol=false;
@@ -833,18 +864,20 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyOfficialsupportletterfromUniversitybol=false;
         this.copyLetterfromthecurrentuniversitybol=false;
         this.copyAcceptanceletterfromSAuniversitybol=false;
-        this.copycurriculumvitaebol=false;
+        this.copycurriculumvitaebol=true;
         this.copyoriginalcertifiedreferencelettersbol=false;
         this.copyLetterfromtheUniversitybol=false;
-        this.copyLetterfromthehospitalbol=false;
+        this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=false;
         this.copyStudentundertakingbol=false;
 
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
       else if (this.selectedApplicationType == "Supernumerary") {
-        this.copyformalapplicationletterRequiredbol= false
-        this.copyPassportRequired=false;
-        this.copyOfQualificationRequired= false;
+        this.copyformalapplicationletterRequiredbol= true;
+        this.copyPassportRequired=true;
+        this.copyOfQualificationRequired= true;
         this.copyOfProffesionalRegistrationRequired=false;
         this.copyOfReferenceLetters=false;
         this.copySpouseIdRequired=false;
@@ -878,11 +911,14 @@ export class ApplicantProfileComponent implements OnInit {
         this.copyLetterfromthecurrentuniversitybol=false;
         this.copyAcceptanceletterfromSAuniversitybol=false;
         this.copycurriculumvitaebol=false;
-        this.copyoriginalcertifiedreferencelettersbol=false;
+        this.copyoriginalcertifiedreferencelettersbol=true;
         this.copyLetterfromtheUniversitybol=true;
         this.copyLetterfromthehospitalbol=true;
         this.copyJ1Visaformsbol=true;
         this.copyStudentundertakingbol=true;
+
+        this.copyCriticalExceptionalskillsbol = false;
+        this.copyTransfertoanotherinstitutionbol = false;
       }
 
       if (Object.keys(this.RequiredDocuments).length > 0) {

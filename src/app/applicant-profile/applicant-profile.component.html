@@ -25,6 +25,12 @@
             <div class="panel panel-default">
               <div class="panel-heading">REQUIRED DOCUMENTS </div>
 
+              <div *ngIf="copyformalapplicationletterRequiredbol">
+                <label> Copy formal application letter required</label>
+                <input type="file" id = "copyformalapplicationletterRequiredbolId" data-max-size="2048" name = "ULcSjvW3wfc"  (change)="onFileChange($event)" >
+              </div>
+
+
               <div *ngIf="copyPassportRequired">
                 <label> Notarised copy of Passport / Identity Document / Refugee Status / Permanent Residence Certificate </label>
                 <input type="file" id = "passportfileId" data-max-size="2048" name = "Gcpk3BqfTfY"  (change)="onFileChange($event)" >
@@ -67,7 +73,7 @@
               </div>
 
               <div *ngIf="copyResidenceVISARequired">
-                <label> Original Notarised copy of residence permit, indicating “to reside with SA spouse / life-partner</label>
+                <label> Original Notarised copy of residence VISA, indicating “to reside with SA spouse / life-partner</label>
                 <input type="file" id="residencePermitfileId" data-max-size="2048" name = "QCGwC8WHzIV" (change)="onFileChange($event)">
               </div>
 
@@ -82,7 +88,7 @@
               </div>
 
               <div *ngIf="copySpouseVISA">
-                <label> Original Notarised copy of spouse’s work permit</label>
+                <label> Original Notarised copy of spouse’s work VISA</label>
                 <input type="file" id = "spouseWorkPermitfileId" data-max-size="2048" name = "xJUWub6Na81" (change)="onFileChange($event)">
               </div>
 
@@ -92,7 +98,7 @@
               </div>
 
               <div *ngIf="copySpouseEmploymentLetterRequired">
-                <label> Original Letter from spouse’s employer confirming employment (not older than 30 days at time of submission</label>
+                <label> Original Letter from spouse’s employer confirming employment (not older than 30 days at time of submission)</label>
                 <input type="file" id="spouseEmploymentId" data-max-size="2048" name = "pCuas8xccgp" (change)="onFileChange($event)">
               </div>
 
@@ -123,12 +129,12 @@
                 <input type="file" id="copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbolId" data-max-size="2048" name = "kmf3TzMlMZK" (change)="onFileChange($event)">
               </div>
 
-              <div *ngIf="copyProoofcompletingcommunityservicebol">
+              <div *ngIf="copyProofcompletingcommunityservicebol">
                 <label>Copy of proof completing community service</label>
-                <input type="file" id="copyProoofcompletingcommunityservicebolId" data-max-size="2048" name = "NI3zNAv7oVr" (change)="onFileChange($event)">
+                <input type="file" id="copyProofcompletingcommunityservicebolId" data-max-size="2048" name = "NI3zNAv7oVr" (change)="onFileChange($event)">
               </div>
                        <div *ngIf="copyOfficialcopyofstampedjoboffersignedbol">
-                <label>Copy of stamped motivation letter from the university/institution</label>
+                <label>Official copy of stamped job offer signed by the (Hospital/Intuition)</label>
                 <input type="file" id="copyOfficialcopyofstampedjoboffersignedbolId" data-max-size="2048" name = "zCLxCuJHHxL" (change)="onFileChange($event)">
               </div>
 
@@ -182,7 +188,7 @@
               </div>
 
               <div *ngIf="copyLetterfromthehospitalbol">
-              <label>Copy of letter from the hospital</label>
+              <label>Copy of acceptance letter from the hospital</label>
               <input type="file" id="copyLetterfromthehospitalbolId" data-max-size="2048" name = "zCLxCuJHHxL" (change)="onFileChange($event)">
             </div>
 
@@ -194,6 +200,18 @@
               <div *ngIf="copyStudentundertakingbol">
                 <label>Copy of student undertaking</label>
                 <input type="file" id="copyStudentundertakingbolId" data-max-size="2048" name = "LYQvw6ynmmQ" (change)="onFileChange($event)">
+              </div>
+
+
+
+              <div *ngIf="copyCriticalExceptionalskillsbol">
+                <label>Copy of Critical/Exceptional skills VISA</label>
+                <input type="file" id="copyCriticalExceptionalskillsbolId" data-max-size="2048" name = "SrduT8ItOWc" (change)="onFileChange($event)">
+              </div>
+
+              <div *ngIf="copyTransfertoanotherinstitutionbol">
+                <label>Copy of Transfer to another institution</label>
+                <input type="file" id="copyTransfertoanotherinstitutionId" data-max-size="2048" name = "oha7gtVN7zy" (change)="onFileChange($event)">
               </div>
 
             </div>
