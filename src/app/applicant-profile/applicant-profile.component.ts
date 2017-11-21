@@ -52,6 +52,9 @@ export class ApplicantProfileComponent implements OnInit {
   //URLs
   eventurl:string = '../../../events';
 
+
+
+
   userDisplayname:string = "";
 
   outstandingDocsCheck:boolean;
@@ -156,6 +159,9 @@ export class ApplicantProfileComponent implements OnInit {
   copyCriticalExceptionalskillsFileId: string;
   copyTransfertoanotherinstitutionFileId: string;
 
+  filetoupload:dataValues;
+
+
 
   order: string = "name";
   ascending: boolean = true;
@@ -166,6 +172,8 @@ export class ApplicantProfileComponent implements OnInit {
     this.applicationDate = new dataValues();
     this.applicationStatus = new dataValues();
     this.applicationNotes = new dataValues();
+
+    this.filetoupload = new dataValues();
 
     this.dataValuesArray = [];
     this.applicantDetails = [];
@@ -246,11 +254,11 @@ export class ApplicantProfileComponent implements OnInit {
 
     this.eventPayload = null;
     this.enrollment = null;
-    this.dataValuesArray = null;
+//    this.dataValuesArray = null;
 
     this.eventPayload = new events();
     this.enrollment = new Enrollments;
-    this.dataValuesArray = [];
+//   this.dataValuesArray = [];
     //
     this.eventPayload.orgUnit = this.orgunit;
     this.eventPayload.program = "perc4ZpWBWr";
@@ -1009,471 +1017,46 @@ export class ApplicantProfileComponent implements OnInit {
       if (fileSize > 2097152) {
         alert("The file size to upload cannot bigger than 2MB ");
       }
-
       else {
         //events will go in here and that is it
         //events for file upload in here
 
+        //post a file here and get the id from the response
+        let formData:FormData = new FormData();
+        let headers = new Headers();
+        headers.set('Accept', 'application/json');
+        let options = new RequestOptions({headers: headers});
+        formData.append("file", file, file.name);
+
+        this.http.post(fileResourceURL, formData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+            data => {
+            // Consume Files
+            // get the file uuid and store it.
+            console.log(data);
+            console.log(data.response.fileResource.id);
+            //  this.attrFilePassportId =data.response.fileResource.id;
+
+            this.filetoupload.dataElement = event.target.name;
+            this.filetoupload.value = data.response.fileResource.id;
+            this.dataValuesArray.push(this.filetoupload);
+
+              console.log("array values: "+this.dataValuesArray)
+
+            fileList = null;
+            this.filetoupload= new dataValues();
+          },
+            error => {
+            console.log(error)
+          },
+          () => {
+            //this.sleep(1000).then(() =>
+            // .. Post Upload Delayed Action
+          });
       }
     } else {
       alert("Only pdf files are allowed uploaded ");
+      //event.target.files[0] = null;
     }
-
-
-    if (event.target.name == "tPkMXstaJhb") {
-      //post a file here and get the id from the response
-      let passportfileformData:FormData = new FormData();
-      // passportfileformData.append('file',file.name);
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      passportfileformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, passportfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //  this.attrFilePassportId =data.response.fileResource.id;
-
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-
-    if (event.target.name == "ASKtPeETyxl") {
-      let cvfileformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      cvfileformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, cvfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //   this.attrFileCVId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-    if (event.target.name == "wEvvumpKO4f") {
-      let profRegfileformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      profRegfileformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, profRegfileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          // this.attrFileProfRegistrationId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-    }
-    if (event.target.name == "FxiLQf0rO4X") {
-      let RefLetterformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      RefLetterformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, RefLetterformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //     this.attrFileRefLetterId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-
-    //duplicate
-    if (event.target.name == "cgjcuzHaF0g") {
-      let lifePatnerFileformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      lifePatnerFileformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, lifePatnerFileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //   this.attrFileSpouseIDId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-    }
-
-    if (event.target.name == "ZmKDdaCulxi") {
-      let affidavitFileformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      affidavitFileformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, affidavitFileformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //   this.attrFileAffidavitId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-
-    if (event.target.name == "ykkBPofpXkN") {
-      let spouseContractFileIdformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      spouseContractFileIdformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, spouseContractFileIdformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //   this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-
-    }
-    if (event.target.name == "Npb4uxepgS0") {
-      let SpouseWorkPermitformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      SpouseWorkPermitformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, SpouseWorkPermitformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //   this.attrFileSpouseWorkPermitId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-
-    }
-    if (event.target.name == "FRjvttNPPTe") {
-      let SpouseSalarySlipformData:FormData = new FormData();
-
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      SpouseSalarySlipformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, SpouseSalarySlipformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //  this.attrFileSpouseSalarySlipId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-    if (event.target.name == "ciXetLi20PE") {
-      let SpouseEmploymentContractformData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      SpouseEmploymentContractformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, SpouseEmploymentContractformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //  this.attrFileSpouseEmploymentContractId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-    }
-
-    if (event.target.name == "NoIxOHbZHP3") {
-      let marriageCertificateFormData:FormData = new FormData();
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      marriageCertificateFormData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, marriageCertificateFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          // this.attrFileMarriageCertificateId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-        });
-
-    }
-
-    if (event.target.name == "yT2ZZpWDqrM") {
-      let qualificationFormData:FormData = new FormData();
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      qualificationFormData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, qualificationFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //   this.attrFileQualificationsId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-    }
-
-    if (event.target.name == "g5I2ZHDlycD") {
-      let FileResidencePermitFormData:FormData = new FormData();
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      FileResidencePermitFormData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, FileResidencePermitFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //this.attrFileResidencePermitId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-        });
-    }
-
-    if (event.target.name == "w0zt6ubwF8N") {
-      let copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabolFormData:FormData = new FormData();
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabolFormData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabolFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //  this.attrFileResidencePermitId =data.response.fileResource.id;
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-
-    }
-
-
-    if (event.target.name == "ULcSjvW3wfc") {
-      //post a file here and get the id from the response
-      let copymotivationletterformData:FormData = new FormData();
-      // passportfileformData.append('file',file.name);
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      copymotivationletterformData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, copymotivationletterformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //  this.attrFilePassportId =data.response.fileResource.id;
-
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-
-
-
-
-    if (event.target.name == "ULcSjvW3wfc") {
-      //post a file here and get the id from the response
-      let copyProofofcompletinginternshipSupervisedpracticebolFormData:FormData = new FormData();
-      // passportfileformData.append('file',file.name);
-
-      let headers = new Headers();
-      headers.set('Accept', 'application/json');
-      let options = new RequestOptions({headers: headers});
-      copyProofofcompletinginternshipSupervisedpracticebolFormData.append("file", file, file.name);
-
-      this.http.post(fileResourceURL, copyProofofcompletinginternshipSupervisedpracticebolFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
-          data => {
-          // Consume Files
-          // get the file uuid and store it.
-          console.log(data);
-          console.log(data.response.fileResource.id);
-          //  this.attrFilePassportId =data.response.fileResource.id;
-
-          fileList = null;
-        },
-          error => {
-          console.log(error)
-        },
-        () => {
-          //this.sleep(1000).then(() =>
-          // .. Post Upload Delayed Action
-
-        });
-    }
-
-
-
-
-
-
-
-
 
   }
 }
