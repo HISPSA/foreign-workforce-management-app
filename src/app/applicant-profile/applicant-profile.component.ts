@@ -113,6 +113,49 @@ export class ApplicantProfileComponent implements OnInit {
   copyCriticalExceptionalskillsbol :boolean =  false;
   copyTransfertoanotherinstitutionbol: boolean = false;
 
+  copyformalapplicationletterRequiredFileId: string;
+  copyPassportRequiredFileId: string;
+  copyOfQualificationRequiredFileId: string;
+  copyOfProffesionalRegistrationRequiredFileId: string;
+  copyOfReferenceLettersFileId: string;
+  copySpouseIdRequiredFileId: string;
+  copyOfMarriageCertificateFileId: string;
+  copyResidenceVISARequiredFileId: string;
+  copyPoliceAffidavitFileId: string;
+  copySpouseEmploymentContractFileId: string;
+  copySpouseVISAFileId: string;
+  copySpouseLatestSalaryRequiredFileId: string;
+  copySpouseEmploymentLetterRequiredFileId: string;
+  copycvbolFileId: string;
+
+  //additional applications
+
+  copymotivationletterfromtheuniversitybolFileId: string;
+  // copyRegistrationcertificatefromcouncilsbol
+  copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisaFileId: string;
+  copyProofofcompletinginternshipSupervisedpracticeFileId: string;
+  copyRegistrationcertificatefromcouncilsHPCSASAPCFileId: string;
+  copyProofofbeingsuccessfulinexamsHPCSASANCSAPCFileId: string;
+  copyProofcompletingcommunityserviceFileId: string;
+  copyOfficialcopyofstampedjoboffersignedFileId: string;
+  copyLatestpayslipFileId: string;
+  copyRegistrationcertificateFileId: string;
+  copyMotivationletterfromemployerFileId: string;
+  copyReleaseletterfromcurrentemployerFileId: string;
+  copyLatestsalaryslipFileId: string;
+  copyPermanentjobofferFileId: string;
+  copyOfficialsupportletterfromUniversityFileId: string;
+  copyLetterfromthecurrentuniversityFileId: string;
+  copyAcceptanceletterfromSAuniversityFileId: string;
+  copycurriculumvitaeFileId: string;
+  copyoriginalcertifiedreferencelettersFileId: string;
+  copyLetterfromtheUniversityFileId: string;
+  copyLetterfromthehospitalFileId: string;
+  copyJ1VisaformsFileId: string;
+  copyStudentundertakingFileId: string;
+  copyCriticalExceptionalskillsFileId: string;
+  copyTransfertoanotherinstitutionFileId: string;
+
 
   order: string = "name";
   ascending: boolean = true;
@@ -964,9 +1007,11 @@ export class ApplicantProfileComponent implements OnInit {
 
       //check the file size here if bigger than 2MB do not allow upload
       if (fileSize > 2097152) {
+        alert("The file size to upload cannot bigger than 2MB ");
       }
-      //events will go in here and that is  it
+
       else {
+        //events will go in here and that is it
         //events for file upload in here
 
       }
@@ -975,7 +1020,7 @@ export class ApplicantProfileComponent implements OnInit {
     }
 
 
-    if (event.target.name == "Gcpk3BqfTfY") {
+    if (event.target.name == "tPkMXstaJhb") {
       //post a file here and get the id from the response
       let passportfileformData:FormData = new FormData();
       // passportfileformData.append('file',file.name);
@@ -1005,7 +1050,7 @@ export class ApplicantProfileComponent implements OnInit {
         });
     }
 
-    if (event.target.name == "wKg02nSAnth") {
+    if (event.target.name == "ASKtPeETyxl") {
       let cvfileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1031,7 +1076,7 @@ export class ApplicantProfileComponent implements OnInit {
 
         });
     }
-    if (event.target.name == "kL7nLPq9HmS") {
+    if (event.target.name == "wEvvumpKO4f") {
       let profRegfileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1058,7 +1103,7 @@ export class ApplicantProfileComponent implements OnInit {
         });
 
     }
-    if (event.target.name == "TeUV3frsYEc") {
+    if (event.target.name == "FxiLQf0rO4X") {
       let RefLetterformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1086,7 +1131,7 @@ export class ApplicantProfileComponent implements OnInit {
     }
 
     //duplicate
-    if (event.target.name == "QCGwC8WHzIV") {
+    if (event.target.name == "cgjcuzHaF0g") {
       let lifePatnerFileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1114,7 +1159,7 @@ export class ApplicantProfileComponent implements OnInit {
 
     }
 
-    if (event.target.name == "OOCZMGkv1SF") {
+    if (event.target.name == "ZmKDdaCulxi") {
       let affidavitFileformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1141,7 +1186,7 @@ export class ApplicantProfileComponent implements OnInit {
         });
     }
 
-    if (event.target.name == "BnAeQ9CfPqD") {
+    if (event.target.name == "ykkBPofpXkN") {
       let spouseContractFileIdformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1169,7 +1214,7 @@ export class ApplicantProfileComponent implements OnInit {
 
 
     }
-    if (event.target.name == "xJUWub6Na81") {
+    if (event.target.name == "Npb4uxepgS0") {
       let SpouseWorkPermitformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1197,7 +1242,7 @@ export class ApplicantProfileComponent implements OnInit {
 
 
     }
-    if (event.target.name == "i63qGgDCqWK") {
+    if (event.target.name == "FRjvttNPPTe") {
       let SpouseSalarySlipformData:FormData = new FormData();
 
 
@@ -1224,7 +1269,7 @@ export class ApplicantProfileComponent implements OnInit {
 
         });
     }
-    if (event.target.name == "pCuas8xccgp") {
+    if (event.target.name == "ciXetLi20PE") {
       let SpouseEmploymentContractformData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1252,7 +1297,7 @@ export class ApplicantProfileComponent implements OnInit {
 
     }
 
-    if (event.target.name == "ukQzrmcUQgu") {
+    if (event.target.name == "NoIxOHbZHP3") {
       let marriageCertificateFormData:FormData = new FormData();
 
       let headers = new Headers();
@@ -1279,7 +1324,7 @@ export class ApplicantProfileComponent implements OnInit {
 
     }
 
-    if (event.target.name == "BQAchMg4aMq") {
+    if (event.target.name == "yT2ZZpWDqrM") {
       let qualificationFormData:FormData = new FormData();
       let headers = new Headers();
       headers.set('Accept', 'application/json');
@@ -1306,7 +1351,7 @@ export class ApplicantProfileComponent implements OnInit {
 
     }
 
-    if (event.target.name == "QCGwC8WHzIV") {
+    if (event.target.name == "g5I2ZHDlycD") {
       let FileResidencePermitFormData:FormData = new FormData();
       let headers = new Headers();
       headers.set('Accept', 'application/json');
@@ -1331,14 +1376,14 @@ export class ApplicantProfileComponent implements OnInit {
         });
     }
 
-    if (event.target.name == "QCGwC8WHzIV") {
-      let FileResidencePermitFormData:FormData = new FormData();
+    if (event.target.name == "w0zt6ubwF8N") {
+      let copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabolFormData:FormData = new FormData();
       let headers = new Headers();
       headers.set('Accept', 'application/json');
       let options = new RequestOptions({headers: headers});
-      FileResidencePermitFormData.append("file", file, file.name);
+      copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabolFormData.append("file", file, file.name);
 
-      this.http.post(fileResourceURL, FileResidencePermitFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+      this.http.post(fileResourceURL, copyOriginalcertifiedcopyCertifiedcopyofvalidresidencevisabolFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
           data => {
           // Consume Files
           // get the file uuid and store it.
@@ -1357,6 +1402,77 @@ export class ApplicantProfileComponent implements OnInit {
         });
 
     }
+
+
+    if (event.target.name == "ULcSjvW3wfc") {
+      //post a file here and get the id from the response
+      let copymotivationletterformData:FormData = new FormData();
+      // passportfileformData.append('file',file.name);
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      copymotivationletterformData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, copymotivationletterformData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //  this.attrFilePassportId =data.response.fileResource.id;
+
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+
+
+
+
+    if (event.target.name == "ULcSjvW3wfc") {
+      //post a file here and get the id from the response
+      let copyProofofcompletinginternshipSupervisedpracticebolFormData:FormData = new FormData();
+      // passportfileformData.append('file',file.name);
+
+      let headers = new Headers();
+      headers.set('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      copyProofofcompletinginternshipSupervisedpracticebolFormData.append("file", file, file.name);
+
+      this.http.post(fileResourceURL, copyProofofcompletinginternshipSupervisedpracticebolFormData, options).map(res => res.json()).catch(error => Observable.throw(error)).subscribe(
+          data => {
+          // Consume Files
+          // get the file uuid and store it.
+          console.log(data);
+          console.log(data.response.fileResource.id);
+          //  this.attrFilePassportId =data.response.fileResource.id;
+
+          fileList = null;
+        },
+          error => {
+          console.log(error)
+        },
+        () => {
+          //this.sleep(1000).then(() =>
+          // .. Post Upload Delayed Action
+
+        });
+    }
+
+
+
+
+
+
+
 
 
   }
