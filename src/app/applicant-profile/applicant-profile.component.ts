@@ -24,6 +24,8 @@ import { Http, Response, Headers, RequestOptions,ResponseOptions, URLSearchParam
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
+import { NgForm } from "@angular/forms";
+
 
 @Component({
   selector: 'app-applicant-profile',
@@ -160,11 +162,12 @@ export class ApplicantProfileComponent implements OnInit {
   copyTransfertoanotherinstitutionFileId: string;
 
   filetoupload:dataValues;
-
-
-
   order: string = "name";
   ascending: boolean = true;
+
+  checkIfDataelement: boolean = false;
+
+
   constructor(private router:Router, private http:Http, private dataelemetservice:DataElementService, private OptionSetsService:OptionSetsService, private programservice:ProgramService, private user:User) {
 
     this.eventPayload = new events();
@@ -248,7 +251,7 @@ export class ApplicantProfileComponent implements OnInit {
     this.loading = true;
   }
 
-  SubmitApplication() {
+  SubmitApplication(application: NgForm) {
     const urlSendEvents = '../../../events';
     const urlSendEnrol = '../../../enrollments'
 
@@ -258,7 +261,7 @@ export class ApplicantProfileComponent implements OnInit {
 
     this.eventPayload = new events();
     this.enrollment = new Enrollments;
-    this.dataValuesArray = [];
+
     //
     this.eventPayload.orgUnit = this.orgunit;
     this.eventPayload.program = "perc4ZpWBWr";
@@ -320,6 +323,10 @@ export class ApplicantProfileComponent implements OnInit {
       this.applicationTypeSuccessMessage = this.applicationType.value;
       alert(this.userDisplayname + " : " + this.applicationTypeSuccessMessage + " applied for successfuly.");
     }
+    application.resetForm();
+
+//    window.location.reload();
+
   }
 
   ValidateApplicationRequiredDocs() {
@@ -332,13 +339,10 @@ export class ApplicantProfileComponent implements OnInit {
 
   onApplicationSelection($event) {
 
+    this.dataValuesArray = [];
     console.log("selected dropdown value: " +$event.target.value);
 
     this.selectedApplicationType = $event.target.value;
-
-
-
-
     this.docs = [];
     this.applicationNameValue = this.applicationType.value;
     this.trackEnUrl = '../../../trackedEntityInstances.json?ou=JLA7wl59oN3&program=FvVIOpqnKOJ&paging=false&filter=wQxl0pBY1Dq:eq:' + this.applicationNameValue + '&filter=fKLGaOy03uB:eq:true';
@@ -1038,11 +1042,30 @@ export class ApplicantProfileComponent implements OnInit {
             this.filetoupload.value = data.response.fileResource.id;
               //check if the dataelement already exists. If it exists, replace the value.
               //loop through th daValuesArray
-            this.dataValuesArray.push(this.filetoupload);
+
+
+              for (let element of this.dataValuesArray)
+              {
+                if (element.dataElement==this.filetoupload.dataElement){
+                  element.value= this.filetoupload.value
+                  this.checkIfDataelement= true
+                }
+              }
+
+              if (this.checkIfDataelement==true)
+              {
+                alert("file was already assigned and has been updated;")
+              }else
+              {
+                this.dataValuesArray.push(this.filetoupload);
+              }
             console.log("array values: "+this.dataValuesArray);
 
             fileList = null;
             this.filetoupload= new dataValues();
+
+              this.checkIfDataelement = false;
+
           },
             error => {
             console.log(error)

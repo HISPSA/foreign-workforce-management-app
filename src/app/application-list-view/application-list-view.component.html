@@ -4,18 +4,18 @@
     <div class="panel-body">
 
       <div class="row">
-        <div class="col-sm-4">Application Date</div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3">Application Date</div>
         <div class="col-sm-4">Application Type </div>
-        <div class="col-sm-4">Application Status</div>
+        <div class="col-sm-3">Application Status</div>
       </div>
 
 
-      <div class="row" *ngFor = "let appl of listOfApplications">
-        <div class="col-sm-4">{{appl.created}}</div>
+      <div class="row" *ngFor = "let appl of listOfApplications; let i = index">
+        <div class="col-sm-2">{{i+1}}</div>
+        <div class="col-sm-3">{{appl.created}}</div>
         <div class="col-sm-4">{{appl.dataValues[0].value}}</div>
-        <div class="col-sm-4">{{appl.status}}</div>
-
-      </div>
+        <div class="col-sm-3">{{appl.status}}</div></div>
 
 
     </div>

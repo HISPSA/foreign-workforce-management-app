@@ -2,7 +2,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Application</div>
     <div class="panel-body">
-      <form #application="ngForm" (ngSubmit)= "SubmitApplication()">
+      <form #application="ngForm" (ngSubmit)= "SubmitApplication(application)">
 
         <div class="panel panel-default">
           <div class="panel-heading">Type Of Application</div>
@@ -129,7 +129,7 @@
 
               <div *ngIf="copyRegistrationcertificatefromcouncilsHPCSASAPCbol">
                 <label>Copy of registration certificate from councils (HPCSA, SAPC)</label>
-                <input type="file" id="copyRegistrationcertificatefromcouncilsHPCSASAPCbolId" data-max-size="2048" name = "pCuas8xccgp" (change)="onFileChange($event)">
+                <input type="file" id="copyRegistrationcertificatefromcouncilsHPCSASAPCbolId" data-max-size="2048" name = "tbVfHVWp8wk" (change)="onFileChange($event)">
               </div>
 
               <div *ngIf="copyProofofbeingsuccessfulinexamsHPCSASANCSAPCbol">
@@ -225,7 +225,7 @@
             </div>
           </div>
 
-          <input class="btn btn-primary"  type="submit" value="Apply">
+          <input class="btn btn-primary"  type="submit"     value="Apply">
           </div>
 
 

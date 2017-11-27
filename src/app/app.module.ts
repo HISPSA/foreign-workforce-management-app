@@ -106,7 +106,7 @@ const appRoutes: Routes = [
     HttpModule,
      RouterModule.forRoot(
         appRoutes,
-        { enableTracing: true } // <-- debugging purposes only
+        { enableTracing: true} // <-- debugging purposes only
       )],
   providers: [AlertService,DataElementService,DashboardService, DatasetService, DatavalueService, EventService,  OrganisationUnitService,  ProgramService, VisualiserService,ProgramStageSectionsService, ProgramStageDataElementService, IndicatorService, NetworkAvailability, User,OptionSetsService ],
   bootstrap: [AppComponent]
