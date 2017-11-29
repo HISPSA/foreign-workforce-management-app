@@ -42,11 +42,14 @@ export class ApplicationListViewComponent implements OnInit {
 
   applicantDetails:any[];
 
+  datavalues: any[];
+
   busy: Promise<any>;
 
   constructor(private http:Http, private programService:ProgramService, private user:User, private dataelemetservice:DataElementService, private organisationUnitService:OrganisationUnitService, private OptionSetsService:OptionSetsService, private router:Router) {
     this.listOfApplications = [];
     this.applicantDetails = [];
+    this.datavalues =[];
   }
 
   ngOnInit() {
@@ -73,7 +76,21 @@ export class ApplicationListViewComponent implements OnInit {
 
         this.programService.getListOfApplications(listOfApplicationurl).then(result => {
           this.listOfApplications = result.events;
-          console.log(result.events)
+
+         //start here 28/11/2017
+          /*
+
+          for (let datav of result.events)
+          {
+            this.datavalues = push(datav.dataValues)
+          }
+
+
+
+          */
+
+
+          console.log("event details "+ result.events)
         }).catch(error => console.log(error));
       }).catch(error => console.log(error));
     }).catch(error => console.log(error));

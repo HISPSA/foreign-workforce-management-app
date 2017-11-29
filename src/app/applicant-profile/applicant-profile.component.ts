@@ -161,6 +161,52 @@ export class ApplicantProfileComponent implements OnInit {
   copyCriticalExceptionalskillsFileId: string;
   copyTransfertoanotherinstitutionFileId: string;
 
+
+
+
+  formalapplicationletterRequiredFile: dataValues;
+  PassportRequiredFile: dataValues;
+  QualificationRequiredFile: dataValues;
+  ProffesionalRegistrationRequiredFile: dataValues;
+  ReferenceLettersFile: dataValues;
+  SpouseIdRequiredFile: dataValues;
+  MarriageCertificateFile: dataValues;
+  ResidenceVISARequiredFile: dataValues;
+  PoliceAffidavitFileId: dataValues;
+  SpouseEmploymentContractFile: dataValues;
+  SpouseVISAFile: dataValues;
+  SpouseLatestSalaryRequiredFile: dataValues;
+  SpouseEmploymentLetterRequiredFile: dataValues;
+  cvbolFile: dataValues;
+
+
+  motivationletterfromtheuniversitybolFile: dataValues;
+  // copyRegistrationcertificatefromcouncilsbol
+  OriginalcertifiedcopyCertifiedcopyofvalidresidencevisaFile: dataValues;
+  ProofofcompletinginternshipSupervisedpracticeFile: dataValues;
+  RegistrationcertificatefromcouncilsHPCSASAPCFile: dataValues;
+  ProofofbeingsuccessfulinexamsHPCSASANCSAPCFile: dataValues;
+  ProofcompletingcommunityserviceFile: dataValues;
+  OfficialcopyofstampedjoboffersignedFile: dataValues;
+  LatestpayslipFile: dataValues;
+  RegistrationcertificateFile: dataValues;
+  MotivationletterfromemployerFile: dataValues;
+  ReleaseletterfromcurrentemployerFileId: dataValues;
+  LatestsalaryslipFile: dataValues;
+  PermanentjobofferFile: dataValues;
+  OfficialsupportletterfromUniversityFile: dataValues;
+  LetterfromthecurrentuniversityFile: dataValues;
+  AcceptanceletterfromSAuniversityFile: dataValues;
+  curriculumvitaeFile: dataValues;
+  originalcertifiedreferencelettersFile: dataValues;
+  LetterfromtheUniversityFile: dataValues;
+  LetterfromthehospitalFile: dataValues;
+  J1VisaformsFile: dataValues;
+  StudentundertakingFile: dataValues;
+  CriticalExceptionalskillsFile: dataValues;
+  TransfertoanotherinstitutionFile: dataValues;
+
+
   filetoupload:dataValues;
   order: string = "name";
   ascending: boolean = true;
@@ -177,6 +223,49 @@ export class ApplicantProfileComponent implements OnInit {
     this.applicationNotes = new dataValues();
 
     this.filetoupload = new dataValues();
+
+    //data values for files
+    this.formalapplicationletterRequiredFile= new  dataValues();
+    this.PassportRequiredFile= new  dataValues();
+    this.QualificationRequiredFile= new  dataValues();
+    this.ProffesionalRegistrationRequiredFile= new  dataValues();
+    this.ReferenceLettersFile= new  dataValues();
+    this.SpouseIdRequiredFile= new  dataValues();
+    this.MarriageCertificateFile= new  dataValues();
+    this.ResidenceVISARequiredFile= new  dataValues();
+    this.PoliceAffidavitFileId= new  dataValues();
+    this.SpouseEmploymentContractFile= new  dataValues();
+    this.SpouseVISAFile= new  dataValues();
+    this.SpouseLatestSalaryRequiredFile= new  dataValues();
+    this.SpouseEmploymentLetterRequiredFile= new  dataValues();
+    this.cvbolFile= new  dataValues();
+
+
+    this.motivationletterfromtheuniversitybolFile= new  dataValues();
+    // copyRegistrationcertificatefromcouncilsbol
+    this.OriginalcertifiedcopyCertifiedcopyofvalidresidencevisaFile= new  dataValues();
+    this.ProofofcompletinginternshipSupervisedpracticeFile= new  dataValues();
+    this.RegistrationcertificatefromcouncilsHPCSASAPCFile= new  dataValues();
+    this.ProofofbeingsuccessfulinexamsHPCSASANCSAPCFile= new  dataValues();
+    this.ProofcompletingcommunityserviceFile= new  dataValues();
+    this.OfficialcopyofstampedjoboffersignedFile= new  dataValues();
+    this.LatestpayslipFile= new  dataValues();
+    this.RegistrationcertificateFile= new  dataValues();
+    this.MotivationletterfromemployerFile= new  dataValues();
+    this.ReleaseletterfromcurrentemployerFileId= new  dataValues();
+    this.LatestsalaryslipFile= new  dataValues();
+    this.PermanentjobofferFile= new  dataValues();
+    this.OfficialsupportletterfromUniversityFile= new  dataValues();
+    this.LetterfromthecurrentuniversityFile= new  dataValues();
+    this.AcceptanceletterfromSAuniversityFile= new  dataValues();
+    this.curriculumvitaeFile= new  dataValues();
+    this.originalcertifiedreferencelettersFile= new  dataValues();
+    this.LetterfromtheUniversityFile= new  dataValues();
+    this.LetterfromthehospitalFile= new  dataValues();
+    this.J1VisaformsFile= new  dataValues();
+    this.StudentundertakingFile= new  dataValues();
+    this.CriticalExceptionalskillsFile= new  dataValues();
+    this.TransfertoanotherinstitutionFile= new  dataValues();
 
     this.dataValuesArray = [];
     this.applicantDetails = [];
@@ -275,7 +364,7 @@ export class ApplicantProfileComponent implements OnInit {
     this.eventPayload.programStage = "EaLamgPg9IE";
     //  this.eventPayload.storedBy = "admin";
     //   this.applicationDate.value = new Date().getDate().toString();
-    this.applicationStatus.value = "COMPLETED";
+    this.applicationStatus.value = "Successfully Applied";
 
     if (this.applicationType.value) {
       this.applicationType.dataElement = "HBI7F3arBXR";
@@ -1038,6 +1127,220 @@ export class ApplicantProfileComponent implements OnInit {
             console.log(data);
             console.log(data.response.fileResource.id);
             //this.attrFilePassportId =data.response.fileResource.id;
+
+/*
+              //check uid for the file to upload
+              switch(event.target.name){
+                //application letter
+                case "ULcSjvW3wfc": {
+                  this.formalapplicationletterRequiredFile.dataElement = event.target.name;
+                  this.formalapplicationletterRequiredFile.value = data.response.fileResource.id;
+                }
+                //passport
+                case "tPkMXstaJhb": {
+                  this.PassportRequiredFile.dataElement = event.target.name;
+                  this.PassportRequiredFile.value = data.response.fileResource.id;
+
+                }
+                //cv
+                case "ASKtPeETyxl": {
+                  this.cvbolFile.dataElement = event.target.name;
+                  this.cvbolFile.value = data.response.fileResource.id;
+
+                }
+                //qualifications
+                case "yT2ZZpWDqrM": {
+
+                  this.QualificationRequiredFile.dataElement = event.target.name;
+                  this.QualificationRequiredFile.value = data.response.fileResource.id;
+                }
+                //prof registration
+                case "wEvvumpKO4f": {
+                  this.ProffesionalRegistrationRequiredFile.dataElement = event.target.name;
+                  this.ProffesionalRegistrationRequiredFile.value = data.response.fileResource.id;
+                }
+                //ref letter
+                case "FxiLQf0rO4X": {
+                  this.ReferenceLettersFile.dataElement = event.target.name;
+                  this.ReferenceLettersFile.value = data.response.fileResource.id;
+                }
+                //spouse id
+                case "cgjcuzHaF0g": {
+                  this.SpouseIdRequiredFile.dataElement = event.target.name;
+                  this.SpouseIdRequiredFile.value = data.response.fileResource.id;
+                }
+                //marriage certificate
+                case "NoIxOHbZHP3": {
+                  this.MarriageCertificateFile.dataElement = event.target.name;
+                  this.MarriageCertificateFile.value = data.response.fileResource.id;
+                }
+                //residense visa
+                case "g5I2ZHDlycD": {
+                  this.ResidenceVISARequiredFile.dataElement = event.target.name;
+                  this.ResidenceVISARequiredFile.value = data.response.fileResource.id;
+                }
+                //affidavit
+                case "ZmKDdaCulxi": {
+                  this.PoliceAffidavitFileId.dataElement = event.target.name;
+                  this.PoliceAffidavitFileId.value = data.response.fileResource.id;
+                }
+                //spouse employment contract
+                case "ykkBPofpXkN": {
+                  this.SpouseEmploymentContractFile.dataElement = event.target.name;
+                  this.SpouseEmploymentContractFile.value = data.response.fileResource.id;
+                }
+                //spouse visa
+                case "Npb4uxepgS0": {
+                  this.SpouseVISAFile.dataElement = event.target.name;
+                  this.SpouseVISAFile.value = data.response.fileResource.id;
+                }
+                //spouse salary slip
+                case "FRjvttNPPTe": {
+                  this.SpouseLatestSalaryRequiredFile.dataElement = event.target.name;
+                  this.SpouseLatestSalaryRequiredFile.value = data.response.fileResource.id;
+                }
+                //spouse letter confirm employment
+                case "ciXetLi20PE": {
+                  this.SpouseEmploymentLetterRequiredFile.dataElement = event.target.name;
+                  this.SpouseEmploymentLetterRequiredFile.value = data.response.fileResource.id;
+                }
+                //motivation letter
+                case "R6ldZY1sOV3": {
+                  this.motivationletterfromtheuniversitybolFile.dataElement = event.target.name;
+                  this.motivationletterfromtheuniversitybolFile.value = data.response.fileResource.id;
+                }
+                //residense visa
+                case "w0zt6ubwF8N": {
+                  this.OriginalcertifiedcopyCertifiedcopyofvalidresidencevisaFile.dataElement = event.target.name;
+                  this.OriginalcertifiedcopyCertifiedcopyofvalidresidencevisaFile.value = data.response.fileResource.id;
+
+                }
+                 //internship proof
+                case "xLlAxxdsqwT": {
+
+                  this.ProofofcompletinginternshipSupervisedpracticeFile.dataElement = event.target.name;
+                  this.ProofofcompletinginternshipSupervisedpracticeFile.value = data.response.fileResource.id;
+                }
+                //certificate of registration
+                case "tbVfHVWp8wk": {
+                  this.RegistrationcertificatefromcouncilsHPCSASAPCFile.dataElement = event.target.name;
+                  this.RegistrationcertificatefromcouncilsHPCSASAPCFile.value = data.response.fileResource.id;
+                }
+                //proof of success in exams hpcsa
+                case "kmf3TzMlMZK": {
+                  this.ProofofbeingsuccessfulinexamsHPCSASANCSAPCFile.dataElement = event.target.name;
+                  this.ProofofbeingsuccessfulinexamsHPCSASANCSAPCFile.value = data.response.fileResource.id;
+                }
+                //community service
+                case "NI3zNAv7oVr": {
+                  this.ProofcompletingcommunityserviceFile.dataElement = event.target.name;
+                  this.ProofcompletingcommunityserviceFile.value = data.response.fileResource.id;
+
+                }
+                //job offer from institution
+                case "T3I1nPRUGxI": {
+                  this.OfficialcopyofstampedjoboffersignedFile.dataElement = event.target.name;
+                  this.OfficialcopyofstampedjoboffersignedFile.value = data.response.fileResource.id;
+
+                }
+                //latest salary slip
+                case "aRnbPS0Du8Y": {
+                  this.LatestpayslipFile.dataElement = event.target.name;
+                  this.LatestpayslipFile.value = data.response.fileResource.id;
+                }
+                //registration certificate
+                case "rCCSOXloArD": {
+                  this.RegistrationcertificateFile.dataElement = event.target.name;
+                  this.RegistrationcertificateFile.value = data.response.fileResource.id;
+                }
+                //release from current employer
+                case "NEY582qdrxK": {
+                  this.MotivationletterfromemployerFile.dataElement = event.target.name;
+                  this.MotivationletterfromemployerFile.value = data.response.fileResource.id;
+                }
+                //permanent job offer
+                case "sU2xEu2Dy0I": {
+                  this.ReleaseletterfromcurrentemployerFileId.dataElement = event.target.name;
+                  this.ReleaseletterfromcurrentemployerFileId.value = data.response.fileResource.id;
+                }
+                //support letter from university and employing hospital
+                case "tSzfWCBihTz": {
+
+                  this.OfficialsupportletterfromUniversityFile.dataElement = event.target.name;
+                  this.OfficialsupportletterfromUniversityFile.value = data.response.fileResource.id;
+
+                }
+//Copy of motivation letter from employer (applies to refugees only)
+                case "VzRj3tzW71n": {
+
+                }
+//                  Copy of letter from the current university
+                case "tSzfWCBihTz": {
+
+                  this.LetterfromthecurrentuniversityFile.dataElement = event.target.name;
+                  this.LetterfromthecurrentuniversityFile.value = data.response.fileResource.id;
+
+                }
+                      //Copy acceptance letter from SA university
+                case "NyX0mHwvMdk": {
+                  this.AcceptanceletterfromSAuniversityFile.dataElement = event.target.name;
+                  this.AcceptanceletterfromSAuniversityFile.value = data.response.fileResource.id;
+
+                }
+//Copy curriculum vitae (original document)
+                case "ovJ4w1VCFpr": {
+                  this.curriculumvitaeFile.dataElement = event.target.name;
+                  this.curriculumvitaeFile.value = data.response.fileResource.id;
+                }
+//Copy of original certified reference letters
+                case "JJLfQhSEMq2": {
+
+                  this.originalcertifiedreferencelettersFile.dataElement = event.target.name;
+                  this.originalcertifiedreferencelettersFile.value = data.response.fileResource.id;
+              }
+//Copy of letter from the university
+                case "zCLxCuJHHxL": {
+
+                  this.LetterfromtheUniversityFile.dataElement = event.target.name;
+                  this.LetterfromtheUniversityFile.value = data.response.fileResource.id;
+                }
+                      //Copy J1 Visa forms
+                case "Iht8DmUXSji": {
+
+                  this.J1VisaformsFile.dataElement = event.target.name;
+                  this.J1VisaformsFile.value = data.response.fileResource.id;
+                }
+                      //Copy of student undertaking
+                case "LYQvw6ynmmQ": {
+                  this.StudentundertakingFile.dataElement = event.target.name;
+                  this.StudentundertakingFile.value = data.response.fileResource.id;
+
+                }
+                      //Copy of Critical/Exceptional skills VISA
+                case "SrduT8ItOWc": {
+                  this.CriticalExceptionalskillsFile.dataElement = event.target.name;
+                  this.CriticalExceptionalskillsFile.value = data.response.fileResource.id;
+
+                }
+//Copy of Transfer to another institution
+                case "oha7gtVN7zy": {
+                this.TransfertoanotherinstitutionFile.dataElement = event.target.name;
+                this.TransfertoanotherinstitutionFile.value = data.response.fileResource.id;
+              }
+                      //latest pay slip
+                case "FRjvttNPPTe": {
+                  this.LatestsalaryslipFile.dataElement = event.target.name;
+                  this.LatestsalaryslipFile.value = data.response.fileResource.id;
+                }
+//permanent job offer
+                case "sU2xEu2Dy0I": {
+                  this.PermanentjobofferFile.dataElement = event.target.name;
+                  this.PermanentjobofferFile.value = data.response.fileResource.id;
+                }
+              }
+
+       */
+
             this.filetoupload.dataElement = event.target.name;
             this.filetoupload.value = data.response.fileResource.id;
               //check if the dataelement already exists. If it exists, replace the value.
